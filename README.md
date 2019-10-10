@@ -1,0 +1,2 @@
+# irex-theme-child
+ 

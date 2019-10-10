@@ -1,0 +1,33 @@
+@import "theme/child_theme_variables";                   // <------- Add your variables into this file. Also add variables to overwrite Bootstrap variables here
+@import "assets/bootstrap4";                             // <------- Loads Bootstrap4
+@import "../src/sass/understrap/understrap/understrap";  // <------- Loads the UnderStrap defaults. Just a few classes to incorporate BS in WP
+@import "../src/sass/understrap/understrap/woocommerce"; // <------- Loads WooCommerce style fixes. Comment out if you aren't using WooCommerce
+
+// Optional files - If you don´t use the corresponding scripts/fonts comment em out
+@import "assets/font-awesome";                           // <------- Font Awesome Icon font
+@import "assets/underscores";                            // <------- Underscores media styles
+
+// Any additional imported files //
+@import "theme/child_theme";
+@import "partials/body";
+@import "partials/header";
+@import "partials/footer";
+@import "partials/home";
+@import "partials/pages";
+@import "partials/blocks";
+@import "../src/sass/understrap/theme/contact-form7";    // <------- Loads some basic styling for contact form 7 plugin
+
+
+/* Making the 3rd level menus show up */
+.menu-item-has-children .menu-item-has-children:hover > .dropdown-menu {
+  display: inline-block;
+  left: 9em;
+  top: -1ex;
+}
+.menu-item-has-children .menu-item-has-children:hover {
+    background-color: WhiteSmoke;
+    color: black!important;
+}
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
