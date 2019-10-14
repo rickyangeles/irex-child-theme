@@ -627,3 +627,22 @@
 .no-banner + .short-header {
     padding-top: 0;
 }
+
+
+/* Contact Page Styles */
+
+.contact-page-location {
+    li {
+        color: $dark;
+
+        &:first-child {
+            color: $primary;
+            font-weight: bold;
+        }
+        &:last-child {
+            margin-top: 0;
+            font-weight: normal;
+            text-decoration: none;
+        }
+    }
+}

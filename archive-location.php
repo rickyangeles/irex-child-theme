@@ -38,24 +38,7 @@ get_header(); ?>
 
 <div class="container-fluid map-wrap">
     <!-- <img src="http://irex.local/wp-content/uploads/2019/10/Pasted-Image-2.png" alt=""> -->
-    <?php
-        //$the_query = new WP_Query($map);
-        echo "<div class='map-container'><div class='wrap'><div class='acf-map'>";
-        while ( $mapQuery->have_posts() ) : $mapQuery->the_post();
-        $lat = get_field('latitude');
-        $long = get_field('longitude');
-        $title = get_the_title(); // Get the title
 
-        ?>
-        	<div class="marker" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $long; ?>">
-                        <h4><a href="<?php the_permalink(); ?>" rel="bookmark"> <?php the_title(); ?></a></h4>
-                        <p class="address"><?php echo $location['address']; ?></p>
-        	</div>
-	<?php
-
-        endwhile;
-        echo '</div></div></div>';
-        wp_reset_postdata(); ?>
 </div>
 
 <div class="container breadcrumb">
@@ -65,14 +48,23 @@ get_header(); ?>
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="row">
+
+    </div>
+</div>
 <div class="container map-content">
     <div class="row">
         <div class="col-md-3">
-            <?php echo do_shortcode('[searchandfilter id="5438"]'); ?>
+            <select class="all-services" name="all-services">
+                <label for="all-services">Services</label>
+                <?php echo get_all_services_select(); ?>
+            </select>
         </div>
-        <div class="col-md-9 location-ajax">
+        <div class="col-md-9 location-container">
             <?php if ( $mapQuery->have_posts() ) : ?>
-                <div class="row">
+                <ul class="row location-container">
                 <?php while ($mapQuery->have_posts() ) : $mapQuery->the_post(); ?>
                     <?php
                         $branchName     = get_field('branch_name');
@@ -98,14 +90,16 @@ get_header(); ?>
                             }
                         }
 
+                        $url = get_post_meta($t, 'dt_external_connection_url', true);
+                        $services = $url . "/wp/v2/service?per_page=100";
+                        $logo = $url . "/acf/v3/options/options/header_logo";
+                        $subName = get_the_title($t);
+
                     ?>
-                    <div class="col-md-3">
+                    <li class="col-md-3" data-sub="<?php echo $subName; ?>" data-state="<?php echo $state; ?>" <?php get_service_list($services); ?>>
+
                     <ul class="single-location">
                         <li>
-                            <?php
-                                $url = get_post_meta($t, 'dt_external_connection_url', true);
-                                $logo = $url . "/acf/v3/options/options/header_logo";
-                            ?>
                             <?php if ( $logo ) : ?>
                                 <img class="location-logo" src="<?php echo get_logo_rest($logo); ?>"/>
                             <?php else : ?>
@@ -137,9 +131,9 @@ get_header(); ?>
                             <li><a href="<?php echo $url; ?>">visit website ></a></li>
                         <?php endif; ?>
                     </ul>
-                </div>
+                </li>
                 <?php endwhile; ?>
-            </div>
+            </ul>
             <?php endif; ?>
         </div>
     </div>

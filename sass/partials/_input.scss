@@ -1,0 +1,25 @@
+form {
+    label {
+        margin-bottom: 0;
+    }
+    input, textarea {
+        border: 2px solid $primary;
+        background-color: $grey;
+        width: 100%;
+    }
+
+    .gfield_radio {
+        label {
+            float: left;
+            margin: 0 6px 0 0!important;
+        }
+    }
+
+    .gform_button {
+        background-color: $secondary;
+        color: white;
+        border-radius: 20px;
+        padding: 10px 30px;
+        border-color: $secondary;
+    }
+}
