@@ -43,9 +43,9 @@ add_action( 'after_setup_theme', 'add_child_theme_textdomain' );
 
 require 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://github.com/rickyangeles/irex-theme-child',
+	'https://github.com/rickyangeles/irex-child-theme',
 	__FILE__,
-	'irex-theme-child'
+	'irex-child-theme'
 );
 
 $myUpdateChecker->getVcsApi()->enableReleaseAssets();
