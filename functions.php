@@ -132,20 +132,19 @@ function total_connections($id) {
 	if ( ! empty( $connection_map['external'] ) ) {
 		$total_connections = $total_connections + count( $connection_map['external'] );
 	}
-
 	return $total_connections;
 }
 
 function get_service_subsidiary($id) {
 
 	$meta = get_post_meta($id, 'dt_connection_map', true);
-	// $ch = curl_init();
-	// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// curl_setopt($ch, CURLOPT_URL,$id);
-	// $result=curl_exec($ch);
-	// $result=curl_exec($ch);
-	// $subs = json_decode($result, true);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL,$id);
+	$result=curl_exec($ch);
+	$result=curl_exec($ch);
+	$subs = json_decode($result, true);
 	$post = $meta['external'];
 	$idList = array();
 	foreach ($post as $key => $value) {
@@ -703,3 +702,16 @@ function theme_customize_register( $wp_customize ) {
 }
 
 add_action( 'customize_register', 'theme_customize_register' );
+
+
+
+function sf_filter_query_args( $query_args, $sfid ) {
+
+  //if search form ID = 225, the do something with this query
+  if($sfid==5438)
+  {
+  	//modify $query_args here before returning it
+  }
+  return $query_args;
+}
+add_filter( 'sf_edit_query_args', 'sf_filter_query_args', 10, 2 );

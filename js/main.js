@@ -128,4 +128,6 @@ jQuery(document).ready(function( $ ) {
     }).on('hide.bs.collapse', function(){
         $(this).prev(".card-header").find(".fas").removeClass("fa-caret-up").addClass("fa-caret-down");
     });
+
+
 });

@@ -27,16 +27,17 @@ $container = get_theme_mod( 'understrap_container_type' );
     $bannerPrimary = get_field('banner_primary_button');
     $bannerSecondary = get_field('banner_secondary_button');
     $introLeft = get_field('intro_content');
-    $introRight = get_field('intro_video');
+    $introRight = get_field('intro_image');
     $introBG = get_field('intro_bg');
     $introButton = get_field('intro_button');
+    $pointTitle = get_field('point_title');
     $point = get_field('point');
-    $industyTitle = get_field('industry_title');
-    $industryBG = get_field('industry_background_image');
-    //$industry = get_field('select_industries');
-    $contractorTitle = get_field('contractor_title');
-    $contractorContent = get_field('contractor_content');
-    $contractorBtn = get_field('contractor_button');
+    $serviceContent = get_field('service_content');
+    $serviceCTATitle = get_field('home_cta_title');
+    $serviceCTAText = get_field('home_cta_text');
+    $serviceCTAButton = get_field('home_cta_button');
+    $testimonials = get_field('select_testimonials');
+    $testimonialTitle = get_field('testimonial_title');
     $projectTitle = get_field('project_title');
     $featuredProjects = get_field('select_projects_to_feature');
     $projectButton = get_field('project_button');
@@ -80,14 +81,17 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <?php echo $introLeft; ?>
                 <a class="learn-more" href="<?php echo $introButton['url']; ?>"><?php echo $introButton['title']; ?></a>
             </div>
-            <div class="col-md-6 home-intro-right embed-responsive embed-responsive-16by9">
-                <?php echo $introRight; ?>
+            <div class="col-md-6 home-intro-right">
+                <img src="<?php echo $introRight['url']; ?>" />
             </div>
         </div>
     </div>
 
     <!-- Major Points -->
     <div class="container home-major-points pt-4">
+        <?php if ( $pointTitle ) : ?>
+            <h4 class="title"><?php echo $pointTitle; ?></h4>
+        <?php endif; ?>
         <div class="row d-flex justify-content-around">
             <?php if( have_rows('point') ): ?>
             	<?php while( have_rows('point') ): the_row();
@@ -96,7 +100,7 @@ $container = get_theme_mod( 'understrap_container_type' );
             		$title = get_sub_field('point_title');
             		$content = get_sub_field('point_content');
             	?>
-                <div class="col-md-5 point">
+                <div class="col-md-3 point">
                     <?php echo $icon; ?>
                     <h4><?php echo $title; ?></h4>
                     <?php echo $content; ?>
@@ -106,96 +110,185 @@ $container = get_theme_mod( 'understrap_container_type' );
         </div>
     </div>
 
-    <!-- Industries -->
-    <div class="container-fluid home-industries" <?php echo $industryBG; ?>>
+    <!-- Service and location -->
+    <div class="container-fluid home-service-location">
         <div class="row">
-            <h2 class="title"><?php echo $industyTitle; ?></h2>
-        	<ul class="industry-list">
+            <div class="col-md-6">
+                <h4>Services</h4>
+                <?php echo $serviceContent; ?>
+
+                <h5>Our Services</h5>
+                <ul class="full-service-list">
+                    <?php
+                        wp_list_pages( array (
+                            'post_type' => 'service',
+                            'title_li' => ''
+                        ));
+                    ?>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h4>Locations</h4>
+                <h5>Service Area(s): All United States</h5>
                 <?php
-                // the query
-                    $industry = new WP_Query( array(
-                        'post_type' => 'industry',
+
+                    $args = array(
+                        'post_type' => 'location',
                         'posts_per_page' => -1,
-                        'order' => 'DESC',
-                        'orderby' => 'date'
-                    ));
-                ?>
-                <?php if ( $industry->have_posts() ) : ?>
-                <?php while ( $industry->have_posts() ) : $industry->the_post(); ?>
-                    <li><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></li>
-                <?php endwhile; ?>
-                <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+                    );
+
+                    $locations_query = new WP_QUERY($args);
+
+                    if ( $locations_query->have_posts() ) : ?>
+
+                <div class="acf-map" style="overflow: hidden; position: relative;">
+
+                    <?php while ( $locations_query->have_posts() ) : ?>
+                        <?php
+                            $locations_query->the_post();
+                            $pID            = get_the_ID();
+                			$title 			= get_the_title();
+                			$lat            = get_field('latitude', $pID);
+                			$long           = get_field('longitude', $pID);
+                        ?>
+
+                        <div class="marker" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $long; ?>" data-img="<?php echo $type_icon; ?>">
+                            <div class="inside-marker">
+                                <h5><?php echo $title; ?></h5>
+                            </div>
+                        </div>
+                    <?php endwhile; ?>
+                    </div>
                 <?php endif; ?>
-        	</ul>
+                <h5>Branch Locations & Contact Information</h5>
+                <div class="row">
+                    <?php
+                        $args = array(
+                            'post_type' => 'location',
+                            'posts_per_page' => -1,
+                        );
+                        $locations = new WP_QUERY($args);
+                    ?>
+                    <?php if ( $locations->have_posts() ) : ?>
+                        <?php while ($locations->have_posts() ) : $locations->the_post(); ?>
+                            <?php
+                                $branchName     = get_field('branch_name');
+                                $address1       = get_field('address_1');
+                                $address2       = get_field('address_2');
+                                $city           = get_field('city');
+                                $state          = get_field('state');
+                                $zip            = get_field('zip_code');
+                                $tel            = get_field('telephone');
+                                $tollFree       = get_field('toll_free_number');
+                                $fax            = get_field('fax');
+                                $lat            = get_field('latitude');
+                                $long           = get_field('longitude');
+                                $show           = get_field('hide_in_location_page');
+                                $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
+
+                                foreach ($meta as $k => $v) {
+                                    foreach ($v as $kk => $vv) {
+                                        if ($kk == 'external') {
+                                            reset($vv);
+                                            $t = key($vv);
+                                        }
+                                    }
+                                }
+
+                                // $url = get_post_meta($t, 'dt_external_connection_url', true);
+                                // $services = $url . "/wp/v2/service?per_page=100";
+                                // $logo = $url . "/acf/v3/options/options/header_logo";
+                                // $subName = get_the_title($t);
+
+                            ?>
+                            <div class="col-md-4">
+                                <ul class="single-location">
+                                    <?php if ( $branchName ) : ?>
+                                        <li><?php echo $branchName; ?></li>
+                                    <?php endif; ?>
+                                    <?php if ( $address1 ) : ?>
+                                        <li><?php echo $address1; ?></li>
+                                    <?php endif; ?>
+                                    <?php if ( $address2 ) : ?>
+                                        <li><?php echo $address2; ?></li>
+                                    <?php endif; ?>
+                                    <?php if ( $city && $state && $zip ) : ?>
+                                        <li><?php echo $city . ', ' . $state . ' ' . $zip; ?></li>
+                                    <?php endif; ?>
+                                    <?php if ( $tel ) : ?>
+                                        <li>P: <?php echo $tel; ?></li>
+                                    <?php endif; ?>
+                                    <?php if ($tollFree) :?>
+                                        <li>P: <?php echo $tollFree; ?></li>
+                                    <?php endif; ?>
+                                    <?php if ( $fax ) : ?>
+                                        <li>F: <?php echo $fax; ?></li>
+                                    <?php endif; ?>
+                                    <?php if ( $url ) : ?>
+                                        <li><a href="<?php echo $url; ?>">visit website ></a></li>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                </div>
+                <?php wp_reset_postdata(); ?>
+            </div>
         </div>
     </div>
 
-    <!-- Contractor -->
-    <div class="container home-contractor">
-        <div class="row contractor-cta d-flex align-items-center">
-            <div class="col-md-9">
-                <h2><?php echo $contractorTitle; ?></h2>
-                <p><?php echo $contractorContent; ?></p>
-            </div>
-            <div class="col-md-3">
-                <a href="<?php echo $contractorBtn['url']; ?>" class="btn btn-primary"><?php echo $contractorBtn['title']; ?></a>
-            </div>
-        </div>
 
-            <?php
-        		$query = new WP_Query(array(
-        		    'post_type' => 'dt_ext_connection',
-        		    'post_status' => 'publish',
-        			'posts_per_page' => -1,
-                    'orderby'   => 'title',
-                    'order'    => 'ASC'
-        		));
-        	?>
-            <?php $counter = 0; ?>
-                <div class="row folding-menu">
-                <?php while ($query->have_posts()) : ?>
-                    <?php $query->the_post(); ?>
-                    <?php
-                        // if ($counter % 4 == 0) :
-                        //     echo $counter > 0 ? '</div></div>' : ''; // close div if it's not the first
-                        //     echo '<div class="home-contractor-row container"><div class="row">';
-                        // endif; ?>
-                		<?php
-                        $remove = array("/wp-json", "http://");
-                        $url = get_post_meta(get_the_ID(), 'dt_external_connection_url', true);
-                        $cleanUrl = str_replace($remove,'', $url);
-                        $siteURL = str_replace('/wp-json', '', $url);
-                        $title = get_the_title(get_the_ID());
-                        $services = $url . "/wp/v2/service/";
-                        $locations = $url . "/wp/v2/location/";
-                        $logo = $url . "/acf/v3/options/options/header_logo";
-                    ?>
-                    <div class="menu-item col-md-3 single-sub">
-                      <a href="#">
-                        <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo get_logo_rest($logo); ?>"/>
-                      </a>
-                      <div class="folding-content single-sub-info container-fluid">
-                          <div class="row">
-                              <div class="col-md-6">
-                                  <h2><?php echo $title; ?></h2>
-                                  website: www.<?php echo $cleanUrl; ?>
-                                  <p class="description">description goes here</p>
-                                  <a href="<?php echo $siteURL; ?>" class="btn btn-primary">Visit Site</a>
-                              </div>
-                              <div class="col-md-3">
-                                  <h4>Services</h4>
-                                  <?php echo get_services_rest($services); ?>
-                              </div>
-                              <div class="col-md-3">
-                                  <h4>Locations</h4>
-                                  <?php echo get_locations_rest($locations, $title); ?>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-            <?php $counter++; endwhile; ?>
+    <!-- CTA -->
+    <?php if ( $serviceCTATitle ) : ?>
+        <div class="container-fluid home-cta">
+            <div class="row d-flex align-items-center">
+                <div class="col-md-9">
+                    <h5><?php echo $serviceCTATitle; ?></h5>
+                    <p><?php echo $serviceCTAText; ?></p>
+                </div>
+                <div class="col-md-3">
+                    <?php if ( $serviceCTAButton ) : ?>
+                        <a href="<?php echo $serviceCTAButton['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAButton['title']; ?></a>
+                    <?php endif; ?>
+                </div>
+            </div>
         </div>
-            <?php wp_reset_postdata(); ?>
+    <?php endif; ?>
+
+    <!-- Testimonials -->
+    <div class="container-fluid home-testimonial">
+        <div class="row">
+            <div class="col-md-12">
+                <?php echo $testimonialTitle; ?>
+                <?php if( $testimonials ): ?>
+                    <div class="swiper-container">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <?php foreach( $testimonials as $testimonial ): // variable must be called $post (IMPORTANT) ?>
+                                <?php setup_postdata($testimonial); ?>
+                                <div class="swiper-slide">
+                                    <?php
+                                        $p = $testimonial->ID;
+                                        $name = get_field('testimonial_name', $p);
+                                        $job = get_field('testimonial_job_title', $p);
+                                        $company = get_field('testimonial_company_name', $p);
+                                    ?>
+                                   <?php the_content($p); ?>
+                                   <p class="testimonail-detail">test<strong><?php the_field('testimonial_name'); ?></strong>, <?php echo $job; ?>, <?php echo $company; ?></p>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="nav-wrap">
+                            <div class="swiper-pagination"></div>
+                            <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                        </div>
+                    </div>
+                    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 
