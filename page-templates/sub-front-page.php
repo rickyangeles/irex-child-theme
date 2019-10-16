@@ -259,9 +259,9 @@ $container = get_theme_mod( 'understrap_container_type' );
     <div class="container-fluid home-testimonial">
         <div class="row">
             <div class="col-md-12">
-                <?php echo $testimonialTitle; ?>
+                <h4 class="title"><?php echo $testimonialTitle; ?></h4>
                 <?php if( $testimonials ): ?>
-                    <div class="swiper-container">
+                    <div class="swiper-container testimonial-slider">
                         <!-- Additional required wrapper -->
                         <div class="swiper-wrapper">
                             <?php foreach( $testimonials as $testimonial ): // variable must be called $post (IMPORTANT) ?>
@@ -274,7 +274,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                                         $company = get_field('testimonial_company_name', $p);
                                     ?>
                                    <?php the_content($p); ?>
-                                   <p class="testimonail-detail">test<strong><?php the_field('testimonial_name'); ?></strong>, <?php echo $job; ?>, <?php echo $company; ?></p>
+                                   <p class="testimonail-detail"><strong><?php echo $name; ?></strong>, <?php echo $job; ?>, <?php echo $company; ?></p>
                                 </div>
                             <?php endforeach; ?>
                         </div>

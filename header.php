@@ -102,7 +102,7 @@ function theme_get_customizer_css() {
 
 					<!-- Your site title as branding in the menu -->
 					<?php $logo = get_field('header_logo','options'); if ( $logo ) : ?>
-						<a href="/" class="header-logo"><img src="<?php echo $logo['url']; ?>" /></a>
+						<a href="/" class="header-logo d-flex align-items-center"><img src="<?php echo $logo['url']; ?>" /></a>
 					<?php endif; ?>
 
 					<!-- Top Menu -->

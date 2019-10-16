@@ -70,4 +70,75 @@
             }
         }
     }
+
+    .home-testimonial {
+        background-color: rgba(33, 22, 81, 0.05);
+        padding: 70px 15px;
+
+        .title {
+            text-align:center;
+        }
+        .row {
+            max-width: 1200px; width: 100%;
+            margin: 0 auto;
+
+            .swiper-container {
+                max-width: 800px; width: 100%;
+                text-align: center;
+                .slide-caption {
+                    font-weight: lighter;
+                    font-size: 14px;
+                    padding: 20px;
+                    background-color: $primary;
+                    color: white;
+                    font-style: italic;
+                }
+                .swiper-button-prev, .swiper-button-next {
+                    width: 40px;
+                    height: 40px;
+                    background-color: white;
+                    border-radius: 40px;
+                    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+
+                    &:after {
+                        font-size: 21px;
+                        font-weight: bold;
+                        color: blue;
+                        height: 30px;
+                    }
+                }
+
+                .swiper-pagination-bullet {
+                    height: 17px; width: 17px;
+                    background-color: $primary;
+                    border: 3px solid $white;
+                    opacity: 1;
+                    margin: 0 5px;
+                }
+
+                .swiper-container-horizontal > .swiper-pagination-bullets {
+                    bottom: 100px;
+                    margin-top: 10px;
+                }
+
+                span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+                    background-color: $secondary;
+                    border: 3px solid $white;
+                }
+                .swiper-pagination {
+                    width: 100%;
+                    margin-top: 10px;
+                }
+
+                .nav-wrap {
+                    display: block;
+                    width: 50%;
+                    height: 40px;
+                    position: relative;
+                    margin: 0 auto;
+                    bottom: 0;
+                }
+            }
+        }
+    }
 }
