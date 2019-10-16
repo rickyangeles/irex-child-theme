@@ -10,8 +10,8 @@
 
 get_header(); ?>
 
-
-<div class="container-fluid page-header">
+<div class="no-banner"></div>
+<div class="container-fluid page-header d-flex align-items-center">
     <div class="row">
         <h1 class="page-title">
             Locations

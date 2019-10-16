@@ -16,37 +16,53 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 
 $container = get_theme_mod( 'understrap_container_type' );
+$pID = get_the_ID();
+?>
+<?php
+    $header = get_field('enable_banner');
+    $headerType = get_field('enable_tall_banner');
 
+    if ( $headerType == "true") {
+        $headerType = 'tall-header';
+    } else {
+        $headerType = 'short-header';
+    }
 ?>
 
+<?php if ( $headerType == "tall-header") : ?>
+	<div class="container-fluid <?php echo $headerType; ?>">
+	    <?php if ( has_post_thumbnail($pID) ): ?>
+	        <?php the_post_thumbnail('page-banner'); ?>
+	    <?php else : ?>
+	        <img src="<?php echo the_field('service_featured_image', 'options')?>">
+	    <?php endif; ?>
+	    <?php if ( $headerType == "tall-header") : ?>
+	        <div class="row d-flex justify-content-center align-items-center">
+	    <?php else : ?>
+	        <div class="row">
+	    <?php endif; ?>
+	        <h1 class="page-title">
+	            <?php the_title(); ?>
+	        </h1>
+	    </div>
+	</div>
+<?php endif; ?>
+
+<?php if ( $headerType = "short-header" ) : ?>
+	<div class="no-banner short-header"></div>
+    <div class="container breadcrumb">
+	    <div class="row">
+	        <div class="col-md-12">
+	            <?php bcn_display(); ?>
+	        </div>
+	    </div>
+	</div>
+<?php endif; ?>
 <div class="wrapper" id="page-wrapper">
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
 
 		<div class="row">
-
-			<?php
-				$query = new WP_Query(array(
-				    'post_type' => 'dt_ext_connection',
-				    'post_status' => 'publish',
-					'posts_per_page' => -1,
-				));
-			?>
-
-
-			<?php while ($query->have_posts()) : ?>
-			    <?php $query->the_post(); ?>
-				<?php
-					$meta = get_post_meta(get_the_ID(), 'dt_external_connection_url', true);
-					$meta .= "/wp/v2/service/";
-				?>
-				<?php echo $meta; ?>
-				<?php $response = wp_remote_get($meta); ?>
-			<?php endwhile; ?>
-
-			<?php wp_reset_query(); ?>
-
-
 			<!-- Do the left sidebar check -->
 			<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
 
@@ -56,12 +72,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 					<?php get_template_part( 'loop-templates/content', 'page' ); ?>
 
-					<?php
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
-					?>
 
 				<?php endwhile; // end of the loop. ?>
 
@@ -77,14 +87,3 @@ $container = get_theme_mod( 'understrap_container_type' );
 </div><!-- #page-wrapper -->
 
 <?php get_footer(); ?>
-<script>
-	jQuery(document).ready(function($) {
-		$.getJSON('http://aep.local/wp-json/wp/v2/service/', function(json) {
-			var obj = json;
-			for(i = 0; i < obj.length; i++) {
-	           	var title = obj[i]['title']['rendered'];
-
-	        }
-		});
-	});
-</script>

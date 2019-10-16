@@ -7,6 +7,14 @@ jQuery(document).ready(function( $ ) {
            'margin-left' : $(this).width() / 2 * - 1 + 'px'
         });
     });
+
+    $(".dropdown-menu .dropdown-menu").each(function() {
+        $(this).css({
+           'left' : '99%',
+           'margin-left' : $(this).width() / 2 * - 1 + 'px'
+        });
+    });
+    
     $('li.menu-item-has-children > a').after('<div class="mobile-menu-toggle"><i class="fal fa-angle-down"></i></div>');
 
 

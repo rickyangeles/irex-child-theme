@@ -19,6 +19,7 @@ $corpPhone = get_field('c_phone_number', 'options');
 $corpFax	= get_field('c_fax_number', 'options');
 $customerPhone = get_field('customer_phone', 'options');
 $supplyPhone = get_field('suppliers_phone', 'options');
+$subFooter = get_field('subsidiary_footer', 'options');
 ?>
 
 <?php get_template_part( 'sidebar-templates/sidebar', 'footerfull' ); ?>
@@ -39,51 +40,163 @@ $supplyPhone = get_field('suppliers_phone', 'options');
 </div>
 <div class="wrapper footer" id="wrapper-footer">
 
-	<div class="<?php echo esc_attr( $container ); ?>">
-		<div class="row">
-			<div class="col-md-3">
-				<img src="<?php echo $footerLogo['url']; ?>" alt="" class="footer-logo">
-				<ul class="footer-social-media">
-				<?php if( have_rows('social_icons','options') ): ?>
-					<?php while( have_rows('social_icons','options') ): the_row();
-						$socialIcon = get_sub_field('font_awesome_class');
-						$socialURL = get_sub_field('social_media_url');
-					?>
-						<li><a href="<?php the_sub_field('font_awesome_class');?>"><i class="<?php echo $socialIcon; ?>"></i></a></li>
-					<?php endwhile; ?>
-				<?php endif; ?>
+	<?php if ( $subFooter ) : ?>
+		<div class="<?php echo esc_attr( $container ); ?>">
+			<div class="row">
+				<div class="col-md-3">
+					<img src="<?php echo $footerLogo['url']; ?>" alt="" class="footer-logo">
+					<ul class="footer-social-media">
+					<?php if( have_rows('social_icons','options') ): ?>
+						<?php while( have_rows('social_icons','options') ): the_row();
+							$socialIcon = get_sub_field('font_awesome_class');
+							$socialURL = get_sub_field('social_media_url');
+						?>
+							<li><a href="<?php the_sub_field('font_awesome_class');?>"><i class="<?php echo $socialIcon; ?>"></i></a></li>
+						<?php endwhile; ?>
+					<?php endif; ?>
 
-				</ul>
+					</ul>
+				</div>
+				<div class="col-md-9">
+						<?php echo $footerCopy; ?>
+				</div>
 			</div>
-			<div class="col-md-9">
-					<?php echo $footerCopy; ?>
-				<div class="row footer-contact-info">
-					<div class="col-md-4">
-						<strong>Corporate Office</strong>
-						<ul class="corp-contact">
-							<li><?php echo $corpAddress; ?></li>
-							<li>P: <?php echo $corpPhone; ?></li>
-							<li>F: <?php echo $corpFax; ?></li>
-						</ul>
+			<div class="row">
+				<div class="col-md-6 footer-locations">
+					<h3>Locations</h3>
+					<div class="row">
+						<?php
+	                        $args = array(
+	                            'post_type' => 'location',
+	                            'posts_per_page' => -1,
+	                        );
+	                        $locations = new WP_QUERY($args);
+	                    ?>
+	                    <?php if ( $locations->have_posts() ) : ?>
+	                        <?php while ($locations->have_posts() ) : $locations->the_post(); ?>
+	                            <?php
+	                                $branchName     = get_field('branch_name');
+	                                $address1       = get_field('address_1');
+	                                $address2       = get_field('address_2');
+	                                $city           = get_field('city');
+	                                $state          = get_field('state');
+	                                $zip            = get_field('zip_code');
+	                                $tel            = get_field('telephone');
+	                                $tollFree       = get_field('toll_free_number');
+	                                $fax            = get_field('fax');
+	                            ?>
+	                            <div class="col-md-4">
+	                                <ul class="single-location">
+	                                    <?php if ( $branchName ) : ?>
+	                                        <li><?php echo $branchName; ?></li>
+	                                    <?php endif; ?>
+	                                    <?php if ( $address1 ) : ?>
+	                                        <li><?php echo $address1; ?></li>
+	                                    <?php endif; ?>
+	                                    <?php if ( $address2 ) : ?>
+	                                        <li><?php echo $address2; ?></li>
+	                                    <?php endif; ?>
+	                                    <?php if ( $city && $state && $zip ) : ?>
+	                                        <li><?php echo $city . ', ' . $state . ' ' . $zip; ?></li>
+	                                    <?php endif; ?>
+	                                    <?php if ( $tel ) : ?>
+	                                        <li>P: <?php echo $tel; ?></li>
+	                                    <?php endif; ?>
+	                                    <?php if ($tollFree) :?>
+	                                        <li>P: <?php echo $tollFree; ?></li>
+	                                    <?php endif; ?>
+	                                    <?php if ( $fax ) : ?>
+	                                        <li>F: <?php echo $fax; ?></li>
+	                                    <?php endif; ?>
+	                                </ul>
+	                            </div>
+	                        <?php endwhile; ?>
+							<?php wp_reset_postdata();?>
+	                    <?php endif; ?>
 					</div>
-					<div class="col-md-4">
-						<strong>Customers:</strong>
-						<ul class="customer-contact">
-							<li>Toll Free 24/7 Service & Support</li>
-							<li>P: <?php echo $customerPhone; ?></li>
+				</div>
+				<div class="col-md-6">
+					<?php
+						$args = array(
+							'post_type' => 'post',
+							'posts_per_page' => 5,
+						);
+						$news = new WP_QUERY($args);
+					?>
+					<?php if ( $news->have_posts() ) : ?>
+						<h3>News</h3>
+						<ul class="latest-news-footer">
+						<?php while ($news->have_posts() ) : $news->the_post(); ?>
+							<li><a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a></li>
+						<?php endwhile; ?>
 						</ul>
-					</div>
-					<div class="col-md-4">
-						<strong>Suppliers:</strong>
-						<ul class="supply-contact">
-							<li>P: <?php echo $supplyPhone; ?></li>
-						</ul>
+					<?php endif; ?>
+
+
+					<h3>Site Links</h3>
+					<?php $siteLinks = get_field('footer_page_links', 'options');
+						if( $siteLinks  ): ?>
+						    <ul class="site-links-footer">
+						    <?php foreach( $siteLinks as $post): ?>
+						        <?php setup_postdata($post); ?>
+						        <li>
+						            <a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
+						        </li>
+						    <?php endforeach; ?>
+						    </ul>
+						    <?php wp_reset_postdata();?>
+						<?php endif; ?>
+				</div>
+			</div>
+
+		</div><!-- container end -->
+	<?php else : ?>
+		<div class="<?php echo esc_attr( $container ); ?>">
+			<div class="row">
+				<div class="col-md-3">
+					<img src="<?php echo $footerLogo['url']; ?>" alt="" class="footer-logo">
+					<ul class="footer-social-media">
+					<?php if( have_rows('social_icons','options') ): ?>
+						<?php while( have_rows('social_icons','options') ): the_row();
+							$socialIcon = get_sub_field('font_awesome_class');
+							$socialURL = get_sub_field('social_media_url');
+						?>
+							<li><a href="<?php the_sub_field('font_awesome_class');?>"><i class="<?php echo $socialIcon; ?>"></i></a></li>
+						<?php endwhile; ?>
+					<?php endif; ?>
+
+					</ul>
+				</div>
+				<div class="col-md-9">
+						<?php echo $footerCopy; ?>
+					<div class="row footer-contact-info">
+						<div class="col-md-4">
+							<strong>Corporate Office</strong>
+							<ul class="corp-contact">
+								<li><?php echo $corpAddress; ?></li>
+								<li>P: <?php echo $corpPhone; ?></li>
+								<li>F: <?php echo $corpFax; ?></li>
+							</ul>
+						</div>
+						<div class="col-md-4">
+							<strong>Customers:</strong>
+							<ul class="customer-contact">
+								<li>Toll Free 24/7 Service & Support</li>
+								<li>P: <?php echo $customerPhone; ?></li>
+							</ul>
+						</div>
+						<div class="col-md-4">
+							<strong>Suppliers:</strong>
+							<ul class="supply-contact">
+								<li>P: <?php echo $supplyPhone; ?></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-	</div><!-- container end -->
+		</div><!-- container end -->
+	<?php endif; ?>
 
 </div><!-- wrapper end -->
 <div class="subfooter container ">

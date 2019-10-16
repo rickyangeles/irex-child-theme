@@ -19,7 +19,7 @@
         margin: 0 auto;
         width: 100%;
         left: 0; right: 0; bottom: 30px;
-        padding: 0 30px;
+        padding: 0 15px;
     }
     &.skinny-header {
         height: 126px;
@@ -84,7 +84,7 @@
 .no-banner {
     width: 100%;
     display: block;
-    height: 170px;
+    height: 143px;
     background-color: $primary;
 }
 
@@ -660,8 +660,13 @@
 }
 /* General Page Styles */
 
-.no-banner + .short-header {
+.no-banner {
     padding-top: 0;
+
+    &.short-header {
+        height: 175px;
+        max-height: 175px;
+    }
 }
 
 

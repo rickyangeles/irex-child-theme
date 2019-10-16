@@ -25,7 +25,7 @@
     li {
         list-style-type: none;
         float: left;
-        margin: 0 25px 0 25px; 
+        margin: 0 25px 0 25px;
 
         &:last-child {
             a {
@@ -49,6 +49,10 @@
     padding: 50px 0;
     background: $dark;
     color: $white;
+
+    h1,h2,h3,h4,h5,h6 {
+        color: white;
+    }
 
     .footer-logo {
         width: 100%;
@@ -87,6 +91,30 @@
             li {
                 list-style-type: none;
                 margin-bottom: 0px;
+            }
+        }
+    }
+    .latest-news-footer, .site-links-footer {
+        list-style-type: none;
+        padding-left: 0;
+
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            color: white;
+        }
+    }
+
+    .footer-locations {
+        .single-location {
+            list-style-type: none;
+            padding-left:0;
+
+            li {
+                &:first-child {
+                    color: $secondary;
+                }
             }
         }
     }
