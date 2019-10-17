@@ -201,7 +201,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                                 // $subName = get_the_title($t);
 
                             ?>
-                            <div class="col-md-4">
+                            <div class="col-md-4 home-location">
                                 <ul class="single-location">
                                     <?php if ( $branchName ) : ?>
                                         <li><?php echo $branchName; ?></li>
@@ -263,7 +263,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <?php if( $testimonials ): ?>
                     <div class="swiper-container testimonial-slider">
                         <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper d-flex align-items-center">
                             <?php foreach( $testimonials as $testimonial ): // variable must be called $post (IMPORTANT) ?>
                                 <?php setup_postdata($testimonial); ?>
                                 <div class="swiper-slide">

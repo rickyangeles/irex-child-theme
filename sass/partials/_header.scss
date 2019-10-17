@@ -108,6 +108,7 @@ body {
             .header-logo {
                 padding: 10px 10px 10px 0;
                 transition: all .2s ease;
+                min-height: 0;
                 img {
                     max-height: 50px;
                     transition: all .2s ease;
