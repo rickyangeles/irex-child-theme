@@ -368,6 +368,28 @@
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_5da9ce7f6e4aa",
+            "label": "Services",
+            "name": "services",
+            "type": "taxonomy",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "taxonomy": "service_tax",
+            "field_type": "checkbox",
+            "add_term": 1,
+            "save_terms": 0,
+            "load_terms": 0,
+            "return_format": "object",
+            "multiple": 0,
+            "allow_null": 0
         }
     ],
     "location": [
@@ -390,5 +412,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1571242234
+    "modified": 1571409585
 }

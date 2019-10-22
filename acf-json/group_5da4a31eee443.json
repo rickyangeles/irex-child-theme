@@ -3,40 +3,15 @@
     "title": "Contact Page",
     "fields": [
         {
-            "key": "field_5da4a44b0a250",
-            "label": "Select Locations",
-            "name": "select_locations",
-            "type": "relationship",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "location"
-            ],
-            "taxonomy": "",
-            "filters": [
-                "search"
-            ],
-            "elements": "",
-            "min": "",
-            "max": "",
-            "return_format": "object"
-        },
-        {
-            "key": "field_5da4a326d798c",
-            "label": "Contact Form ID",
-            "name": "contact_form_id",
+            "key": "field_5daf0a4f3bab4",
+            "label": "Service Area",
+            "name": "service_area",
             "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -52,7 +27,7 @@
             {
                 "param": "post_template",
                 "operator": "==",
-                "value": "default"
+                "value": "page-contact.php"
             }
         ]
     ],
@@ -64,5 +39,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1571242147
+    "modified": 1571752536
 }

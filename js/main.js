@@ -105,6 +105,8 @@ jQuery(document).ready(function( $ ) {
     $('#accordion').collapse({
       toggle: false
     })
+
+    
     //Subsidiary Picker
     $('.folding-menu').foldingContent({
       menuSelector: '.folding-menu',

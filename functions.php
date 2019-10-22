@@ -78,37 +78,55 @@ add_image_size( 'post-archive-thumbnail', 370, 240, array( 'center', 'center' ) 
 
 //Get Subsidiary Services
 function get_services_rest($services) {
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_URL,$services);
-		$result=curl_exec($ch);
-		$result=curl_exec($ch);
-		$posts = json_decode($result, true);
-		echo '<ul>';
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL,$services);
+	$result=curl_exec($ch);
+	$posts = json_decode($result, true);
+	echo '<ul>';
+	foreach ($posts as $post) {
+		echo '<li><a href=' . $post['link'] .'>' . $post['title']['rendered'] . '</a></li>';
+	}
+	echo '</ul>';
+}
+
+function get_services_rest_name($services) {
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL,$services);
+	$result = curl_exec($ch);
+	$posts = json_decode($result, true);
+	$serviceArray = [];
+	if (is_array($posts) || is_object($posts))
+	{
 		foreach ($posts as $post) {
-			echo '<li><a href="<?php ' . $post['link'] . '">' . $post['title']['rendered'] . '</a></li>';
+			$serviceArray[] = $post['title']['rendered'];
 		}
-		echo '</ul>';
+	}
+
+
+	return $serviceArray;
 }
 
 //Get Subsidiary Locations
 function get_locations_rest($locations, $title) {
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_URL,$locations);
-		$result=curl_exec($ch);
-		$result=curl_exec($ch);
-		$posts = json_decode($result, true);
-		echo '<ul>';
-		foreach ($posts as $post) {
-			$location = $post['title']['rendered'];
-			$locationName = str_replace($title, '', $location);
-			$locationName = preg_replace("/[^A-Za-z0-9]/","",$locationName);
-			echo '<li><a href="<?php ' . $post['link'] . '">' . $locationName . '</a></li>';
-		}
-		echo '</ul>';
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL,$locations);
+	$result=curl_exec($ch);
+	$result=curl_exec($ch);
+	$posts = json_decode($result, true);
+	echo '<ul>';
+	foreach ($posts as $post) {
+		$location = $post['title']['rendered'];
+		$locationName = str_replace($title, '', $location);
+		//$locationName = preg_replace("/[^A-Za-z0-9]/","",$locationName);
+		echo '<li><a href="' . $post['link'] . '">' . $locationName . '</a></li>';
+	}
+	echo '</ul>';
 }
 //Get Sub Logo
 function get_logo_rest($url) {
@@ -180,7 +198,6 @@ function content($limit) {
   $content = str_replace(']]>', ']]>', $content);
   return $content;
 }
-
 
 
 //Adding google fonts
@@ -280,7 +297,7 @@ function cptui_register_my_cpts() {
 		"rewrite" => array( "slug" => "testimonial", "with_front" => false ),
 		"query_var" => true,
 		"menu_position" => 5,
-		"menu_icon" => "dashicons-comment",
+		"menu_icon" => "dashicons-star-filled",
 		"supports" => array( "title", "editor", "thumbnail", "revisions", "page-attributes" ),
 	);
 
@@ -651,6 +668,67 @@ function cptui_register_my_cpts() {
 		);
 
 	register_post_type( "gallery", $args );
+
+		/**
+		 * Post Type: Partners.
+		 */
+
+		$labels = array(
+			"name" => __( "Partner", "understrap" ),
+			"singular_name" => __( "Partner", "understrap" ),
+			"menu_name" => __( "Partner", "understrap" ),
+			"all_items" => __( "All Partners", "understrap" ),
+			"add_new" => __( "Add Partner", "understrap" ),
+			"add_new_item" => __( "Add New Partner", "understrap" ),
+			"edit_item" => __( "Edit Partner", "understrap" ),
+			"new_item" => __( "New Partner", "understrap" ),
+			"view_item" => __( "View Partner", "understrap" ),
+			"view_items" => __( "View Partners", "understrap" ),
+			"search_items" => __( "Search Partner", "understrap" ),
+			"not_found" => __( "No galleries found", "understrap" ),
+			"not_found_in_trash" => __( "No Partners in trash", "understrap" ),
+			"parent_item_colon" => __( "Parent Partner", "understrap" ),
+			"featured_image" => __( "Featured image for this Partner", "understrap" ),
+			"set_featured_image" => __( "Set featured image for this Partner", "understrap" ),
+			"remove_featured_image" => __( "Remove featured image from this Partner", "understrap" ),
+			"use_featured_image" => __( "Use as featured image for this Partner", "understrap" ),
+			"archives" => __( "Partner Archives", "understrap" ),
+			"insert_into_item" => __( "Insert into Partner", "understrap" ),
+			"uploaded_to_this_item" => __( "Uploaded to this Partner", "understrap" ),
+			"filter_items_list" => __( "Filter Partner list", "understrap" ),
+			"items_list_navigation" => __( "Partner list navigation", "understrap" ),
+			"items_list" => __( "Partners List", "understrap" ),
+			"attributes" => __( "Partners Attributes", "understrap" ),
+			"name_admin_bar" => __( "Partner", "understrap" ),
+			"parent_item_colon" => __( "Parent Partner", "understrap" ),
+		);
+
+		$args = array(
+			"label" => __( "Partner", "understrap" ),
+			"labels" => $labels,
+			"description" => "",
+			"public" => true,
+			"publicly_queryable" => true,
+			"show_ui" => true,
+			"delete_with_user" => false,
+			"show_in_rest" => true,
+			"rest_base" => "partner",
+			"rest_controller_class" => "WP_REST_Posts_Controller",
+			"has_archive" => false,
+			"show_in_menu" => true,
+			"show_in_nav_menus" => true,
+			"exclude_from_search" => false,
+			"capability_type" => "post",
+			"map_meta_cap" => true,
+			"hierarchical" => false,
+			"rewrite" => array( "slug" => "pertner", "with_front" => true ),
+			"query_var" => true,
+			"menu_position" => 7,
+			"menu_icon" => "dashicons-admin-users",
+			"supports" => array( "title", "editor", "thumbnail", "revisions" ),
+		);
+
+	register_post_type( "partner", $args );
 }
 
 
@@ -660,7 +738,66 @@ add_action('init', 'add_custom_taxonomy');
 function add_custom_taxonomy() {
 	register_taxonomy( 'subsidiary_tax', array('gallery', 'subsidiary', 'service', 'location', 'post', 'project_gallery', 'literature-downloads'), array( 'hierarchical' => true, 'label' => 'Subsidiary' ) );
 	register_taxonomy( 'location_tax', array('location'), array( 'hierarchical' => true, 'label' => 'Location' ) );
+	register_taxonomy( 'service_tax', array('location'), array( 'hierarchical' => false, 'label' => 'Services' ) );
 }
+
+
+add_action( 'wp', 'prefix_setup_schedule' );
+/**
+ * On an early action hook, check if the hook is scheduled - if not, schedule it.
+ */
+function prefix_setup_schedule() {
+    if ( ! wp_next_scheduled( 'prefix_daily_event' ) ) {
+        wp_schedule_event( time(), 'hourly', 'prefix_daily_event');
+    }
+}
+
+
+add_action( 'prefix_daily_event', 'get_service_taxonomy' );
+/**
+ * On the scheduled action hook, run a function.
+ */
+ function get_service_taxonomy() {
+ 	// query for your post type
+ 	$args = array( 'post_type' => 'location', 'posts_per_page' => -1);
+ 	$loop = new WP_Query( $args );
+
+ 	while ( $loop->have_posts() ) : $loop->the_post();
+ 		$id = get_the_ID();
+ 		$meta = get_post_meta($id, 'dt_connection_map', false);
+ 		$term = get_field('services', $id);
+ 		$title = get_the_title();
+
+ 		foreach ($meta as $k => $v) {
+ 			foreach ($v as $kk => $vv) {
+ 				if ($kk == 'external') {
+ 					reset($vv);
+ 					$t = key($vv);
+ 				}
+ 			}
+ 		}
+
+ 		$url = get_post_meta($t, 'dt_external_connection_url', true);
+ 		$services = $url . "/wp/v2/service?&per_page=100";
+
+ 		$serviceList = get_services_rest_name($services);
+ 		$array = array_values($serviceList);
+
+ 		foreach ( $array as $serviceName) {
+ 			//Create if it doesnt exsists
+ 			if ( !term_exists($serviceName, 'service_tax') ) {
+ 				wp_insert_term($serviceName, 'service_tax');
+ 			} else {
+ 				$term = get_term_by('name', $serviceName, 'service_tax');
+ 				$termID = $term->term_id;
+ 				wp_set_post_terms($id, $serviceName, 'service_tax');
+ 			}
+ 		}
+
+ 	endwhile;
+ }
+
+
 
 
 /* Creating custom color pallete */

@@ -1,11 +1,8 @@
 <?php
 /**
- * The template for displaying all pages.
+ * Template Name: Partners Page
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
+ * Template for displaying a page with a list of partners
  *
  * @package understrap
  */
@@ -62,32 +59,37 @@ $container = get_theme_mod( 'understrap_container_type' );
         </div>
     </div>
 </div>
-<div class="wrapper" id="page-wrapper">
 
-	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
+<div class="wrapper" id="full-width-page-wrapper">
 
-		<div class="row">
-			<!-- Do the left sidebar check -->
-			<?php get_template_part( 'global-templates/left-sidebar-check' ); ?>
+	<div class="<?php echo esc_attr( $container ); ?>" id="content">
 
-			<main class="site-main" id="main">
+		<div class="row content-area d-flex align-items-center" id="primary">
+            <?php if( have_rows('partners') ): ?>
+                <?php while( have_rows('partners') ): the_row();
 
-				<?php while ( have_posts() ) : the_post(); ?>
+            		// vars
+            		$logo = get_sub_field('partner_logo');
+                    $name = get_sub_field('partner_name');
+            		$desc = get_sub_field('partner_description');
+            		$link = get_sub_field('partner_link');
+            	?>
+                <div class="col-md-4 single-partner">
+                    <a href="<?php echo $link; ?>">
+                        <img src="<?php echo $logo; ?>" alt="<?php echo $name; ?>">
+                    </a>
+                    <h5><?php echo $name; ?></h5>
+                    <p><?php echo $desc; ?></p>
+                </div>
+            	<?php endwhile; ?>
+            <?php endif; ?>
 
-					<?php get_template_part( 'loop-templates/content', 'page' ); ?>
+			</div><!-- #primary -->
 
-
-				<?php endwhile; // end of the loop. ?>
-
-			</main><!-- #main -->
-
-			<!-- Do the right sidebar check -->
-			<?php get_template_part( 'global-templates/right-sidebar-check' ); ?>
-
-		</div><!-- .row -->
+		</div><!-- .row end -->
 
 	</div><!-- #content -->
 
-</div><!-- #page-wrapper -->
+</div><!-- #full-width-page-wrapper -->
 
 <?php get_footer(); ?>

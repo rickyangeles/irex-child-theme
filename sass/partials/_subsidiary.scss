@@ -33,6 +33,12 @@
             font-weight: normal;
             line-height: 1.6;
         }
+        .full-location-list {
+            .single-location { 
+                list-style-type: none;
+                padding-left: 0;
+            }
+        }
 
         .full-service-list {
             padding-left: 0;

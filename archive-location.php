@@ -110,6 +110,11 @@ get_header(); ?>
         </div>
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <?php get_service_taxonomy(); ?>
+    </div>
+</div>
 <div class="container map-content">
     <div class="row">
         <div class="col-md-3 location-filter">

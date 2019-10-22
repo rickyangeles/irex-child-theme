@@ -161,7 +161,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                     </div>
                 <?php endif; ?>
                 <h5>Branch Locations & Contact Information</h5>
-                <div class="row">
+                <div class="row full-location-list">
                     <?php
                         $args = array(
                             'post_type' => 'location',
