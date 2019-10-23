@@ -19,7 +19,7 @@ $corpPhone = get_field('c_phone_number', 'options');
 $corpFax	= get_field('c_fax_number', 'options');
 $customerPhone = get_field('customer_phone', 'options');
 $supplyPhone = get_field('suppliers_phone', 'options');
-$subFooter = get_field('subsidiary_footer', 'options');
+$subFooter = get_field('subsidiary_site', 'options');
 ?>
 
 <?php get_template_part( 'sidebar-templates/sidebar', 'footerfull' ); ?>

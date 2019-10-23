@@ -195,25 +195,6 @@
             "ui_off_text": ""
         },
         {
-            "key": "field_5da7372473255",
-            "label": "Subsidiary Footer",
-            "name": "subsidiary_footer",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_5da73c0bbbc7a",
             "label": "Footer Page Links",
             "name": "footer_page_links",
@@ -668,6 +649,22 @@
             "toolbar": "full",
             "media_upload": 1,
             "delay": 0
+        },
+        {
+            "key": "field_5db04d24eaad6",
+            "label": "Partners",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
         }
     ],
     "location": [
@@ -687,5 +684,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1571242156
+    "modified": 1571836257
 }

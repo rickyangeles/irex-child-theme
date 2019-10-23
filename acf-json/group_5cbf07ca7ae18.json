@@ -63,6 +63,25 @@
             "maxlength": ""
         },
         {
+            "key": "field_5daf9cd189ab0",
+            "label": "Address 3",
+            "name": "address_3",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
             "key": "field_5260666e3267e",
             "label": "City",
             "name": "city",
@@ -385,7 +404,7 @@
             "taxonomy": "service_tax",
             "field_type": "checkbox",
             "add_term": 1,
-            "save_terms": 0,
+            "save_terms": 1,
             "load_terms": 0,
             "return_format": "object",
             "multiple": 0,
@@ -412,5 +431,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1571409585
+    "modified": 1571790177
 }

@@ -54,6 +54,8 @@
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
+        padding: 0 15px;
+        left: 0; right: 0;
     }
 }
 
@@ -686,6 +688,30 @@
             margin-top: 0;
             font-weight: normal;
             text-decoration: none;
+        }
+    }
+}
+
+
+/* Partenr Pages */
+
+.partnerships {
+    h2 {
+        text-align:center;
+        margin-bottom: 40px;
+    }
+    .global-partnerships {
+        margin-top: 80px;
+        h3 {
+            text-align:center;
+        }
+
+        .single-partner {
+            margin: 20px 0;
+
+            img {
+                margin: 0;
+            }
         }
     }
 }

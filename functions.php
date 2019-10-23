@@ -476,7 +476,7 @@ function cptui_register_my_cpts() {
 		"exclude_from_search" => false,
 		"capability_type" => "post",
 		"map_meta_cap" => true,
-		"hierarchical" => false,
+		"hierarchical" => true,
 		"rewrite" => array( "slug" => "locations", "with_front" => true ),
 		"query_var" => true,
 		"menu_position" => 7,
@@ -537,7 +537,7 @@ function cptui_register_my_cpts() {
 		"exclude_from_search" => false,
 		"capability_type" => "post",
 		"map_meta_cap" => true,
-		"hierarchical" => false,
+		"hierarchical" => true,
 		"rewrite" => array( "slug" => "resource", "with_front" => true ),
 		"query_var" => true,
 		"menu_position" => 7,
@@ -592,13 +592,13 @@ function cptui_register_my_cpts() {
 		"show_in_rest" => true,
 		"rest_base" => "project-gallery",
 		"rest_controller_class" => "WP_REST_Posts_Controller",
-		"has_archive" => true,
+		"has_archive" => false,
 		"show_in_menu" => true,
 		"show_in_nav_menus" => true,
 		"exclude_from_search" => false,
 		"capability_type" => "post",
 		"map_meta_cap" => true,
-		"hierarchical" => false,
+		"hierarchical" => true,
 		"rewrite" => array( "slug" => "project-gallery", "with_front" => true ),
 		"query_var" => true,
 		"menu_position" => 7,
@@ -674,7 +674,7 @@ function cptui_register_my_cpts() {
 		 */
 
 		$labels = array(
-			"name" => __( "Partner", "understrap" ),
+			"name" => __( "Partners", "understrap" ),
 			"singular_name" => __( "Partner", "understrap" ),
 			"menu_name" => __( "Partner", "understrap" ),
 			"all_items" => __( "All Partners", "understrap" ),
@@ -704,7 +704,7 @@ function cptui_register_my_cpts() {
 		);
 
 		$args = array(
-			"label" => __( "Partner", "understrap" ),
+			"label" => __( "Partners", "understrap" ),
 			"labels" => $labels,
 			"description" => "",
 			"public" => true,
@@ -714,14 +714,14 @@ function cptui_register_my_cpts() {
 			"show_in_rest" => true,
 			"rest_base" => "partner",
 			"rest_controller_class" => "WP_REST_Posts_Controller",
-			"has_archive" => false,
+			"has_archive" => true,
 			"show_in_menu" => true,
 			"show_in_nav_menus" => true,
 			"exclude_from_search" => false,
 			"capability_type" => "post",
 			"map_meta_cap" => true,
-			"hierarchical" => false,
-			"rewrite" => array( "slug" => "pertner", "with_front" => true ),
+			"hierarchical" => true,
+			"rewrite" => array( "slug" => "partners", "with_front" => true ),
 			"query_var" => true,
 			"menu_position" => 7,
 			"menu_icon" => "dashicons-admin-users",
@@ -738,7 +738,7 @@ add_action('init', 'add_custom_taxonomy');
 function add_custom_taxonomy() {
 	register_taxonomy( 'subsidiary_tax', array('gallery', 'subsidiary', 'service', 'location', 'post', 'project_gallery', 'literature-downloads'), array( 'hierarchical' => true, 'label' => 'Subsidiary' ) );
 	register_taxonomy( 'location_tax', array('location'), array( 'hierarchical' => true, 'label' => 'Location' ) );
-	register_taxonomy( 'service_tax', array('location'), array( 'hierarchical' => false, 'label' => 'Services' ) );
+	register_taxonomy( 'service_tax', array('location'), array( 'hierarchical' => false, 'label' => 'Services', 'meta_box_cb' => true ) );
 }
 
 
@@ -757,7 +757,8 @@ add_action( 'prefix_daily_event', 'get_service_taxonomy' );
 /**
  * On the scheduled action hook, run a function.
  */
- function get_service_taxonomy() {
+
+function get_service_taxonomy() {
  	// query for your post type
  	$args = array( 'post_type' => 'location', 'posts_per_page' => -1);
  	$loop = new WP_Query( $args );
@@ -782,23 +783,18 @@ add_action( 'prefix_daily_event', 'get_service_taxonomy' );
 
  		$serviceList = get_services_rest_name($services);
  		$array = array_values($serviceList);
+		$services = array();
 
- 		foreach ( $array as $serviceName) {
+ 		foreach ( $array as $serviceName => $v) {
  			//Create if it doesnt exsists
- 			if ( !term_exists($serviceName, 'service_tax') ) {
- 				wp_insert_term($serviceName, 'service_tax');
- 			} else {
- 				$term = get_term_by('name', $serviceName, 'service_tax');
- 				$termID = $term->term_id;
- 				wp_set_post_terms($id, $serviceName, 'service_tax');
- 			}
+			$services[] .= $v;
  		}
+		$list = implode(', ', $services);
+		wp_set_post_terms($id, $list, 'service_tax');
 
  	endwhile;
  }
-
-
-
+//add_action('init', 'get_service_taxonomy');
 
 /* Creating custom color pallete */
 function theme_customize_register( $wp_customize ) {

@@ -15,6 +15,7 @@ get_header(); ?>
     $serviceCTAcontent = get_field('service_cta_content', 'options');
     $serviceCTAbtn     = get_field('service_cta_button', 'options');
     $pID                = get_the_ID();
+    $sub = get_field('subsidiary_site', 'options');
 ?>
 <!-- Page Header -->
 <div class="container-fluid page-header">
@@ -109,9 +110,10 @@ get_header(); ?>
     </div>
 </div>
 
-<!-- Contractor -->
-<div class="container page-contractor">
-    <h3 class="service-title"><?php the_title(); ?> Providers</h3>
+<?php if ( !$sub ) : ?>
+    <!-- Contractor -->
+    <div class="container page-contractor">
+        <h3 class="service-title"><?php the_title(); ?> Providers</h3>
         <?php
             $meta = get_post_meta($post->ID, 'dt_connection_map', false);
             $items = array();
@@ -172,9 +174,11 @@ get_header(); ?>
                       </div>
                   </div>
               </div>
-        <?php $counter++; endwhile; ?>
+              <?php $counter++; endwhile; ?>
+        </div>
+            <?php wp_reset_postdata(); ?>
     </div>
-        <?php wp_reset_postdata(); ?>
-    </div>
+<?php endif; ?>
+
 </div>
 <?php get_footer(); ?>
