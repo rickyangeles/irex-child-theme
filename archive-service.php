@@ -163,8 +163,8 @@ get_header(); ?>
                     $cleanUrl = str_replace($remove,'', $url);
                     $siteURL = str_replace('/wp-json', '', $url);
                     $title = get_the_title(get_the_ID());
-                    $services = $url . "/wp/v2/service/";
-                    $locations = $url . "/wp/v2/location/";
+                    $services = $url . "/wp/v2/service?per_page=100";
+                    $locations = $url . "/wp/v2/location/?per_page=100";
                     $logo = $url . "/acf/v3/options/options/header_logo";
                 ?>
                 <div class="menu-item col-md-3 single-sub">

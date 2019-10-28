@@ -76,19 +76,25 @@ $container = get_theme_mod( 'understrap_container_type' );
 				</main><!-- #main -->
 			</div><!-- #primary -->
 		</div><!-- .row end -->
-        <div class="row">
-            <div class="col-md-6">
+        <div class="row justify-content-between">
+            <div class="col-md-5">
                 <?php $formID = get_field('contact_form_id'); ?>
                 <?php echo do_shortcode('[gravityform id=' . $formID . ']'); ?>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 contact-page-map">
                 <h5>Branch Locations & Contact Information</h5>
-                <div class="row">
-                    <?php $locations = get_field('select_locations'); ?>
-                    <?php if ( $locations ) : ?>
-                        <?php foreach( $locations as $post): ?>
-                            <?php setup_postdata($post); ?>
+                <h6 class="service-area-title"><strong>Services Area(s):</strong> <?php the_field('service_area'); ?></h6>
+                <?php
+                    $map = array('post_type' => 'location','posts_per_page' => -1,);
+                    $mapQuery = new WP_Query($map);
+                ?>
+                <?php if ( $mapQuery->have_posts() ) : ?>
+                    <div class="acf-map location-container" style="overflow: hidden; position: relative;">
+                        <?php while ( $mapQuery->have_posts() ) : ?>
                             <?php
+                                $mapQuery->the_post();
+                                $lat            = get_field('latitude');
+                                $long           = get_field('longitude');
                                 $branchName     = get_field('branch_name');
                                 $address1       = get_field('address_1');
                                 $address2       = get_field('address_2');
@@ -98,55 +104,87 @@ $container = get_theme_mod( 'understrap_container_type' );
                                 $tel            = get_field('telephone');
                                 $tollFree       = get_field('toll_free_number');
                                 $fax            = get_field('fax');
-                                $lat            = get_field('latitude');
-                                $long           = get_field('longitude');
-                                $show           = get_field('hide_in_location_page');
-                                $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
-
-                                foreach ($meta as $k => $v) {
-                                    foreach ($v as $kk => $vv) {
-                                        if ($kk == 'external') {
-                                            reset($vv);
-                                            $t = key($vv);
-                                        }
-                                    }
-                                }
-
-                                $url = get_post_meta($t, 'dt_external_connection_url', true);
-                                $services = $url . "/wp/v2/service?per_page=100";
-                                $logo = $url . "/acf/v3/options/options/header_logo";
-                                $subName = get_the_title($t);
-
                             ?>
-                            <div class="col-md-4" data-sub="<?php echo $subName; ?>" data-state="<?php echo $state; ?>" <?php get_service_list($services); ?>>
-                                <ul class="single-location contact-page-location">
-                                    <?php if ( $branchName ) : ?>
-                                        <li><?php echo $branchName; ?></li>
-                                    <?php endif; ?>
-                                    <?php if ( $address1 ) : ?>
-                                        <li><?php echo $address1; ?></li>
-                                    <?php endif; ?>
-                                    <?php if ( $address2 ) : ?>
-                                        <li><?php echo $address2; ?></li>
-                                    <?php endif; ?>
-                                    <?php if ( $city && $state && $zip ) : ?>
-                                        <li><?php echo $city . ', ' . $state . ' ' . $zip; ?></li>
-                                    <?php endif; ?>
-                                    <?php if ( $tel ) : ?>
-                                        <li>P: <?php echo $tel; ?></li>
-                                    <?php endif; ?>
-                                    <?php if ($tollFree) :?>
-                                        <li>P: <?php echo $tollFree; ?></li>
-                                    <?php endif; ?>
-                                    <?php if ( $fax ) : ?>
-                                        <li>F: <?php echo $fax; ?></li>
-                                    <?php endif; ?>
-                                </ul>
+
+                            <div class="marker" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $long; ?>">
+                                <div class="inside-marker">
+                                    <ul class="single-location">
+                                        <?php if ( $branchName ) : ?>
+                                            <li><?php echo $branchName; ?></li>
+                                        <?php endif; ?>
+                                        <?php if ( $address1 ) : ?>
+                                            <li><?php echo $address1; ?></li>
+                                        <?php endif; ?>
+                                        <?php if ( $address2 ) : ?>
+                                            <li><?php echo $address2; ?></li>
+                                        <?php endif; ?>
+                                        <?php if ( $city && $state && $zip ) : ?>
+                                            <li><?php echo $city . ', ' . $state . ' ' . $zip; ?></li>
+                                        <?php endif; ?>
+                                        <?php if ( $tel ) : ?>
+                                            <li>P: <?php echo $tel; ?></li>
+                                        <?php endif; ?>
+                                        <?php if ($tollFree) :?>
+                                            <li>P: <?php echo $tollFree; ?></li>
+                                        <?php endif; ?>
+                                        <?php if ( $fax ) : ?>
+                                            <li>F: <?php echo $fax; ?></li>
+                                        <?php endif; ?>
+                                        <?php if ( $url ) : ?>
+                                            <li><a href="<?php echo $url; ?>">visit website ></a></li>
+                                        <?php endif; ?>
+                                    </ul>
+                                </div>
                             </div>
-                        <?php endforeach; ?>
+                        <?php endwhile; ?>
                     </div>
-                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if ( $mapQuery->have_posts() ) : ?>
+                    <div class="row">
+                    <?php while ( $mapQuery->have_posts() ) : ?>
+                        <?php
+                            $mapQuery->the_post();
+                            $lat            = get_field('latitude');
+                            $long           = get_field('longitude');
+                            $branchName     = get_field('branch_name');
+                            $address1       = get_field('address_1');
+                            $address2       = get_field('address_2');
+                            $city           = get_field('city');
+                            $state          = get_field('state');
+                            $zip            = get_field('zip_code');
+                            $tel            = get_field('telephone');
+                            $tollFree       = get_field('toll_free_number');
+                            $fax            = get_field('fax');
+                        ?>
+                        <ul class="col-md-4 single-location">
+                            <?php if ( $branchName ) : ?>
+                                <li><?php echo $branchName; ?></li>
+                            <?php endif; ?>
+                            <?php if ( $address1 ) : ?>
+                                <li><?php echo $address1; ?></li>
+                            <?php endif; ?>
+                            <?php if ( $address2 ) : ?>
+                                <li><?php echo $address2; ?></li>
+                            <?php endif; ?>
+                            <?php if ( $city && $state && $zip ) : ?>
+                                <li><?php echo $city . ', ' . $state . ' ' . $zip; ?></li>
+                            <?php endif; ?>
+                            <?php if ( $tel ) : ?>
+                                <li>P: <?php echo $tel; ?></li>
+                            <?php endif; ?>
+                            <?php if ($tollFree) :?>
+                                <li>P: <?php echo $tollFree; ?></li>
+                            <?php endif; ?>
+                            <?php if ( $fax ) : ?>
+                                <li>F: <?php echo $fax; ?></li>
+                            <?php endif; ?>
+                            <?php if ( $url ) : ?>
+                                <li><a href="<?php echo $url; ?>">visit website ></a></li>
+                            <?php endif; ?>
+                        </ul>
+                    <?php endwhile; ?>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
 	</div><!-- #content -->

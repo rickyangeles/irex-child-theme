@@ -1,6 +1,15 @@
+.home-page-wrapper {
+    padding-top: 0;
+}
+
 .home-banner {
-    margin-top: 113px;
+    background-color: $primary;
+    height: 62vh;
+    max-height: 600px;
+
     position: relative;
+    background-size: cover;
+    background-position: bottom center;
 
     .banner-content {
         position: absolute;

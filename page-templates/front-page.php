@@ -59,11 +59,10 @@ $container = get_theme_mod( 'understrap_container_type' );
     }
 
 ?>
-<div class="wrapper" id="full-width-page-wrapper">
+<div class="wrapper home-page-wrapper" id="full-width-page-wrapper">
 
     <!-- Banner -->
-    <div class="container-fluid banner home-banner px-0">
-        <img src="<?php wp_get_attachment_url( get_field('banner_image') ); ?>" srcset="<?php echo esc_attr( $srcset ); ?>" alt="">
+    <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg; ?>');">
         <div class="banner-content">
             <?php echo $bannerContent; ?>
             <ul class="banner-buttons">
@@ -87,7 +86,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     </div>
 
     <!-- Major Points -->
-    <div class="container home-major-points pt-4">
+    <div class="container home-major-points">
         <div class="row d-flex justify-content-around">
             <?php if( have_rows('point') ): ?>
             	<?php while( have_rows('point') ): the_row();

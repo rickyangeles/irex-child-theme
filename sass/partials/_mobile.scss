@@ -1,0 +1,185 @@
+/* Home Page Mobile Styles */
+@include media-breakpoint-down(md) {
+    .header {
+        .header-logo {
+            min-height: 75px;
+        }
+
+        .navbar-nav .dropdown-menu {
+            float:left;
+        }
+
+        #main-menu {
+            .menu-item-has-children {
+                .dropdown-menu {
+                    width: 100%;
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
+    .home-banner {
+        margin-top: 50px;
+
+        .banner-content {
+            h1 {
+                font-size: 30px;
+            }
+            ul {
+                li {
+                    a {
+                        padding: 8px 30px;
+                    }
+                }
+            }
+        }
+    }
+
+    .home-intro {
+        .row {
+            margin: 40px 0;
+            .col-md-6 {
+                &:last-child {
+                    margin-top: 30px;
+                }
+            }
+            .embed-responsive {
+                iframe {
+                    padding-left: 15px!important; padding-right: 15px!important;
+                }
+            }
+        }
+        &:after {
+            left: 0;
+        }
+    }
+
+    .home-major-points {
+        .point {
+            .livicon-evo {
+                margin-top: 12%;
+                margin-bottom: 12%;
+            }
+        }
+    }
+
+    .home-industries {
+        padding: 70px 0;
+
+        .row {
+            ul.industry-list {
+                margin-top: 0;
+                li {
+                    width: 100%;
+                    margin: 7px 0;
+                }
+            }
+        }
+    }
+
+    .home-contractor {
+        .row {
+            &.contractor-cta {
+                padding-bottom: 40px;
+            }
+            .single-sub-info {
+                .row {
+                    padding: 50px 0;
+
+                    .col-md-3 {
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+
+        .single-sub {
+            img {
+                max-width: 80%;
+            }
+        }
+    }
+
+    .home-featured-projects {
+        padding: 40px 15px;
+
+        .row {
+            margin-left: 0px; margin-right: 0px;
+        }
+        .single-featured-project {
+            flex-direction: column-reverse;
+            margin-bottom: 40px;
+
+            img {
+                max-height: 200px;
+                object-fit: cover;
+                object-position: center;
+                widows: 100%;;
+            }
+            .sfp-right, .sfp-left {
+                width: 100%;
+            }
+
+            .sfp-left {
+                border-radius: 0 0 10px 10px;
+                padding: 30px 20px;
+            }
+        }
+
+        .fp-btn {
+            margin-top: 0px;
+        }
+    }
+
+    .home-career {
+        padding-bottom: 30px;
+        .row {
+            padding: 0 15px;
+            margin: 30px auto;
+            .hc-right {
+                margin-top: 30px;
+            }
+        }
+
+        .hc-right {
+            .swiper-container {
+                .nav-wrap {
+                    top: -90px;
+                }
+            }
+        }
+    }
+
+
+    //Location Page Styles
+    .post-type-archive-location {
+        .map-content {
+            .location-list {
+                .marker {
+                    margin-bottom: 40px;
+                    max-width: 100%; width: 100%;
+                    flex: 0 0 100%;
+
+                    .single-location{
+                        margin-bottom: 10px;
+                    }
+                }
+
+                .single-location {
+                    margin-bottom: 30px;
+                }
+            }
+        }
+    }
+
+    //Page header styles
+    .page-header {
+        .page-title {
+            font-size: 40px;
+            bottom: 10px;
+        }
+    }
+
+//End of breakpoint
+}
