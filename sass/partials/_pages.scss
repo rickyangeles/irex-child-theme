@@ -35,7 +35,7 @@
 
 .tall-header {
     position: relative;
-    padding: 143px 0 0;
+    padding:0;
     background-color: $primary;
     img {
         width: 100%;
@@ -60,7 +60,7 @@
 
 .short-header {
     position: relative;
-    padding: 143px 0 0;
+    padding: 0;
     box-sizing: initial;
     max-height: 120px;
 
@@ -288,6 +288,7 @@
 /* Service Single Styles */
 
 .service-cta-wrap {
+    margin-top: 40px;
     .service-cta-content {
         color: $primary;
         line-height: 30px;
@@ -689,7 +690,7 @@
     }
 }
 
-.page-template-page-contact {
+.page-template-page-contact, .page-template-contact-page {
     .service-area-title {
         margin: 30px 0 20px 0;
         font-weight: normal;

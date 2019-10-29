@@ -32,7 +32,7 @@ $container = get_theme_mod( 'understrap_container_type' );
         <img src="<?php echo the_field('service_featured_image', 'options')?>">
     <?php endif; ?>
     <?php if ( $headerType == "tall-header") : ?>
-        <div class="row d-flex justify-content-center align-items-center">
+        <div class="row d-flex justify-content-bottom align-items-end">
     <?php else : ?>
         <div class="row">
     <?php endif; ?>

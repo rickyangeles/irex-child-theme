@@ -70,16 +70,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 										</div><!-- .entry-meta -->
 									</header><!-- .entry-header -->
 									<div class="entry-content">
-										<?php echo excerpt(30, $pID); ?>
-
-										<?php
-										wp_link_pages(
-											array(
-												'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),
-												'after'  => '</div>',
-											)
-										);
-										?>
+										<?php echo excerpt(25, $pID); ?>
 									</div><!-- .entry-content -->
 								</div>
 							</div>

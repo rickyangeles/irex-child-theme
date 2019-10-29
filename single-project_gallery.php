@@ -26,6 +26,9 @@ get_header(); ?>
     </div>
 </div>
 <div class="container main-content">
+    <h1 class="page-title">
+        <?php the_title(); ?>
+    </h1>
     <div class="row">
         <div class="col-md-6 project-content">
             <?php the_content(); ?>

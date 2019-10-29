@@ -10,13 +10,8 @@
 
 get_header(); ?>
 
-<div class="no-banner"></div>
 <div class="container-fluid short-header">
-    <?php if ( has_post_thumbnail() ): ?>
-        <?php the_post_thumbnail('page-banner'); ?>
-    <?php else : ?>
-        <img src="<?php echo the_field('service_featured_image', 'options')?>">
-    <?php endif; ?>
+    <img src="<?php echo the_field('service_featured_image', 'options')?>">
     <div class="row">
         <h1 class="page-title">
             Projects
@@ -30,6 +25,7 @@ get_header(); ?>
         </div>
     </div>
 </div>
+
 <div class="container main-content">
     <div class="row">
         <div class="col-md-12">

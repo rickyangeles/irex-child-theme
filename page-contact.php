@@ -12,6 +12,7 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 $container = get_theme_mod( 'understrap_container_type' );
+$secondaryContent = get_field('secondary_content');
 ?>
 
 <?php if ( is_front_page() ) : ?>
@@ -185,6 +186,11 @@ $container = get_theme_mod( 'understrap_container_type' );
                     <?php endwhile; ?>
                 </div>
                 <?php endif; ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <?php echo $secondaryContent; ?>
             </div>
         </div>
 	</div><!-- #content -->
