@@ -32,13 +32,40 @@ function theme_get_customizer_css() {
   $primary_color = get_theme_mod( 'primary_color', '' );
   $secondary_color = get_theme_mod( 'secondary_color', '' );
   $dark_color = get_theme_mod( 'secondary_color', '' );
+  $primary_light = adjustBrightness($primary_color, 150);
+  $secondary_dark = adjustBrightness($secondary_color, -50);
   if ( ! empty( $primary_color ) ) {
 	?>
-		h1,h2,h3,h4,h5,h6 {
+		h1:not(.page-title),h2,h3,h4,h5,h6, #main-menu > li > a, .breadcrumb a, .breadcrumb, .breadcrumb .row .col-md-12>span,
+		.main-content .slideshow .swiper-container .swiper-button-next:after, .main-content .slideshow .swiper-container .swiper-button-prev:after,
+		.slide-caption, .service-list a, .service-cta-wrap .service-cta-content, .subfooter, .single-sub-info {
 		  color: <?php echo $primary_color; ?>!important;
 		}
-		.btn-primary, .footer-menu {
-			background-color:  <?php echo $primary_color; ?>;
+
+		.single-sub-info, .btn-primary {
+			border-color: <?php echo $primary_color; ?>!important;
+		}
+
+		.home-contractor .active-item:after, .page-contractor .active-item:after, .subsidiary-service .active-item:after {
+			border-bottom-color: <?php echo $primary_color; ?>!important;
+		}
+
+		.btn-primary, .footer-menu, .main-content .slideshow .swiper-container .swiper-pagination-bullet:not(.swiper-pagination-bullet-active), #main-menu>.menu-item-has-children>.dropdown-menu li a {
+			background-color:  <?php echo $primary_color; ?>!important;
+		}
+
+		.slide-caption {
+			background-color: <?php echo $primary_light; ?>!important;
+		}
+
+		.page-header:after {
+			background: <?php echo $primary_color; ?>;
+		    background: -moz-linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
+		    background: -webkit-linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
+		    background: -webkit-gradient(linear, left bottom, left top, from(<?php echo $primary_color; ?>), color-stop(65%, rgba(255, 255, 255, 0)));
+		    background: -webkit-linear-gradient(bottom, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
+		    background: -o-linear-gradient(bottom, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
+		    background: linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
 		}
 
 	<?php
@@ -53,8 +80,11 @@ function theme_get_customizer_css() {
 			}
 		}
 
+		.swiper-pagination-bullet .swiper-pagination-bullet-active {
+			background-color:<?php echo $secondary_color; ?>!important;
+		}
 		.footer .footer-contact-info strong {
-			color: <?php echo $secondary_color; ?>
+			color: <?php echo $secondary_color; ?>;
 		}
 		.btn-secondary, .footer-menu li:last-child a {
 			background-color:  <?php echo $secondary_color; ?>;
@@ -72,11 +102,22 @@ function theme_get_customizer_css() {
 			}
 		}
 
-		.footer .footer-contact-info strong {
-			color: <?php echo $secondary_color; ?>
+		#main-menu>.menu-item-has-children>.dropdown-menu:before {
+			background-color: <?php echo $secondary_color; ?>!important;
 		}
+		.footer .footer-contact-info strong {
+			color: <?php echo $secondary_color; ?>!important;
+		}
+
+
+		#main-menu>.menu-item-has-children>.dropdown-menu {
+			border-color: <?php echo $secondary_color; ?>!important;
+		}
+
+
 		.btn-secondary, .footer-menu li:last-child a {
-			background-color:  <?php echo $secondary_color; ?>;
+			background-color: <?php echo $secondary_color; ?>!important;
+			border-color: <?php echo $secondary_color; ?>!important;
 			color: white!important;
 		}
 	<?php

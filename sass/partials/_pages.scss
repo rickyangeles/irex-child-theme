@@ -5,7 +5,6 @@
     padding: 0;
     background-color: $primary;
     box-sizing: content-box;
-
     img {
         width: 100%;
     }
@@ -30,6 +29,28 @@
             line-height: 1;
             padding: 40px 0;
         }
+    }
+}
+
+.page-header, .tall-header, .short-header {
+
+    .page-title {
+        z-index: 2;
+        font-size: 60px;
+    }
+    &:after {
+        position: absolute;
+        bottom: 0;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: rgb(0,74,151);
+        background: -moz-linear-gradient(0deg, rgba(0,74,151,1) 0%, rgba(255,255,255,0) 65%);
+        background: -webkit-linear-gradient(0deg, rgba(0,74,151,1) 0%, rgba(255,255,255,0) 65%);
+        background: linear-gradient(0deg, rgba(0,74,151,1) 0%, rgba(255,255,255,0) 65%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#004a97",endColorstr="#ffffff",GradientType=1);
     }
 }
 
@@ -321,6 +342,17 @@
 }
 /* Industry Page Styles */
 
+.post-type-archive-industry {
+    .page-header {
+        &:after {
+            background: rgb(68,68,68);
+background: -moz-linear-gradient(0deg, rgba(68,68,68,1) 0%, rgba(255,255,255,0) 65%);
+background: -webkit-linear-gradient(0deg, rgba(68,68,68,1) 0%, rgba(255,255,255,0) 65%);
+background: linear-gradient(0deg, rgba(68,68,68,1) 0%, rgba(255,255,255,0) 65%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endColorstr="#ffffff",GradientType=1);
+        }
+    }
+}
 .industry-card {
     background-color: rgba(35,31,32,0.03);
     margin-bottom: 55px;
