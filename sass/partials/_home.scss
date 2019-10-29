@@ -1,5 +1,9 @@
 .home-page-wrapper {
     padding-top: 0;
+
+    h5 {
+        line-height: 1.6;
+    }
 }
 
 .home-banner {
@@ -455,5 +459,11 @@
                 top: -170px;
             }
         }
+    }
+}
+
+.home-service-location {
+    h4 {
+        margin-bottom: 30px;
     }
 }

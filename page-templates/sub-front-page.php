@@ -33,6 +33,8 @@ $container = get_theme_mod( 'understrap_container_type' );
     $pointTitle = get_field('point_title');
     $point = get_field('point');
     $serviceContent = get_field('service_content');
+    $certLogo = get_field('cerification_logo');
+    $certText = get_field('certification_content');
     $serviceCTATitle = get_field('home_cta_title');
     $serviceCTAText = get_field('home_cta_text');
     $serviceCTAButton = get_field('home_cta_button');
@@ -235,6 +237,12 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <?php wp_reset_postdata(); ?>
             </div>
         </div>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 offset-md-3">
+                <img src="<?php echo $certLogo['url']; ?>" alt="">
+                <?php echo $certText; ?>
+            </div>
+        </div>
     </div>
 
 
@@ -284,46 +292,48 @@ $container = get_theme_mod( 'understrap_container_type' );
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
-                        </div>
                     </div>
-                    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-                <?php endif; ?>
-            </div>
+                </div>
+                <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+            <?php endif; ?>
         </div>
     </div>
 
     <!-- Featured Projects -->
-    <div class="container home-featured-projects">
-        <div class="row">
-            <h2 class="title">Featured Projects</h2>
-        </div>
-        <?php if( $featuredProjects ): ?>
-        <div class="row">
-            <?php foreach( $featuredProjects as $post): // variable must be called $post (IMPORTANT) ?>
-                <?php setup_postdata($post); ?>
-                <div class="col-md-6 single-featured-project d-flex align-items-center">
-                    <div class="sfp-left">
-                        <h5><?php the_title(); ?></h5>
-                        <p><?php echo excerpt(20, $post->ID); ?></p>
+    <?php if( $featuredProjects ): ?>
+        <div class="container home-featured-projects">
+            <div class="row">
+                <h2 class="title">Featured Projects</h2>
+            </div>
+            <div class="row">
+                <?php foreach( $featuredProjects as $post): // variable must be called $post (IMPORTANT) ?>
+                    <?php setup_postdata($post); ?>
+                    <div class="col-md-6 single-featured-project d-flex align-items-center">
+                        <div class="sfp-left">
+                            <h5><?php the_title(); ?></h5>
+                            <p><?php echo excerpt(20, $post->ID); ?></p>
+                        </div>
+                        <div class="sfp-right d-flex align-items-center">
+                            <?php if ( has_post_thumbnail()): ?>
+                                <?php the_post_thumbnail('featured-project'); ?>
+                            <?php else : ?>
+                                <img src="https://via.placeholder.com/300">
+                            <?php endif; ?>
+                            <span><a class="read-more btn btn-sm" href="<?php the_permalink(); ?>">Read More</a></span>
+                        </div>
                     </div>
-                    <div class="sfp-right d-flex align-items-center">
-                        <?php if ( has_post_thumbnail()): ?>
-                            <?php the_post_thumbnail('featured-project'); ?>
-                        <?php else : ?>
-                            <img src="https://via.placeholder.com/300">
-                        <?php endif; ?>
-                        <span><a class="read-more btn btn-sm" href="<?php the_permalink(); ?>">Read More</a></span>
+                <?php endforeach; ?>
+                <?php if ( $projectButton ) : ?>
+                    <div class="fp-btn text-center">
+                        <a href="<?php echo $projectButton['url']; ?>" class="view-all btn btn-primary"><?php echo $projectButton['title']; ?></a>
                     </div>
-                </div>
-            <?php endforeach; ?>
-            <div class="fp-btn text-center">
-                <a href="<?php echo $projectButton['url']; ?>" class="view-all btn btn-primary"><?php echo $projectButton['title']; ?></a>
+                <?php endif; ?>
+            </div>
+        <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+        <?php endif; ?>
             </div>
         </div>
-    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
     <?php endif; ?>
-        </div>
-    </div>
 
     <!-- Career -->
     <div class="container-fluid home-career" <?php echo $careerBG; ?>>
@@ -331,7 +341,9 @@ $container = get_theme_mod( 'understrap_container_type' );
             <h2 class="title"><?php echo $careerTitle; ?></h2>
             <div class="col-md-6 hc-left">
                 <?php echo $careerContent; ?>
-                <a href="<?php echo $careerButton['url']; ?>" class="btn btn-primary"><?php echo $careerButton['title']; ?></a>
+                <?php if ( $careerButton ) : ?>
+                    <a href="<?php echo $careerButton['url']; ?>" class="btn btn-primary"><?php echo $careerButton['title']; ?></a>
+                <?php endif; ?>
             </div>
             <div class="col-md-6 hc-right">
                 <?php if( have_rows('career_slideshow') ): ?>
