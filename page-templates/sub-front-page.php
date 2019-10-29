@@ -237,10 +237,10 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <?php wp_reset_postdata(); ?>
             </div>
         </div>
-        <div class="row d-flex align-items-center">
-            <div class="col-md-6 offset-md-3">
+        <div class="row cert-wrap">
+            <div class="col-md-6 offset-md-3 d-flex align-items-center">
                 <img src="<?php echo $certLogo['url']; ?>" alt="">
-                <?php echo $certText; ?>
+                <p><?php echo $certText; ?></p>
             </div>
         </div>
     </div>
@@ -330,7 +330,6 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <?php endif; ?>
             </div>
         <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-        <?php endif; ?>
             </div>
         </div>
     <?php endif; ?>
