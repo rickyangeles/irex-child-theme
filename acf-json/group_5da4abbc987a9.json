@@ -3,6 +3,25 @@
     "title": "Project Gallery Fields",
     "fields": [
         {
+            "key": "field_5dbc3f17b6c6e",
+            "label": "Project Details",
+            "name": "project_details",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "full",
+            "media_upload": 1,
+            "delay": 0
+        },
+        {
             "key": "field_5da4abbca233b",
             "label": "Gallery",
             "name": "project_gallery",
@@ -28,6 +47,33 @@
             "max_height": "",
             "max_size": 1,
             "mime_types": ""
+        },
+        {
+            "key": "field_5dbc3e6440aed",
+            "label": "Related Projects",
+            "name": "related_projects",
+            "type": "relationship",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "project_gallery"
+            ],
+            "taxonomy": "",
+            "filters": [
+                "search"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": "",
+            "max": 4,
+            "return_format": "object"
         }
     ],
     "location": [
@@ -47,5 +93,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1571242268
+    "modified": 1572618022
 }

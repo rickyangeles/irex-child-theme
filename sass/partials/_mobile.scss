@@ -20,8 +20,6 @@
     }
 
     .home-banner {
-        margin-top: 50px;
-
         .banner-content {
             h1 {
                 font-size: 30px;
@@ -101,7 +99,7 @@
         }
     }
 
-    .home-featured-projects {
+    .home-featured-projects, .related-projects {
         padding: 40px 15px;
 
         .row {

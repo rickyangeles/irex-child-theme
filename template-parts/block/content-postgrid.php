@@ -35,7 +35,7 @@
                     <?php endif; ?>
                     <div class="post-content">
                         <h5><?php the_title(); ?></h5>
-                        <p><?php echo excerpt(20); ?></p>
+                        <p><?php echo excerpt(20,$post->ID); ?></p> 
                     </div>
                     </a>
                 </div>

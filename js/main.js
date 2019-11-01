@@ -147,5 +147,12 @@ jQuery(document).ready(function( $ ) {
         $(this).prev(".card-header").find(".fas").removeClass("fa-caret-up").addClass("fa-caret-down");
     });
 
+    //Service Archive serach
+    $("#service-search").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $(".service-accordion .btn-link").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
 
 });

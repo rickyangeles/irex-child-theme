@@ -70,7 +70,7 @@ function my_acf_init() {
 
 		// register a Multi Column block
 		acf_register_block(array(
-			'name'				=> 'multi',
+			'name'				=> 'multi-columns',
 			'title'				=> __('Multi Column'),
 			'description'		=> __('A Multi Column block.'),
 			'render_callback'	=> 'custom_block_render_callback',

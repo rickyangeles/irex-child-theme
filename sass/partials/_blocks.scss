@@ -1,4 +1,4 @@
-#full-width-page-wrapper {
+#full-width-page-wrapper, .single-project_gallery {
     .full-width, .split-column {
         width: 100vw;
         position: relative;
@@ -15,6 +15,12 @@
             margin: 0 auto;
         }
     }
+
+    .full-width + .full-width {
+        & + * {
+            margin-top: 0;
+        }
+    }
 }
 
 
@@ -27,13 +33,13 @@
     }
     &.medium {
         .row {
-            width: 75%;
+            width: 50%!important;
             margin: 0 auto;
         }
     }
     &.narrow {
         .row {
-            width: 50%;
+            width: 30%!important;
             margin: 0 auto;
         }
     }
@@ -110,20 +116,23 @@
 .cta {
     margin-top: 30px; margin-bottom: 30px;
     &.full {
+        width: 100%;
+        margin: inherit auto;
         .row {
-            width: 100%;
         }
     }
     &.medium {
+        width: 75%;
+        margin: inherit auto;
         .row {
-            width: 75%;
-            margin: 0 auto;
+
         }
     }
     &.narrow {
+        width: 50%;
+        margin: inherit auto;
         .row {
-            width: 50%;
-            margin: 0 auto;
+
         }
     }
     .primary-btn {
@@ -294,8 +303,28 @@
     }
 }
 
-.post-grid {
-
+.post-grid, .multi {
+    .button-wrap {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 30px;
+        a {
+            &:first-child {
+                margin-right: 20px;
+            }
+        }
+        a.primary-btn {
+            background-color: $primary;
+            color: white;
+            border-color: $primary;
+        }
+        a.secondary-btn {
+            background-color: $secondary;
+            border-color: $secondary;
+            color: white;
+        }
+    }
     h2.post-grid-title {
         text-align: center;
         margin-bottom: 30px;

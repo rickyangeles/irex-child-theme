@@ -32,6 +32,9 @@ get_header(); ?>
             <?php the_content(); ?>
         </div>
         <div class="col-md-8 right-content">
+            <div class="service-search">
+                <input type="text" placeholder="Search Services" name="service-search" id="service-search" value="">
+            </div>
             <div class="expand-btn">
                 <a id="toggleAccordions-show">Expand All</a> / <a id="toggleAccordions-hide">collapse All</a>
             </div>

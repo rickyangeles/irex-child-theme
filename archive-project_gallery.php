@@ -10,12 +10,9 @@
 
 get_header(); ?>
 
-<div class="container-fluid short-header">
-    <img src="<?php echo the_field('service_featured_image', 'options')?>">
+<div class="container-fluid solid-header short-header">
     <div class="row">
-        <h1 class="page-title">
-            Projects
-        </h1>
+            <h1 class="page-title">Projects</h1>
     </div>
 </div>
 <div class="container breadcrumb">

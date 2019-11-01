@@ -11,9 +11,11 @@
 get_header(); ?>
 
 <?php
-    $projectSlideshow = get_field('project_gallery');
-    $projectCTAcontent = get_field('project_cta_content', 'options');
-    $projectCTAbtn     = get_field('project_cta_button', 'options');
+    $projectSlideshow   = get_field('project_gallery');
+    $projectCTAcontent  = get_field('project_cta_content', 'options');
+    $projectCTAbtn      = get_field('project_cta_button', 'options');
+    $relatedProjects    = get_field('related_projects');
+    $projectDetails     = get_field('project_details');
     $pID                = get_the_ID();
 ?>
 <!-- Page Header -->
@@ -31,7 +33,7 @@ get_header(); ?>
     </h1>
     <div class="row">
         <div class="col-md-6 project-content">
-            <?php the_content(); ?>
+            <?php echo $projectDetails; ?>
         </div>
         <div class="col-md-6 slideshow">
             <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
@@ -66,6 +68,36 @@ get_header(); ?>
             </div>
         </div>
     </div>
+</div>
+<div class="container">
+    <div class="row">
+        <?php the_content(); ?>
+    </div>
+</div>
+<div class="container">
+    <?php if( $relatedProjects ): ?>
+    <div class="row related-projects">
+        <h2 class="title">Related Projects</h2>
+        <?php foreach( $relatedProjects as $post): // variable must be called $post (IMPORTANT) ?>
+            <?php setup_postdata($post); ?>
+            <div class="col-md-6 single-featured-project d-flex align-items-center">
+                <div class="sfp-left">
+                    <h5><?php the_title(); ?></h5>
+                    <p><?php echo excerpt(20, $post->ID); ?></p>
+                </div>
+                <div class="sfp-right d-flex align-items-center">
+                    <?php if ( has_post_thumbnail()): ?>
+                        <?php the_post_thumbnail('featured-project'); ?>
+                    <?php else : ?>
+                        <img src="https://via.placeholder.com/300">
+                    <?php endif; ?>
+                    <span><a class="read-more btn btn-sm" href="<?php the_permalink(); ?>">Read More</a></span>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+    <?php endif; ?>
 </div>
 
 <?php get_footer(); ?>

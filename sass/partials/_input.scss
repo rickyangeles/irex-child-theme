@@ -23,3 +23,20 @@ form {
         border-color: $secondary;
     }
 }
+
+input {
+    &[type=text] {
+        border: 2px solid $primary;
+        background-color: $primary-light;
+        color: $primary;
+        padding: 5px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &::placeholder {
+        color: $primary;
+    }
+}
