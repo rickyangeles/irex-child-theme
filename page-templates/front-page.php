@@ -30,6 +30,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     $introRight = get_field('intro_video');
     $introBG = get_field('intro_bg');
     $introButton = get_field('intro_button');
+    $pointTitle = get_field('point_title');
     $point = get_field('point');
     $industyTitle = get_field('industry_title');
     $industryBG = get_field('industry_background_image');

@@ -62,7 +62,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     }
 
 ?>
-<div class="wrapper" id="full-width-page-wrapper">
+<div class="wrapper home-page-wrapper" id="full-width-page-wrapper">
 
     <!-- Banner -->
     <div class="container-fluid banner home-banner px-0">
@@ -85,6 +85,7 @@ $container = get_theme_mod( 'understrap_container_type' );
             </div>
             <div class="col-md-6 home-intro-right">
                 <img src="<?php echo $introRight['url']; ?>" />
+                <div class="slide-caption"><?php echo $introRight['caption']; ?></div>
             </div>
         </div>
     </div>
@@ -203,7 +204,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                                 // $subName = get_the_title($t);
 
                             ?>
-                            <div class="col-md-4 home-location">
+                            <div class="home-location">
                                 <ul class="single-location">
                                     <?php if ( $branchName ) : ?>
                                         <li><?php echo $branchName; ?></li>
