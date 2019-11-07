@@ -38,11 +38,22 @@ function theme_get_customizer_css() {
 	?>
 		h1:not(.page-title),h2,h3,h4,h5,h6, #main-menu > li > a, .breadcrumb a, .breadcrumb, .breadcrumb .row .col-md-12>span,
 		.main-content .slideshow .swiper-container .swiper-button-next:after, .main-content .slideshow .swiper-container .swiper-button-prev:after,
-		.slide-caption, .service-list a, .service-cta-wrap .service-cta-content, .subfooter, .single-sub-info {
+		.slide-caption, .service-list a, .service-cta-wrap .service-cta-content, .subfooter, .single-sub-info, .home-major-points,
+		.full-service-list a, .home-service-location .cert-wrap p, .home-intro .home-intro-left a.learn-more,
+		.page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-next:after, .page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-prev:after,
+		.home-featured-projects .sfp-right span a, .related-projects .sfp-right span a, #left-sidebar aside a, #right-sidebar aside a, #page-wrapper a,
+		.full-width.light-theme, .industry-card ul li, .location-list .single-location, .location-list .single-location a, .location-filter .searchandfilter select, .blog-archive article, .page-link,
+		input[type=text], .header .navbar-toggler .navbar-toggler-icon
+		 {
 		  color: <?php echo $primary_color; ?>!important;
 		}
 
-		.single-sub-info, .btn-primary {
+		.home-featured-projects:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link {
+			color: white!important;
+		}
+
+		.single-sub-info, .btn-primary, .home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
+		.location-filter .searchandfilter select, input[type=text], form input, form textarea {
 			border-color: <?php echo $primary_color; ?>!important;
 		}
 
@@ -50,15 +61,19 @@ function theme_get_customizer_css() {
 			border-bottom-color: <?php echo $primary_color; ?>!important;
 		}
 
-		.btn-primary, .footer-menu, .main-content .slideshow .swiper-container .swiper-pagination-bullet:not(.swiper-pagination-bullet-active), #main-menu>.menu-item-has-children>.dropdown-menu li a {
+		.footer-menu, .main-content .slideshow .swiper-container .swiper-pagination-bullet:not(.swiper-pagination-bullet-active),
+		#main-menu>.menu-item-has-children>.dropdown-menu li a, .page-template-sub-front-page .home-cta,
+		.page-template-sub-front-page .home-testimonial .row .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active,
+		.home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
+		.home-featured-projects .sfp-right, .related-projects .sfp-right, .no-banner, .cta.dark-theme, .page-header, .page-item.active .page-link {
 			background-color:  <?php echo $primary_color; ?>!important;
 		}
 
-		.slide-caption {
+		.slide-caption, .location-filter .searchandfilter select, input[type=text] {
 			background-color: <?php echo $primary_light; ?>!important;
 		}
 
-		.page-header:after {
+		.page-header:after, .short-header:after, .tall-header:after {
 			background: <?php echo $primary_color; ?>;
 		    background: -moz-linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
 		    background: -webkit-linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
@@ -66,6 +81,17 @@ function theme_get_customizer_css() {
 		    background: -webkit-linear-gradient(bottom, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
 		    background: -o-linear-gradient(bottom, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
 		    background: linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
+		}
+
+		@media (max-width: 768px) {
+			#main-menu, #main-menu .menu-item-has-children .dropdown-menu {
+				background-color:  <?php echo $primary_color; ?>!important;
+			}
+			#main-menu > li > a {
+				color: white!important;
+			}
+
+
 		}
 
 	<?php
@@ -80,10 +106,14 @@ function theme_get_customizer_css() {
 			}
 		}
 
-		.swiper-pagination-bullet .swiper-pagination-bullet-active {
+		.btn-primary, .swiper-pagination-bullet .swiper-pagination-bullet-active {
 			background-color:<?php echo $secondary_color; ?>!important;
 		}
-		.footer .footer-contact-info strong {
+
+		.btn-primary {
+			border-color: <?php echo $secondary_color; ?>!important;
+		}
+		.footer .footer-contact-info strong, .page-template-sub-front-page .home-cta h5 {
 			color: <?php echo $secondary_color; ?>;
 		}
 		.btn-secondary, .footer-menu li:last-child a {

@@ -67,10 +67,9 @@
 
             ul {
                 padding-left: 20px;
-                li {
+                & > li {
                     list-style: none;
-                    width: 32%;
-                    margin-right: 2%;
+                    width: 100%;
 
                     &:nth-child(2n+2) {
                         margin-right: 0;
