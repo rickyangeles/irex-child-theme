@@ -41,6 +41,7 @@ get_header(); ?>
         </div>
 
         <?php if ( $projectSlideshow ) : ?>
+            <?php $count = count($projectSlideshow); ?>
             <div class="col-md-6 slideshow">
                 <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
                 <!-- Additional required wrapper -->
@@ -56,12 +57,14 @@ get_header(); ?>
 
                         <?php endforeach; ?>
                     </div>
+                    <?php if ( $count > 1) : ?>
                     <div class="nav-wrap">
                         <div class="swiper-pagination"></div>
                         <!-- If we need navigation buttons -->
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>
                     </div>
+                <?php endif; ?>
                 </div>
 
                 <div class="row service-cta d-flex align-items-center">

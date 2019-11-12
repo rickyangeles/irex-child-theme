@@ -72,7 +72,7 @@ $container = get_theme_mod( 'understrap_container_type' );
             </ul>
         </div>
     </div>
-
+    
     <!-- Intro -->
     <div class="container-fluid home-intro py-4" <?php echo $introBG; ?>>
         <div class="row">

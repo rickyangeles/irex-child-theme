@@ -39,7 +39,6 @@ $subFooter = get_field('subsidiary_site', 'options');
 	</div>
 </div>
 <div class="wrapper footer" id="wrapper-footer">
-
 	<?php if ( $subFooter ) : ?>
 		<div class="<?php echo esc_attr( $container ); ?>">
 			<div class="row">

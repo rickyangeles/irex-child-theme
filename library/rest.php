@@ -46,9 +46,8 @@ function get_locations_rest($locations, $title) {
 	echo '<ul>';
 	foreach ($posts as $post) {
 		$location = $post['title']['rendered'];
-		$locationName = str_replace($title, '', $location);
 		//$locationName = preg_replace("/[^A-Za-z0-9]/","",$locationName);
-		echo '<li><a href="' . $post['link'] . '">' . $locationName . '</a></li>';
+		echo '<li><a href="' . $post['link'] . '">' . $location . '</a></li>';
 	}
 	echo '</ul>';
 }
@@ -180,5 +179,5 @@ function get_service_taxonomy() {
 
  	endwhile;
  }
- 
+
  ?>
