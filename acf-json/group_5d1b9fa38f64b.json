@@ -475,6 +475,59 @@
             "return_format": "array"
         },
         {
+            "key": "field_5dcb07c348393",
+            "label": "Contractor Title",
+            "name": "contractor_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5dcb07de48394",
+            "label": "Contractor Content",
+            "name": "contractor_content",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_5dcb07e748395",
+            "label": "Contractor Button",
+            "name": "contractor_button",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
+        },
+        {
             "key": "field_5d9dcb4f04f6e",
             "label": "Default Images",
             "name": "",
@@ -684,5 +737,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1571836257
+    "modified": 1573587100
 }

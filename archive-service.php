@@ -29,7 +29,7 @@ get_header(); ?>
 <div class="container main-content">
     <div class="row">
         <div class="col-md-4 left-content">
-            <?php the_content(); ?>
+            <?php the_field('service_content', 'options'); ?>
         </div>
         <div class="col-md-8 right-content">
             <div class="service-search">
@@ -131,9 +131,9 @@ get_header(); ?>
 <div class="container page-contractor">
     <div class="row contractor-cta d-flex align-items-center">
         <div class="col-md-9">
-            <?php $contractorTitle = get_field('contractor_title', '5292');
-            $contractorContent = get_field('contractor_content', '5292');
-            $contractorBtn = get_field('contractor_button', '5292'); ?>
+            <?php $contractorTitle = get_field('contractor_title', 'options');
+            $contractorContent = get_field('contractor_content', 'options');
+            $contractorBtn = get_field('contractor_button', 'options'); ?>
             <h2><?php echo $contractorTitle; ?></h2>
             <p><?php echo $contractorContent; ?></p>
         </div>

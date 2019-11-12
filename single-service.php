@@ -14,6 +14,8 @@ get_header(); ?>
     $serviceSlideshow = get_field('service_gallery');
     $serviceCTAcontent = get_field('service_cta_content', 'options');
     $serviceCTAbtn     = get_field('service_cta_button', 'options');
+    $testimonials = get_field('testimonials');
+    $relatedProjects = get_field('related_projects');
     $pID                = get_the_ID();
     $sub = get_field('subsidiary_site', 'options');
 ?>
@@ -114,6 +116,85 @@ get_header(); ?>
         </div>
     </div>
 </div>
+
+<!-- testimonial and related projects for subsidiary servicess -->
+<?php if ( $sub ) : ?>
+    <?php if ( $testimonials ) : ?>
+        <?php $testCount = count($testimonials); ?>
+        <div class="container-fluid home-testimonial">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="title">Testimonial</h4>
+                    <?php if( $testimonials ): ?>
+                        <div class="swiper-container testimonial-slider">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper d-flex align-items-center">
+                                <?php foreach( $testimonials as $testimonial ): // variable must be called $post (IMPORTANT) ?>
+                                    <?php setup_postdata($testimonial); ?>
+                                    <div class="swiper-slide">
+                                        <?php
+                                            $p = $testimonial->ID;
+                                            $name = get_field('testimonial_name', $p);
+                                            $job = get_field('testimonial_job_title', $p);
+                                            $company = get_field('testimonial_company_name', $p);
+                                        ?>
+                                       <?php the_content($p); ?>
+                                       <p class="testimonail-detail"><strong><?php echo $name; ?></strong>, <?php echo $job; ?>, <?php echo $company; ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php if ( $testCount > 1 ) : ?>
+                                <div class="nav-wrap">
+                                    <div class="swiper-pagination"></div>
+                                    <!-- If we need navigation buttons -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <!-- Featured Projects -->
+    <?php if( $relatedProjects ): ?>
+        <div class="container home-featured-projects">
+            <div class="row">
+                <h2 class="title">Featured Projects</h2>
+            </div>
+            <div class="row">
+                <?php foreach( $relatedProjects as $post): // variable must be called $post (IMPORTANT) ?>
+                    <?php setup_postdata($post); ?>
+                    <div class="col-md-6 single-featured-project d-flex align-items-center">
+                        <div class="sfp-left">
+                            <h5><?php the_title(); ?></h5>
+                            <p><?php echo excerpt(20, $post->ID); ?></p>
+                        </div>
+                        <div class="sfp-right d-flex align-items-center">
+                            <?php if ( has_post_thumbnail()): ?>
+                                <?php the_post_thumbnail('featured-project'); ?>
+                            <?php else : ?>
+                                <img src="https://via.placeholder.com/300">
+                            <?php endif; ?>
+                            <span><a class="read-more btn btn-sm" href="<?php the_permalink(); ?>">Read More</a></span>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <?php if ( $projectButton ) : ?>
+                    <div class="fp-btn text-center">
+                        <a href="<?php echo $projectButton['url']; ?>" class="view-all btn btn-primary"><?php echo $projectButton['title']; ?></a>
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>
+
 
 <?php if ( !$sub ) : ?>
     <!-- Contractor -->

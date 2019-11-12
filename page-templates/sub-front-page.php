@@ -65,8 +65,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <div class="wrapper home-page-wrapper" id="full-width-page-wrapper">
 
     <!-- Banner -->
-    <div class="container-fluid banner home-banner px-0">
-        <img src="<?php wp_get_attachment_url( get_field('banner_image') ); ?>" srcset="<?php echo esc_attr( $srcset ); ?>" alt="">
+    <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg; ?>');">
         <div class="banner-content">
             <?php echo $bannerContent; ?>
             <ul class="banner-buttons">
@@ -264,40 +263,45 @@ $container = get_theme_mod( 'understrap_container_type' );
     <?php endif; ?>
 
     <!-- Testimonials -->
-    <div class="container-fluid home-testimonial">
-        <div class="row">
-            <div class="col-md-12">
-                <h4 class="title"><?php echo $testimonialTitle; ?></h4>
-                <?php if( $testimonials ): ?>
-                    <div class="swiper-container testimonial-slider">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper d-flex align-items-center">
-                            <?php foreach( $testimonials as $testimonial ): // variable must be called $post (IMPORTANT) ?>
-                                <?php setup_postdata($testimonial); ?>
-                                <div class="swiper-slide">
-                                    <?php
-                                        $p = $testimonial->ID;
-                                        $name = get_field('testimonial_name', $p);
-                                        $job = get_field('testimonial_job_title', $p);
-                                        $company = get_field('testimonial_company_name', $p);
-                                    ?>
-                                   <?php the_content($p); ?>
-                                   <p class="testimonail-detail"><strong><?php echo $name; ?></strong>, <?php echo $job; ?>, <?php echo $company; ?></p>
+    <?php if ( $testimonials ) : ?>
+        <?php $testCount = count($testimonials); ?>
+        <div class="container-fluid home-testimonial">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="title"><?php echo $testimonialTitle; ?></h4>
+                    <?php if( $testimonials ): ?>
+                        <div class="swiper-container testimonial-slider">
+                            <!-- Additional required wrapper -->
+                            <div class="swiper-wrapper d-flex align-items-center">
+                                <?php foreach( $testimonials as $testimonial ): // variable must be called $post (IMPORTANT) ?>
+                                    <?php setup_postdata($testimonial); ?>
+                                    <div class="swiper-slide">
+                                        <?php
+                                            $p = $testimonial->ID;
+                                            $name = get_field('testimonial_name', $p);
+                                            $job = get_field('testimonial_job_title', $p);
+                                            $company = get_field('testimonial_company_name', $p);
+                                        ?>
+                                       <?php the_content($p); ?>
+                                       <p class="testimonail-detail"><strong><?php echo $name; ?></strong>, <?php echo $job; ?>, <?php echo $company; ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php if ( $testCount > 1 ) : ?>
+                                <div class="nav-wrap">
+                                    <div class="swiper-pagination"></div>
+                                    <!-- If we need navigation buttons -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="nav-wrap">
-                            <div class="swiper-pagination"></div>
-                            <!-- If we need navigation buttons -->
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
+                            <?php endif; ?>
                         </div>
                     </div>
-                </div>
-                <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-            <?php endif; ?>
+                    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
+    <?php endif; ?>
 
     <!-- Featured Projects -->
     <?php if( $featuredProjects ): ?>
