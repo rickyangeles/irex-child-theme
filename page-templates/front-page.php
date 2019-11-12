@@ -72,7 +72,7 @@ $container = get_theme_mod( 'understrap_container_type' );
             </ul>
         </div>
     </div>
-    
+
     <!-- Intro -->
     <div class="container-fluid home-intro py-4" <?php echo $introBG; ?>>
         <div class="row">
@@ -211,7 +211,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <div class="col-md-6 single-featured-project d-flex align-items-center">
                     <div class="sfp-left">
                         <h5><?php the_title(); ?></h5>
-                        <p><?php echo excerpt(20, $post->ID); ?></p>
+                        <p><?php echo project_excerpt(20, $post->ID); ?></p>
                     </div>
                     <div class="sfp-right d-flex align-items-center">
                         <?php if ( has_post_thumbnail()): ?>
@@ -241,6 +241,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <a href="<?php echo $careerButton['url']; ?>" class="btn btn-primary"><?php echo $careerButton['title']; ?></a>
             </div>
             <div class="col-md-6 hc-right">
+                <?php $count = count($careerSlideshow); ?>
                 <?php if( have_rows('career_slideshow') ): ?>
                     <div class="swiper-container">
                         <!-- Additional required wrapper -->
@@ -252,17 +253,21 @@ $container = get_theme_mod( 'understrap_container_type' );
                 		?>
                          <div class="swiper-slide">
                     		<img src="<?php echo $image; ?>" />
-                            <div class="slide-caption"><?php echo $content; ?></div>
+                            <?php if ( $content ) : ?>
+                                <div class="slide-caption"><?php echo $content; ?></div>
+                            <?php endif; ?>
                         </div>
                 	<?php endwhile; ?>
                 </div>
                     <!-- If we need pagination -->
+                    <?php if ( $count > 1) : ?>
                     <div class="nav-wrap">
                         <div class="swiper-pagination"></div>
                         <!-- If we need navigation buttons -->
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>
                     </div>
+                <?php endif; ?>
                     </div>
                     <script type="text/javascript">
                     var mySwiper = new Swiper ('.swiper-container', {

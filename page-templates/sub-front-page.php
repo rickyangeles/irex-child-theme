@@ -354,10 +354,12 @@ $container = get_theme_mod( 'understrap_container_type' );
                 		$image = get_sub_field('slide_image');
                 		$content = get_sub_field('slide_caption');
                 		?>
-                         <div class="swiper-slide">
-                    		<img src="<?php echo $image; ?>" />
-                            <div class="slide-caption"><?php echo $content; ?></div>
-                        </div>
+                        <div class="swiper-slide">
+                          <img src="<?php echo $image; ?>" />
+                           <?php if ( $content ) : ?>
+                               <div class="slide-caption"><?php echo $content; ?></div>
+                           <?php endif; ?>
+                       </div>
                 	<?php endwhile; ?>
                 </div>
                     <!-- If we need pagination -->

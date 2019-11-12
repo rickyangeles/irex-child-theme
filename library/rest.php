@@ -108,6 +108,18 @@ function excerpt($limit, $id) {
   return $excerpt;
 }
 
+function project_excerpt($limit, $id) {
+  $excerpt = explode(' ', get_field('project_details', $id), $limit);
+  if (count($excerpt)>=$limit) {
+    array_pop($excerpt);
+    $excerpt = implode(" ",$excerpt).'';
+  } else {
+    $excerpt = implode(" ",$excerpt);
+  }
+  $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
+  return $excerpt;
+}
+
 function content($limit) {
   $content = explode(' ', get_the_content(), $limit);
   if (count($content)>=$limit) {
