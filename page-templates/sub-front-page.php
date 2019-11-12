@@ -315,7 +315,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                     <div class="col-md-6 single-featured-project d-flex align-items-center">
                         <div class="sfp-left">
                             <h5><?php the_title(); ?></h5>
-                            <p><?php echo excerpt(20, $post->ID); ?></p>
+                            <p><?php echo project_excerpt(20, $post->ID); ?></p>
                         </div>
                         <div class="sfp-right d-flex align-items-center">
                             <?php if ( has_post_thumbnail()): ?>

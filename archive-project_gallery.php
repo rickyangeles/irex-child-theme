@@ -34,7 +34,7 @@ get_header(); ?>
             <div class="col-md-6 single-project d-flex align-items-center">
                 <div class="sfp-left">
                     <h5><?php the_title(); ?></h5>
-                    <p><?php echo excerpt(15, $post->ID); ?></p>
+                    <p><?php echo project_excerpt(15, $post->ID); ?></p>
                 </div>
                 <div class="sfp-right d-flex align-items-center">
                     <?php if ( has_post_thumbnail()): ?>

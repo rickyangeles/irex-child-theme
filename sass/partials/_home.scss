@@ -405,6 +405,12 @@
 
     .hc-right {
         .swiper-container {
+            max-width: 757px; width: 100%;
+            max-height: 450px; height: 100%;
+            img {
+                object-fit: cover;
+                height: 100%;
+            }
             .slide-caption {
                 font-weight: lighter;
                 font-size: 14px;
