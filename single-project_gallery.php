@@ -32,41 +32,59 @@ get_header(); ?>
         <?php the_title(); ?>
     </h1>
     <div class="row">
+        <?php if ( $projectSlideshow ) : ?>
         <div class="col-md-6 project-content">
+        <?php else :  ?>
+            <div class="col-md-12 project-content">
+        <?php endif; ?>
             <?php echo $projectDetails; ?>
         </div>
-        <div class="col-md-6 slideshow">
-            <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
-            <!-- Additional required wrapper -->
-                <div class="swiper-wrapper">
-                    <?php foreach( $projectSlideshow as $image ): ?>
-                        <?php $caption = $image['caption']; ?>
-                        <div class="swiper-slide">
-                            <?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
-                            <?php if ( $caption ): ?>
-                                <div class="slide-caption"><?php echo $image['caption']; ?></div>
-                            <?php endif; ?>
-                        </div>
 
-                    <?php endforeach; ?>
+        <?php if ( $projectSlideshow ) : ?>
+            <div class="col-md-6 slideshow">
+                <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
+                <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <?php foreach( $projectSlideshow as $image ): ?>
+                            <?php $caption = $image['caption']; ?>
+                            <div class="swiper-slide">
+                                <?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
+                                <?php if ( $image['caption'] ): ?>
+                                    <div class="slide-caption"><?php echo $image['caption']; ?></div>
+                                <?php endif; ?>
+                            </div>
+
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="nav-wrap">
+                        <div class="swiper-pagination"></div>
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
                 </div>
-                <div class="nav-wrap">
-                    <div class="swiper-pagination"></div>
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
+
+                <div class="row service-cta d-flex align-items-center">
+                    <div class="col-md-8 service-cta-content">
+                        <?php echo $projectCTAcontent; ?>
+                    </div>
+                    <div class="col-md-4 service-cta-btn">
+                        <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
+                    </div>
                 </div>
             </div>
-
-            <div class="row service-cta d-flex align-items-center">
-                <div class="col-md-8 service-cta-content">
-                    <?php echo $projectCTAcontent; ?>
-                </div>
-                <div class="col-md-4 service-cta-btn">
-                    <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
+        <?php else:  ?>
+            <div class="col-md-8 service-cta-wrap offset-md-2">
+                <div class="row service-cta d-flex align-items-center">
+                    <div class="col-md-8 service-cta-content">
+                        <?php echo $projectCTAcontent; ?>
+                    </div>
+                    <div class="col-md-4 service-cta-btn">
+                        <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
 </div>
 <div class="container">

@@ -49,7 +49,7 @@ get_header(); ?>
         <?php
             $images = get_field('gallery');
             $size = 'service-slideshow'; // (thumbnail, medium, large, full or custom size)
-
+            $count = count(get_field('service_gallery'));
             if( $serviceSlideshow ): ?>
                 <div class="col-md-6 slideshow">
                     <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
@@ -58,17 +58,21 @@ get_header(); ?>
                             <?php foreach( $serviceSlideshow as $image ): ?>
                                 <div class="swiper-slide">
                                     <?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
+                                    <?php if ( $image['caption'] ) : ?>
                                     <div class="slide-caption"><?php echo $image['caption']; ?></div>
+                                <?php endif; ?>
                                 </div>
 
                             <?php endforeach; ?>
                         </div>
+                        <?php if ( $count > 1) : ?>
                         <div class="nav-wrap">
                             <div class="swiper-pagination"></div>
                             <!-- If we need navigation buttons -->
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
+                    <?php endif; ?>
                     </div>
                 </div>
             <?php endif; ?>
@@ -81,7 +85,8 @@ get_header(); ?>
                 'post_type' => 'service',
                 'post_parent' => $pID,
                 'posts_per_page' => -1,
-                'orderby' => 'title'
+                'orderby' => 'title',
+                'order'     => 'ASC'
             ));
          ?>
         <?php if( $subpages->have_posts() ) : ?>

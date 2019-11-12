@@ -47,6 +47,7 @@ get_header(); ?>
             </div>
         <?php endwhile; ?>
     </div>
+    <?php understrap_pagination(); ?>
 </div>
 
 <?php get_footer(); ?>

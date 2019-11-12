@@ -165,3 +165,29 @@ function adjustBrightness($hex, $steps) {
 
     return $return;
 }
+
+//Literatre download shortcode
+add_shortcode( 'literature-download', 'display_custom_post_type' );
+
+function display_custom_post_type(){
+    $args = array(
+        'post_type' => 'literature-downloads',
+        'post_status' => 'publish',
+		'posts_per_page' => -1,
+    );
+
+    $string = '';
+    $query = new WP_Query( $args );
+    if( $query->have_posts() ){
+        $string .= '<ul class="literature-list">';
+        while( $query->have_posts() ){
+            $query->the_post();
+			$id = get_the_ID();
+			$pdfLink = get_field('file', $id);
+            $string .= '<li><a href="'. $pdfLink['url'] . '">' . get_the_title() . '</a></li>';
+        }
+        $string .= '</ul>';
+    }
+    wp_reset_postdata();
+    return $string;
+}
