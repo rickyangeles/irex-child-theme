@@ -355,11 +355,12 @@ $container = get_theme_mod( 'understrap_container_type' );
                         <div class="swiper-wrapper">
                 	<?php while( have_rows('career_slideshow') ): the_row();
                 		// vars
+                        $size = 'slideshow';
                 		$image = get_sub_field('slide_image');
                 		$content = get_sub_field('slide_caption');
                 		?>
                         <div class="swiper-slide">
-                          <img src="<?php echo $image; ?>" />
+                          <img src="<?php echo $image['sizes']['slideshow']; ?>" />
                            <?php if ( $content ) : ?>
                                <div class="slide-caption"><?php echo $content; ?></div>
                            <?php endif; ?>

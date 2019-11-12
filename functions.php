@@ -63,6 +63,7 @@ add_image_size( 'featured-project', 400, 400, array( 'center', 'center' ) ); // 
 add_image_size( 'page-banner', 1500, 320);
 add_image_size( 'service-archive-banner', 1127, 203);
 add_image_size( 'service-slideshow', 757, 482, array( 'center', 'center' ) );
+add_image_size( 'slideshow', 757, 482, array( 'center', 'center' ) );
 add_image_size( 'post-archive-thumbnail', 370, 240, array( 'center', 'center' ) );
 
 //Registering new menu locations

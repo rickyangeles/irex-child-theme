@@ -59,7 +59,8 @@ get_header(); ?>
                         <div class="swiper-wrapper">
                             <?php foreach( $serviceSlideshow as $image ): ?>
                                 <div class="swiper-slide">
-                                    <?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
+                                    <img src="<?php echo esc_url($image['sizes']['slideshow']); ?>" alt="">
+                                    <?php echo wp_get_attachment_image( $image, 'slideshow' ); ?>
                                     <?php if ( $image['caption'] ) : ?>
                                     <div class="slide-caption"><?php echo $image['caption']; ?></div>
                                 <?php endif; ?>
