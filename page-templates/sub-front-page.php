@@ -360,7 +360,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 		$content = get_sub_field('slide_caption');
                 		?>
                         <div class="swiper-slide">
-                          <img src="<?php echo $image['sizes']['slideshow']; ?>" />
+                          <img src="<?php echo $image; ?>" />
                            <?php if ( $content ) : ?>
                                <div class="slide-caption"><?php echo $content; ?></div>
                            <?php endif; ?>
