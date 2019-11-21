@@ -18,13 +18,15 @@ get_header(); ?>
     $relatedProjects = get_field('related_projects');
     $pID                = get_the_ID();
     $sub = get_field('subsidiary_site', 'options');
+    $imgID = get_post_thumbnail_id($pID);
+    $featuredImg = wp_get_attachment_image_src($imgID);
 ?>
 <!-- Page Header -->
 <div class="container-fluid page-header">
-    <?php if (has_post_thumbnail()) :?>
-        <?php the_post_thumbnail('page-banner'); ?>
+    <?php if ($featuredImg[0]) :?>
+        <?php the_post_thumbnail(); ?>
     <?php else: ?>
-        <img src="<?php echo the_field('service_featured_image', 'options')?>">
+        <img src="<?php echo get_field('service_featured_image', 'options'); ?>">
     <?php endif; ?>
     <div class="row">
         <h1 class="page-title">

@@ -174,7 +174,7 @@ function cptui_register_my_cpts() {
 		"show_in_menu" => true,
 		"show_in_nav_menus" => true,
 		"exclude_from_search" => false,
-		"capability_type" => "page",
+		"capability_type" => "post",
 		"map_meta_cap" => true,
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "services", "with_front" => false ),
