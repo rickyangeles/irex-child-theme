@@ -137,9 +137,11 @@ get_header(); ?>
             <h2><?php echo $contractorTitle; ?></h2>
             <p><?php echo $contractorContent; ?></p>
         </div>
-        <div class="col-md-3">
-            <a href="<?php echo $contractorBtn['url']; ?>" class="btn btn-primary"><?php echo $contractorBtn['title']; ?></a>
-        </div>
+        <?php if ($contractorBtn) : ?>
+            <div class="col-md-3">
+                <a href="<?php echo $contractorBtn['url']; ?>" class="btn btn-primary"><?php echo $contractorBtn['title']; ?></a>
+            </div>
+        <?php endif; ?>
     </div>
 
         <?php
