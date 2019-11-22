@@ -109,6 +109,7 @@ get_header(); ?>
                     <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                 <?php endwhile; ?>
             </div>
+            <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
         <?php endif; ?>
         <?php if( $subpages->have_posts() ) : ?>
             <div class="col-md-6 service-cta-wrap">
