@@ -82,7 +82,7 @@ $secondaryContent = get_field('secondary_content');
                 <?php $formID = get_field('contact_form_id'); ?>
                 <?php echo do_shortcode('[gravityform id=' . $formID . ']'); ?>
             </div>
-            <div class="col-md-6 contact-page-map">
+            <div class="col-md-7 contact-page-map">
                 <h5>Branch Locations & Contact Information</h5>
                 <h6 class="service-area-title"><strong>Services Area(s):</strong> <?php the_field('service_area'); ?></h6>
                 <?php

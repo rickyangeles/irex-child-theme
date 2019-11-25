@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Single Service
+ * Template Name: Single Location
  *
  * Template for displaying a page without sidebar even if a sidebar widget is published.
  *

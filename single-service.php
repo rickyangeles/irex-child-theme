@@ -38,13 +38,6 @@ get_header(); ?>
     <div class="row">
         <div class="col-md-12">
             <?php bcn_display(); ?>
-            <?php
-                $myvals = get_post_meta($pID);
-                foreach($myvals as $key=>$val)
-                {
-                    echo $key . ' : ' . $val[0] . '<br/>';
-                }
-            ?>
         </div>
     </div>
 </div>
