@@ -200,7 +200,61 @@ function display_custom_post_type(){
     return $string;
 }
 
-function my_update_cookie( $logged_in_cookie ){
-$_COOKIE[LOGGED_IN_COOKIE] = $logged_in_cookie;
+
+
+/* Custom Yoast template tags */
+
+// Archive Service Tag
+function get_archive_services() {
+	global $post;
+	$pages = get_pages(
+		array(
+			'post_type' => 'service',
+			'number'    => 4,
+		)
+	);
+	$servicePages = get_children( array(
+		'post_parent' => $post->ID,
+		'numberposts' => 4,
+		'sort_column' => 'post_title',
+		'sort_by'     => 'ASC',
+	));
+	$serviceList = ' ';
+	foreach ($serivcePages as $page){
+		$serviceList .= $page->post_title . ", ";
+	}
+
+	return $serviceList;
+
 }
-add_action( ‘set_logged_in_cookie’, ‘my_update_cookie’ );
+// define the action for register yoast_variable replacments
+function register_custom_yoast_variables() {
+    wpseo_register_var_replacement( '%%archiveservices%%', 'get_archive_services', 'advanced', 'pulls the first 3 child services, if any' );
+}
+// Add action
+add_action('wpseo_register_extra_replacements', 'register_custom_yoast_variables');
+
+
+// Single Service Page
+function get_services() {
+	global $post;
+	$pages = get_pages(
+		array(
+			'post_type' => 'service',
+			'number'    => 4,
+		)
+	);
+	$serviceList = ' ';
+	foreach ($childpages as $page){
+		$serviceList .= $page->post_title . ", ";
+	}
+
+	return $serviceList;
+
+}
+// define the action for register yoast_variable replacments
+function register_service_archive_yoast_variables() {
+    wpseo_register_var_replacement( '%%allservices%%', 'get_services', 'advanced', 'pulls all services, if any' );
+}
+// Add action
+add_action('wpseo_register_extra_replacements', 'register_service_archive_yoast_variables');
