@@ -197,18 +197,20 @@
                 margin: 0 auto;
                 top: -100px;
             }
+        }
+        .service-cta, .project-cta {
+            margin-top: 30px!important;
 
-            .service-cta {
-                margin-top: 30px;
-
-                .service-cta-content {
-                    color: $primary;
-                }
+            .service-cta-content, .project-cta-content {
+                color: $primary;
             }
         }
     }
 }
 
+.secondary-content {
+    margin-top: 50px;
+}
 
 /* Service Archive Styles */
 

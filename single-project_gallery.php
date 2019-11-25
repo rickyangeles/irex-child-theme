@@ -66,14 +66,22 @@ get_header(); ?>
                     </div>
                 <?php endif; ?>
                 </div>
+				<div class="row project-cta d-flex align-items-center">
+                <div class="col-md-8 project-cta-content">
+                    <?php echo $projectCTAcontent; ?>
+                </div>
+                <div class="col-md-4 project-cta-btn">
+                    <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
+                </div>
+            </div>
             </div>
         <?php else:  ?>
-            <div class="col-md-8 service-cta-wrap offset-md-2">
-                <div class="row service-cta d-flex align-items-center">
-                    <div class="col-md-8 service-cta-content">
+            <div class="col-md-8 project-cta-wrap offset-md-2">
+                <div class="row project-cta d-flex align-items-center">
+                    <div class="col-md-8 project-cta-content">
                         <?php echo $projectCTAcontent; ?>
                     </div>
-                    <div class="col-md-4 service-cta-btn">
+                    <div class="col-md-4 project-cta-btn">
                         <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
                     </div>
                 </div>
@@ -81,7 +89,7 @@ get_header(); ?>
         <?php endif; ?>
     </div>
 </div>
-<div class="container">
+<div class="container secondary-content">
     <div class="row">
         <?php the_content(); ?>
     </div>
