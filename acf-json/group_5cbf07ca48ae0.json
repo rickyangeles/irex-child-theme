@@ -20,6 +20,25 @@
             "min_size": 0,
             "max_size": 0,
             "mime_types": ""
+        },
+        {
+            "key": "field_5ddbe5999a1a9",
+            "label": "Hide on Corporate Site",
+            "name": "hide_on_corp",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -39,5 +58,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1571242231
+    "modified": 1574692518
 }

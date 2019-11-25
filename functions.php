@@ -175,6 +175,13 @@ function display_custom_post_type(){
         'post_type' => 'literature-downloads',
         'post_status' => 'publish',
 		'posts_per_page' => -1,
+		'meta_query' => array(
+		    array(
+		      'key' => 'hide_on_corp',
+		      'value' => '1',
+		      'compare' => 'NOT EXISTS' // not really needed, this is the default
+		    )
+		  )
     );
 
     $string = '';
