@@ -207,21 +207,24 @@ function display_custom_post_type(){
 // Archive Service Tag
 function get_archive_services() {
 	global $post;
-	$pages = get_pages(
+	$pages = get_posts(
 		array(
 			'post_type' => 'service',
-			'number'    => 4,
+			'orderby' => 'title',
+			'order' => 'ASC',
+			'numberposts' => 4
 		)
 	);
-	$servicePages = get_children( array(
-		'post_parent' => $post->ID,
-		'numberposts' => 4,
-		'sort_column' => 'post_title',
-		'sort_by'     => 'ASC',
-	));
-	$serviceList = ' ';
-	foreach ($serivcePages as $page){
-		$serviceList .= $page->post_title . ", ";
+
+	$serviceList = '';
+	$i = 0;
+	foreach ($pages as $page) {
+		if ( $i < 3 ) {
+			$serviceList .= $page->post_title . ", ";
+		} else {
+			$serviceList .= $page->post_title;
+		}
+		$i++;
 	}
 
 	return $serviceList;
@@ -238,15 +241,68 @@ add_action('wpseo_register_extra_replacements', 'register_custom_yoast_variables
 // Single Service Page
 function get_services() {
 	global $post;
-	$pages = get_pages(
+	$pages = get_posts(
 		array(
 			'post_type' => 'service',
-			'number'    => 4,
+			'orderby' => 'title',
+			'order' => 'ASC',
+			'numberposts' => 4,
+			'post_parent' => $post->ID,
+
 		)
 	);
-	$serviceList = ' ';
-	foreach ($childpages as $page){
-		$serviceList .= $page->post_title . ", ";
+
+	if ( is_single() ) {
+		$serviceList = ' ';
+		$id = get_the_ID();
+
+		//check to see if it has child pages
+		$args = array(
+		    'post_parent' => $post->ID, // Current post's ID
+		);
+		$children = get_children( $args );
+
+		if ( ! empty($children) ) {
+
+			$i = 0;
+			foreach ($pages as $page) {
+				if ( $i == 2 ) {
+					$serviceList .= $page->post_title . " and ";
+				} elseif ( $i < 3 ) {
+					$serviceList .= $page->post_title . ", ";
+				} else {
+					$serviceList .= $page->post_title;
+				}
+				$i++;
+			}
+
+			$serviceList .= ' in ';
+			$industries = get_field('service_industries', $id);
+			$c = 0;
+			$t = 0;
+			foreach ( $industries as $post ) {
+				if ( $c <= 3 ) {
+					$serviceList .= get_the_title($post) . ', ';
+				} else {
+					$serviceList .= get_the_title($post);
+				}
+				$c .= 1;
+
+			}
+		} else {
+			$industries = get_field('service_industries', $id);
+			$c = 0;
+			$t = 0;
+			foreach ( $industries as $post ) {
+				if ( $c <= 3 ) {
+					$serviceList .= get_the_title($post) . ', ';
+				} else {
+					$serviceList .= get_the_title($post);
+				}
+				$c .= 1;
+
+			}
+		}
 	}
 
 	return $serviceList;
@@ -254,7 +310,7 @@ function get_services() {
 }
 // define the action for register yoast_variable replacments
 function register_service_archive_yoast_variables() {
-    wpseo_register_var_replacement( '%%allservices%%', 'get_services', 'advanced', 'pulls all services, if any' );
+    wpseo_register_var_replacement( '%%services%%', 'get_services', 'advanced', 'pulls all services, if any' );
 }
 // Add action
 add_action('wpseo_register_extra_replacements', 'register_service_archive_yoast_variables');

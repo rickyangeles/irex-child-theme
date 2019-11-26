@@ -23,7 +23,7 @@
             "elements": "",
             "min": "",
             "max": "",
-            "return_format": "object"
+            "return_format": "id"
         }
     ],
     "location": [
@@ -38,7 +38,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "dt_ext_connection"
+                "value": "post"
             }
         ],
         [
@@ -57,5 +57,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1573577041
+    "modified": 1574732611
 }
