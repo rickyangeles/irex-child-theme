@@ -11,7 +11,7 @@
 get_header(); ?>
 
 <?php
-    $serviceSlideshow = get_field('service_gallery');
+    $serviceSlideshow = get_field('new_gallery');
     $serviceCTAcontent = get_field('service_cta_content', 'options');
     $serviceCTAbtn     = get_field('service_cta_button', 'options');
     $testimonials = get_field('testimonials');
@@ -54,21 +54,27 @@ get_header(); ?>
             $images = get_field('gallery');
             $size = 'service-slideshow'; // (thumbnail, medium, large, full or custom size)
             $count = count(get_field('service_gallery'));
-            if( $serviceSlideshow ): ?>
+
+            ?>
+            <?php if( have_rows('new_gallery') ): ?>
                 <div class="col-md-6 slideshow">
                     <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
                     <!-- Additional required wrapper -->
                         <div class="swiper-wrapper">
-                            <?php foreach( $serviceSlideshow as $image ): ?>
-                                <div class="swiper-slide">
-                                    <img src="<?php echo esc_url($image['sizes']['slideshow']); ?>" alt="">
-                                    <?php echo wp_get_attachment_image( $image, 'slideshow' ); ?>
-                                    <?php if ( $image['caption'] ) : ?>
-                                    <div class="slide-caption"><?php echo $image['caption']; ?></div>
+                            <?php while( have_rows('new_gallery') ): the_row(); ?>
+                                <?php
+                                    $img = get_sub_field('image');
+                                    $caption = get_sub_field('caption');
+                                ?>
+                                <?php if ($img): ?>
+                                    <div class="swiper-slide">
+                                        <img src="<?php echo $img; ?>" alt="">
+                                        <?php if ( $caption ) : ?>
+                                        <div class="slide-caption"><?php echo $caption; ?></div>
+                                    <?php endif; ?>
+                                    </div>
                                 <?php endif; ?>
-                                </div>
-
-                            <?php endforeach; ?>
+                            <?php endwhile; ?>
                         </div>
                         <?php if ( $count > 1) : ?>
                         <div class="nav-wrap">
@@ -80,6 +86,7 @@ get_header(); ?>
                     <?php endif; ?>
                     </div>
                 </div>
+
             <?php endif; ?>
             <!-- If we need pagination -->
         </div>
