@@ -321,13 +321,14 @@ add_action('wpseo_register_extra_replacements', 'register_service_archive_yoast_
 //Turn ACF Gallery into a repeater field
 // You need to set the variable instead of the value here
 function convert_gallery_acf() {
+	global $post;
 	$args = array(
         'post_type' => 'service', // Only get the posts
         'post_status' => 'publish', // Only the posts that are published
         'posts_per_page'   => -1 // Get every post
     );
 
-	$posts = get_posts($args);
+	$posts = get_post($post->ID);
     foreach ( $posts as $post ) {
 		$field_key = "field_5ddd47ea444e7"; //New Gallery Field
 		$value = get_field($field_key, $post->ID);
@@ -335,7 +336,7 @@ function convert_gallery_acf() {
         // Run a loop and update every meta data
 		if ($serviceSlideshow ) {
 			foreach ($serviceSlideshow as $image) {
-				if ( $value['image'] != $image ) {
+				if( $image ) {
 					$value[] = array("image" => $image, "caption" => $image['caption']);
 				}
 			}
