@@ -32,6 +32,7 @@ function theme_get_customizer_css() {
   $primary_color = get_theme_mod( 'primary_color', '' );
   $secondary_color = get_theme_mod( 'secondary_color', '' );
   $dark_color = get_theme_mod( 'secondary_color', '' );
+  $primary_dark = adjustBrightness($primary_color, -50);
   $primary_light = adjustBrightness($primary_color, 150);
   $secondary_dark = adjustBrightness($secondary_color, -50);
   if ( ! empty( $primary_color ) ) {
@@ -40,15 +41,14 @@ function theme_get_customizer_css() {
 		.main-content .slideshow .swiper-container .swiper-button-next:after, .main-content .slideshow .swiper-container .swiper-button-prev:after,
 		.slide-caption, .service-list a, .service-cta-wrap .service-cta-content, .subfooter, .single-sub-info, .home-major-points,
 		.full-service-list a, .home-service-location .cert-wrap p, .home-intro .home-intro-left a.learn-more,
-		.page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-next:after, .page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-prev:after,
-		.home-featured-projects .sfp-right span a, .related-projects .sfp-right span a, #left-sidebar aside a, #right-sidebar aside a, #page-wrapper a,
-		.full-width.light-theme, .industry-card ul li, .location-list .single-location, .location-list .single-location a, .location-filter .searchandfilter select, .blog-archive article, .page-link,
-		input[type=text], .header .navbar-toggler .navbar-toggler-icon
+		.page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-next:after, .page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-prev:after, .home-featured-projects .sfp-right span a, .related-projects .sfp-right span a, #left-sidebar aside a, #right-sidebar aside a, #page-wrapper a,
+		.full-width.light-theme, .industry-card ul li, .location-list .single-location, .location-list .single-location a, .location-filter .searchandfilter select, .blog-archive article, .page-link, input[type=text], .header .navbar-toggler .navbar-toggler-icon, .home-career .hc-right .swiper-container .swiper-button-prev:after, .home-career .hc-right .swiper-container .swiper-button-next:after, .main-content .left-content, .card .card-body, .page-contractor a
 		 {
 		  color: <?php echo $primary_color; ?>!important;
 		}
 
-		.home-featured-projects:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link {
+		.home-featured-projects:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link, .home-banner .banner-content h1,
+	    .home-banner .banner-content ul li .btn-primary, .page-template-sub-front-page .home-cta .row h5 {
 			color: white!important;
 		}
 
@@ -65,15 +65,20 @@ function theme_get_customizer_css() {
 		#main-menu>.menu-item-has-children>.dropdown-menu li a, .page-template-sub-front-page .home-cta,
 		.page-template-sub-front-page .home-testimonial .row .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active,
 		.home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
-		.home-featured-projects .sfp-right, .related-projects .sfp-right, .no-banner, .cta.dark-theme, .page-header, .page-item.active .page-link {
+		.home-featured-projects .sfp-right, .related-projects .sfp-right, .no-banner, .cta.dark-theme, .page-header, .page-item.active .page-link,
+	     #main-menu>.menu-item-has-children>.dropdown-menu li .dropdown-menu, .card .card-header button[aria-expanded=true] {
 			background-color:  <?php echo $primary_color; ?>!important;
 		}
 
-		.slide-caption, .location-filter .searchandfilter select, input[type=text] {
+		.slide-caption, .location-filter .searchandfilter select, input[type=text], .card:nth-child(odd) .card-header, .card .card-body {
 			background-color: <?php echo $primary_light; ?>!important;
 		}
 
-		.page-header:after, .short-header:after, .tall-header:after {
+		.card:nth-child(even) .card-header {
+			background-color: <?php echo $primary_light; ?>!important;
+		}
+
+		.page-header:after, .short-header:after, .tall-header:after, home-banner:after {
 			background: <?php echo $primary_color; ?>;
 		    background: -moz-linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
 		    background: -webkit-linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
@@ -106,7 +111,7 @@ function theme_get_customizer_css() {
 			}
 		}
 
-		.btn-primary, .swiper-pagination-bullet .swiper-pagination-bullet-active {
+		.btn-primary, .home-career .hc-right .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 			background-color:<?php echo $secondary_color; ?>!important;
 		}
 

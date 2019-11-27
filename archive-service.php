@@ -128,6 +128,10 @@ get_header(); ?>
         </div>
     </div>
 </div>
+
+<?php $sub = get_field('subsidiary_site', 'options');  ?>
+
+<?php if (!$sub) : ?>
 <div class="container page-contractor">
     <div class="row contractor-cta d-flex align-items-center">
         <div class="col-md-9">
@@ -199,4 +203,5 @@ get_header(); ?>
     </div>
         <?php wp_reset_postdata(); ?>
     </div>
+<?php endif; ?>
 <?php get_footer(); ?>
