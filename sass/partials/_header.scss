@@ -33,13 +33,13 @@ body {
     .header-logo {
         padding: 15px 15px 15px 0;
         transition: all .2s ease;
-        min-height: 143px;
+        min-height: 120px;
 
         @include media-breakpoint-down(sm) {
             padding: 10px 15px 10px 0;
         }
         img {
-            max-height: 113px;
+            max-height: 113px; max-width: 300px;
             width: auto;
             transition: all .2s ease;
         }
