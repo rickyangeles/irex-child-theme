@@ -15,6 +15,21 @@
     background-size: cover;
     background-position: bottom center;
 
+    &:after {
+        position: absolute;
+        bottom: 0;
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: rgb(0,74,151);
+        background: -moz-linear-gradient(0deg, rgba(0,74,151,1) 0%, rgba(255,255,255,0) 65%);
+        background: -webkit-linear-gradient(0deg, rgba(0,74,151,1) 0%, rgba(255,255,255,0) 65%);
+        background: linear-gradient(0deg, rgba(0,74,151,1) 0%, rgba(255,255,255,0) 65%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#004a97",endColorstr="#ffffff",GradientType=1);
+    }
+
     .banner-content {
         position: absolute;
         bottom: 0;
@@ -23,6 +38,7 @@
         text-align:center;
         left: 0;
         right: 0;
+        z-index: 2;
         h1 {
             color: white;
             font-size: 40px;
@@ -305,7 +321,7 @@
                 box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.18);
 
                 p {
-                    color: $white;  
+                    color: $white;
                 }
 
                 h5 {
@@ -383,10 +399,22 @@
 .home-career {
     padding: 30px 0 70px;
     background-size: cover;
+    position: relative;
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #edaa0045;
+    }
+
     .row {
         max-width: 1200px; width: 100%;
         margin: 70px auto;
         position: relative;
+        z-index: 2;
     }
     h2.title {
         text-align:center;
