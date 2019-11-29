@@ -41,14 +41,19 @@ function theme_get_customizer_css() {
 		.main-content .slideshow .swiper-container .swiper-button-next:after, .main-content .slideshow .swiper-container .swiper-button-prev:after,
 		.slide-caption, .service-list a, .service-cta-wrap .service-cta-content, .subfooter, .single-sub-info, .home-major-points,
 		.full-service-list a, .home-service-location .cert-wrap p, .home-intro .home-intro-left a.learn-more,
-		.page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-next:after, .page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-prev:after, .home-featured-projects .sfp-right span a, .related-projects .sfp-right span a, #left-sidebar aside a, #right-sidebar aside a, #page-wrapper a,
-		.full-width.light-theme, .industry-card ul li, .location-list .single-location, .location-list .single-location a, .location-filter .searchandfilter select, .blog-archive article, .page-link, input[type=text], .header .navbar-toggler .navbar-toggler-icon, .home-career .hc-right .swiper-container .swiper-button-prev:after, .home-career .hc-right .swiper-container .swiper-button-next:after, .main-content .left-content, .card .card-body, .page-contractor a
+		.page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-next:after,
+	    .page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-prev:after, .home-featured-projects .sfp-right span a,
+		.related-projects .sfp-right span a, #left-sidebar aside a, #right-sidebar aside a, #page-wrapper a,
+		.full-width.light-theme, .industry-card ul li, .location-list .single-location, .location-list .single-location a,
+		.location-filter .searchandfilter select, .blog-archive article, .page-link, input[type=text], .header .navbar-toggler .navbar-toggler-icon,
+		.home-career .hc-right .swiper-container .swiper-button-prev:after, .home-career .hc-right .swiper-container .swiper-button-next:after,
+		.main-content .left-content, .card .card-body, .page-contractor a
 		 {
 		  color: <?php echo $primary_color; ?>!important;
 		}
 
-		.home-featured-projects:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link, .home-banner .banner-content h1,
-	    .home-banner .banner-content ul li .btn-primary, .page-template-sub-front-page .home-cta .row h5 {
+		.home-featured-projects:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link,
+		.home-banner .banner-content h1, .page-template-sub-front-page .home-cta .row h5 {
 			color: white!important;
 		}
 
@@ -67,7 +72,7 @@ function theme_get_customizer_css() {
 		.home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
 		.home-featured-projects .sfp-right, .related-projects .sfp-right, .no-banner, .cta.dark-theme, .page-header, .page-item.active .page-link,
 	     #main-menu>.menu-item-has-children>.dropdown-menu li .dropdown-menu, .card .card-header button[aria-expanded=true], .home-career:after,
-		 .short-header.solid-header {
+		 .short-header.solid-header, .home-banner {
 			background-color:  <?php echo $primary_color; ?>!important;
 		}
 

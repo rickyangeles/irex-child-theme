@@ -83,7 +83,9 @@ $container = get_theme_mod( 'understrap_container_type' );
             </div>
             <div class="col-md-6 home-intro-right">
                 <img src="<?php echo $introRight['url']; ?>" />
-                <div class="slide-caption"><?php echo $introRight['caption']; ?></div>
+                <?php if ( $introRight['caption']) : ?>
+                    <div class="slide-caption"><?php echo $introRight['caption']; ?></div>
+                <?php endif; ?>
             </div>
         </div>
     </div>

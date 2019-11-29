@@ -46,8 +46,9 @@ function get_locations_rest($locations, $title) {
 	echo '<ul>';
 	foreach ($posts as $post) {
 		$location = $post['title']['rendered'];
+		$branchName = $post['acf']['branch_name'];
 		//$locationName = preg_replace("/[^A-Za-z0-9]/","",$locationName);
-		echo '<li><a href="' . $post['link'] . '">' . $location . '</a></li>';
+		echo '<li><a href="' . $post['link'] . '">' . $branchName . '</a></li>';
 	}
 	echo '</ul>';
 }
