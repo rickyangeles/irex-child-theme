@@ -66,7 +66,8 @@ function theme_get_customizer_css() {
 		.page-template-sub-front-page .home-testimonial .row .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active,
 		.home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
 		.home-featured-projects .sfp-right, .related-projects .sfp-right, .no-banner, .cta.dark-theme, .page-header, .page-item.active .page-link,
-	     #main-menu>.menu-item-has-children>.dropdown-menu li .dropdown-menu, .card .card-header button[aria-expanded=true] {
+	     #main-menu>.menu-item-has-children>.dropdown-menu li .dropdown-menu, .card .card-header button[aria-expanded=true], .home-career:after,
+		 .short-header.solid-header {
 			background-color:  <?php echo $primary_color; ?>!important;
 		}
 
@@ -78,7 +79,7 @@ function theme_get_customizer_css() {
 			background-color: <?php echo $primary_light; ?>!important;
 		}
 
-		.page-header:after, .short-header:after, .tall-header:after, home-banner:after {
+		.page-header:after, .short-header:after, .tall-header:after, .home-banner:after {
 			background: <?php echo $primary_color; ?>;
 		    background: -moz-linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);
 		    background: -webkit-linear-gradient(0deg, <?php echo $primary_color; ?> 0%, rgba(255, 255, 255, 0) 65%);

@@ -69,7 +69,6 @@ $container = get_theme_mod( 'understrap_container_type' );
         <div class="banner-content">
             <?php echo $bannerContent; ?>
             <ul class="banner-buttons">
-                <li><a href="<?php echo $bannerSecondary['url']; ?>" class="btn btn-secondary"><?php echo $bannerSecondary['title']; ?></a></li>
                 <li><a href="<?php echo $bannerPrimary['url']; ?>" class="btn btn-primary"><?php echo $bannerPrimary['title']; ?></a></li>
             </ul>
         </div>
