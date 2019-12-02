@@ -246,7 +246,7 @@ function get_services() {
 			'post_type' => 'service',
 			'orderby' => 'title',
 			'order' => 'ASC',
-			'numberposts' => 4,
+			'numberposts' => 3,
 			'post_parent' => $post->ID,
 
 		)
@@ -264,47 +264,49 @@ function get_services() {
 
 		if ( ! empty($children) ) {
 
-			$i = 0;
+			$i = 1;
 			foreach ($pages as $page) {
-				if ( $i == 2 ) {
-					$serviceList .= $page->post_title . " and ";
-				} elseif ( $i < 3 ) {
+				if ( $i < 2 ) {
 					$serviceList .= $page->post_title . ", ";
+				} elseif ( $i == 2 ) {
+					$serviceList .= $page->post_title . ", and ";
 				} else {
 					$serviceList .= $page->post_title;
 				}
 				$i++;
 			}
 
-			$serviceList .= ' in ';
+			$serviceList .= ' for various industries, including  ';
 			$industries = get_field('service_industries', $id);
-			$c = 0;
-			$t = 0;
-			foreach ( $industries as $post ) {
-				if ( $c <= 3 ) {
-					$serviceList .= get_the_title($post) . ', ';
-				} else {
-					$serviceList .= get_the_title($post);
-				}
-				$c .= 1;
+			$c = 1;
 
+			foreach ( $industries as $post ) {
+				if ( $c < 3 ) {
+					$serviceList .= get_the_title($post) . ', ';
+				} elseif ($c == 3) {
+					$serviceList .= 'and ' . get_the_title($post);
+				} elseif ($c > 4) {
+					break;
+				}
+				$c++;
 			}
 		} else {
-			$industries = get_field('service_industries', $id);
-			$c = 0;
-			$t = 0;
-			foreach ( $industries as $post ) {
-				if ( $c <= 3 ) {
-					$serviceList .= get_the_title($post) . ', ';
-				} else {
-					$serviceList .= get_the_title($post);
-				}
-				$c .= 1;
 
+			$serviceList = ' for various industries, including ';
+			$industries = get_field('service_industries', $id);
+			$c = 1;
+			foreach ( $industries as $post ) {
+				if ( $c < 3 ) {
+					$serviceList .= get_the_title($post) . ', ';
+				} elseif ($c == 3) {
+					$serviceList .= 'and ' . get_the_title($post);
+				} elseif ($c > 4) {
+					break;
+				}
+				$c++;
 			}
 		}
 	}
-
 	return $serviceList;
 
 }
