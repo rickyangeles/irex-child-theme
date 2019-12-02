@@ -67,7 +67,6 @@ $container = get_theme_mod( 'understrap_container_type' );
         <div class="banner-content">
             <?php echo $bannerContent; ?>
             <ul class="banner-buttons">
-                <li><a href="<?php echo $bannerSecondary['url']; ?>" class="btn btn-secondary"><?php echo $bannerSecondary['title']; ?></a></li>
                 <li><a href="<?php echo $bannerPrimary['url']; ?>" class="btn btn-primary"><?php echo $bannerPrimary['title']; ?></a></li>
             </ul>
         </div>
@@ -196,7 +195,6 @@ $container = get_theme_mod( 'understrap_container_type' );
             <?php $counter++; endwhile; ?>
         </div>
             <?php wp_reset_postdata(); ?>
-        </div>
     </div>
 
     <!-- Featured Projects -->
@@ -233,7 +231,6 @@ $container = get_theme_mod( 'understrap_container_type' );
         </div>
     <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
     <?php endif; ?>
-        </div>
     </div>
 
     <!-- Career -->

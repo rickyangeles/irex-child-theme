@@ -53,7 +53,8 @@ function theme_get_customizer_css() {
 		}
 
 		.home-featured-projects:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link,
-		.home-banner .banner-content h1, .page-template-sub-front-page .home-cta .row h5 {
+		.home-banner .banner-content h1, .page-template-sub-front-page .home-cta .row h5, .footer h1, .footer h2, .footer h3, .footer h4, .footer h5,
+		.footer h6 {
 			color: white!important;
 		}
 

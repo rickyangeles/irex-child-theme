@@ -50,10 +50,9 @@ $subFooter = get_field('subsidiary_site', 'options');
 							$socialIcon = get_sub_field('font_awesome_class');
 							$socialURL = get_sub_field('social_media_url');
 						?>
-							<li><a href="<?php the_sub_field('font_awesome_class');?>"><i class="<?php echo $socialIcon; ?>"></i></a></li>
+							<li><a href="<?php echo $socialURL;?>"><i class="<?php echo $socialIcon; ?>"></i></a></li>
 						<?php endwhile; ?>
 					<?php endif; ?>
-
 					</ul>
 				</div>
 				<div class="col-md-9">
@@ -160,10 +159,9 @@ $subFooter = get_field('subsidiary_site', 'options');
 							$socialIcon = get_sub_field('font_awesome_class');
 							$socialURL = get_sub_field('social_media_url');
 						?>
-							<li><a href="<?php echo $socialURL; ?>"><i class="<?php echo $socialIcon; ?>"></i></a></li>
+							<li><a href="<?php echo $socialURL;?>"><i class="<?php echo $socialIcon; ?>"></i></a></li>
 						<?php endwhile; ?>
 					<?php endif; ?>
-
 					</ul>
 				</div>
 				<div class="col-md-9">
