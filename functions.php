@@ -316,25 +316,25 @@ function register_service_archive_yoast_variables() {
 add_action('wpseo_register_extra_replacements', 'register_service_archive_yoast_variables');
 
 
-
-
-//Turn ACF Gallery into a repeater field
-function convert_gallery_acf() {
-	$posts = get_post($post->ID);
-    foreach ( $posts as $post ) {
-		$field_key = "field_5ddd47ea444e7"; //New Gallery Field
-		$value = get_field($field_key, $post->ID);
-		$serviceSlideshow = get_field('service_gallery', $post->ID);//Old Gallery Field
-        // Run a loop and update every meta data
-		if ($serviceSlideshow ) {
-			foreach ($serviceSlideshow as $image) {
-				if( $image ) {
-					$value[] = array("image" => $image['url'], "caption" => $image['caption']);
-				}
-			}
-			update_field( $field_key, $value, $post->ID);
-		}
-    }
-
-}
-add_action('acf/save_post','convert_gallery_acf');
+//
+//
+// //Turn ACF Gallery into a repeater field
+// function convert_gallery_acf() {
+// 	$posts = get_post($post->ID);
+//     foreach ( $posts as $post ) {
+// 		$field_key = "field_5ddd47ea444e7"; //New Gallery Field
+// 		$value = get_field($field_key, $post->ID);
+// 		$serviceSlideshow = get_field('service_gallery', $post->ID);//Old Gallery Field
+//         // Run a loop and update every meta data
+// 		if ($serviceSlideshow ) {
+// 			foreach ($serviceSlideshow as $image) {
+// 				if( $image ) {
+// 					$value[] = array("image" => $image['url'], "caption" => $image['caption']);
+// 				}
+// 			}
+// 			update_field( $field_key, $value, $post->ID);
+// 		}
+//     }
+//
+// }
+// add_action('acf/save_post','convert_gallery_acf');
