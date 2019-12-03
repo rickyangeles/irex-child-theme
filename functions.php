@@ -386,17 +386,17 @@ add_action('wpseo_register_extra_replacements', 'register_service_archive_yoast_
 
 
 
-function remove_seo_meta_data_services() {
-	$allservices = get_posts( 'numberposts=-1&post_type=service' );
-
-	foreach ( $allservices as $services ) {
-		delete_post_meta( $services->ID, '_yoast_wpseo_metadesc' );
-		delete_post_meta( $services->ID, '_yoast_wpseo_title' );
-
-		wp_update_post( array( 'ID' => $services->ID ) );
-	}
-}
-add_action('init', 'remove_seo_meta_data_services');
+// function remove_seo_meta_data_services() {
+// 	$allservices = get_posts( 'numberposts=-1&post_type=service' );
+//
+// 	foreach ( $allservices as $services ) {
+// 		delete_post_meta( $services->ID, '_yoast_wpseo_metadesc' );
+// 		delete_post_meta( $services->ID, '_yoast_wpseo_title' );
+//
+// 		wp_update_post( array( 'ID' => $services->ID ) );
+// 	}
+// }
+// add_action('init', 'remove_seo_meta_data_services');
 
 //
 //
