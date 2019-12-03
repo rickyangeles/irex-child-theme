@@ -203,6 +203,73 @@ function display_custom_post_type(){
 
 
 /* Custom Yoast template tags */
+// Archive Industry Tag
+function get_archive_industry() {
+	global $post;
+	$pages = get_posts(
+		array(
+			'post_type' => 'industry',
+			'orderby' => 'title',
+			'order' => 'ASC',
+			'numberposts' => 4
+		)
+	);
+
+	$serviceList = '';
+	foreach ($pages as $page) {
+		$serviceList .= $page->post_title . ", ";
+	}
+
+	return $serviceList;
+
+}
+// define the action for register yoast_variable replacments
+function register_industry_archive_yoast_variables() {
+    wpseo_register_var_replacement( '%%archiveindustry%%', 'get_archive_industry', 'advanced', 'industry pulls the first 3 child services, if any' );
+}
+// Add action
+add_action('wpseo_register_extra_replacements', 'register_industry_archive_yoast_variables');
+
+
+
+// Single Industry Tag
+function get_single_industry() {
+	global $post;
+	$industyName = get_the_title($post->ID);
+	$pages = get_posts(
+		array(
+			'post_type' => 'service',
+			'orderby' => 'title',
+			'order' => 'ASC',
+			'numberposts' => 3,
+			'meta_query' => array(
+				array(
+					'key' => 'service_industries',
+					'value' => '"'. $post->ID . '"',
+					'compare' => 'LIKE'
+				)
+			)
+		)
+	);
+
+	$serviceList = '';
+	foreach ($pages as $page) {
+		$serviceList .= $page->post_title . ", ";
+	}
+
+	return $serviceList;
+
+}
+// define the action for register yoast_variable replacments
+function register_industry_single_yoast_variables() {
+    wpseo_register_var_replacement( '%%singleindustry%%', 'get_single_industry', 'advanced', 'industry pulls the first 3 child services, if any' );
+}
+// Add action
+add_action('wpseo_register_extra_replacements', 'register_industry_single_yoast_variables');
+
+
+
+
 
 // Archive Service Tag
 function get_archive_services() {
@@ -217,14 +284,8 @@ function get_archive_services() {
 	);
 
 	$serviceList = '';
-	$i = 0;
 	foreach ($pages as $page) {
-		if ( $i < 3 ) {
-			$serviceList .= $page->post_title . ", ";
-		} else {
-			$serviceList .= $page->post_title;
-		}
-		$i++;
+		$serviceList .= $page->post_title . ", ";
 	}
 
 	return $serviceList;
@@ -317,6 +378,25 @@ function register_service_archive_yoast_variables() {
 // Add action
 add_action('wpseo_register_extra_replacements', 'register_service_archive_yoast_variables');
 
+
+
+
+
+
+
+
+
+function remove_seo_meta_data_services() {
+	$allservices = get_posts( 'numberposts=-1&post_type=service' );
+
+	foreach ( $allservices as $services ) {
+		delete_post_meta( $services->ID, '_yoast_wpseo_metadesc' );
+		delete_post_meta( $services->ID, '_yoast_wpseo_title' );
+
+		wp_update_post( array( 'ID' => $services->ID ) );
+	}
+}
+add_action('init', 'remove_seo_meta_data_services');
 
 //
 //

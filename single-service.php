@@ -38,6 +38,7 @@ get_header(); ?>
     <div class="row">
         <div class="col-md-12">
             <?php bcn_display(); ?>
+            <?php $meta = get_post_meta($pID); print_r($meta); ?>
         </div>
     </div>
 </div>
