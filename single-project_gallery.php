@@ -17,6 +17,7 @@ get_header(); ?>
     $relatedProjects    = get_field('related_projects');
     $projectDetails     = get_field('project_details');
     $pID                = get_the_ID();
+    $sub = get_field('subsidiary_site', 'options');
 ?>
 <!-- Page Header -->
 <div class="no-banner"></div>
@@ -44,6 +45,9 @@ get_header(); ?>
             <?php $count = count($projectSlideshow); ?>
             <div class="col-md-6 slideshow">
                 <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
+                    <?php if ( $sub ) : ?>
+                        <?php get_project_gallery($pID); ?>
+                    <?php else : ?>
                 <!-- Additional required wrapper -->
                     <div class="swiper-wrapper">
                         <?php foreach( $projectSlideshow as $image ): ?>
@@ -58,12 +62,13 @@ get_header(); ?>
                         <?php endforeach; ?>
                     </div>
                     <?php if ( $count > 1) : ?>
-                    <div class="nav-wrap">
-                        <div class="swiper-pagination"></div>
-                        <!-- If we need navigation buttons -->
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
+                        <div class="nav-wrap">
+                            <div class="swiper-pagination"></div>
+                            <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    <?php endif; ?>
                 <?php endif; ?>
                 </div>
 				<div class="row project-cta d-flex align-items-center">
