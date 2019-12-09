@@ -60,30 +60,34 @@ get_header(); ?>
                 <div class="col-md-6 slideshow">
                     <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
                     <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <?php while( have_rows('new_gallery') ): the_row(); ?>
-                                <?php
-                                    $img = get_sub_field('image');
-                                    $caption = get_sub_field('caption');
-                                ?>
-                                <?php if ($img): ?>
-                                    <div class="swiper-slide">
-                                        <img src="<?php echo $img; ?>" alt="">
-                                        <?php if ( $caption ) : ?>
-                                        <div class="slide-caption"><?php echo $caption; ?></div>
+                        <?php if ( $sub ) : ?>
+                            <?php get_service_gallery($pID); ?>
+                        <?php else : ?>
+                            <div class="swiper-wrapper">
+                                <?php while( have_rows('new_gallery') ): the_row(); ?>
+                                    <?php
+                                        $img = get_sub_field('image');
+                                        $caption = get_sub_field('caption');
+                                    ?>
+                                    <?php if ($img): ?>
+                                        <div class="swiper-slide">
+                                            <img src="<?php echo $img; ?>" alt="">
+                                            <?php if ( $caption ) : ?>
+                                            <div class="slide-caption"><?php echo $caption; ?></div>
+                                        <?php endif; ?>
+                                        </div>
                                     <?php endif; ?>
-                                    </div>
-                                <?php endif; ?>
-                            <?php endwhile; ?>
-                        </div>
-                        <?php if ( $count > 1) : ?>
-                        <div class="nav-wrap">
-                            <div class="swiper-pagination"></div>
-                            <!-- If we need navigation buttons -->
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
-                    <?php endif; ?>
+                                <?php endwhile; ?>
+                            </div>
+                            <?php if ( $count > 1) : ?>
+                                <div class="nav-wrap">
+                                    <div class="swiper-pagination"></div>
+                                    <!-- If we need navigation buttons -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
 

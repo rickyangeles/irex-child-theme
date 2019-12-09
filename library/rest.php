@@ -193,4 +193,41 @@ function get_service_taxonomy() {
  	endwhile;
  }
 
+ function get_service_gallery($pID) {
+ 	$o_post = get_post_meta($pID, 'dt_original_post_id', true);
+ 	$o_site = get_post_meta($pID, 'dt_original_site_url', true);
+ 	$url = $o_site . '/wp-json/acf/v3/service/' . $o_post . '/service_gallery';
+
+ 	$ch = curl_init();
+ 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+ 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+ 	curl_setopt($ch, CURLOPT_URL,$url);
+ 	$result=curl_exec($ch);
+ 	$logoImg = json_decode($result, true);
+ 	$count = 0;
+
+ 	echo '<div class="swiper-wrapper">';
+ 	foreach ($logoImg as $v) {
+ 		foreach ($v as $vv) {
+ 			echo '<div class="swiper-slide">';
+ 			echo '<img src="' . $vv['url'] . '" alt="">';
+ 			if ($vv['caption']) {
+ 				echo '<div class="slide-caption">' . $vv['caption'] . '</div>';
+ 			}
+ 			echo '</div>';
+ 			$count++;
+ 		}
+ 	}
+ 	echo '</div>';
+
+ 	if ( $count > 1) {
+ 		echo '<div class="nav-wrap">
+ 			<div class="swiper-pagination"></div>
+ 			<!-- If we need navigation buttons -->
+ 			<div class="swiper-button-prev"></div>
+ 			<div class="swiper-button-next"></div>
+ 		</div>';
+ 	}
+ }
+
  ?>

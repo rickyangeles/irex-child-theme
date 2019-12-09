@@ -251,10 +251,24 @@ function get_single_industry() {
 			)
 		)
 	);
+	$services = get_posts(array(
+		'post_type' => 'service',
+		'orderby' => 'title',
+		'order' => 'ASC',
+		'numberposts' => 3,
+		'meta_query' => array(
+			array(
+				'key' => 'service_industries', // name of custom field
+				'value' => '"' . get_the_ID() . '"', // matches exactly "123", not just 123. This prevents a match for "1234"
+				'compare' => 'LIKE'
+			)
+		)
+	));
 
 	$serviceList = '';
 	foreach ($pages as $page) {
 		$serviceList .= $page->post_title . ", ";
+		
 	}
 
 	return $serviceList;
