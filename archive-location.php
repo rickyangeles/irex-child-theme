@@ -93,7 +93,6 @@ get_header(); ?>
             <?php endwhile; ?>
         <?php endif; ?>
         </div>
-
 </div>
 
 <div class="container breadcrumb">
