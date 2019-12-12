@@ -119,6 +119,7 @@ function project_excerpt($limit, $id) {
     $excerpt = implode(" ",$excerpt);
   }
   $excerpt = preg_replace('`[[^]]*]`','',$excerpt);
+   $excerpt = wp_strip_all_tags($excerpt);
   return $excerpt;
 }
 
