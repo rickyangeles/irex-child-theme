@@ -19,8 +19,8 @@ get_header(); ?>
     </div>
 </div>
 <?php
-    $map = array('post_type' => 'location','posts_per_page' => -1,);
-    $map['search_filter_id'] = 5438; $mapQuery = new WP_Query($map);
+    $map = array('post_type' => 'location','posts_per_page' => '-1');
+    $mapQuery = new WP_Query($map);
 ?>
 <div class="container-fluid map-wrapper">
     <?php if ( $mapQuery->have_posts() ) : ?>

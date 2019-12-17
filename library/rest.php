@@ -234,8 +234,8 @@ function get_service_taxonomy() {
  function get_project_gallery($pID) {
    $o_post = get_post_meta($pID, 'dt_original_post_id', true);
    $o_site = get_post_meta($pID, 'dt_original_site_url', true);
-   $url = $o_site . '/wp-json/acf/v3/project_gallery/' . $o_post . '/project_gallery';
-
+   $url = $o_site . '/wp-json/acf/v3/project-gallery/' . $o_post . '/project_gallery';
+   echo $url;
    $ch = curl_init();
    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
