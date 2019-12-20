@@ -219,22 +219,40 @@ function get_archive_services() {
 	$serviceList = '';
 	$i = 0;
 
-	foreach ($pages as $page) {
-      	$i++;
-		if ( $i > $len - 1 ) {
-			$serviceList .= $page->post_title . ", etc.";
-		} else {
-			$serviceList .= $page->post_title . ", ";
+	if ( $len == 1 ) {
+		foreach ( $pages as $page ) {
+			$serviceList .= ', including ' . $page->post_title . ' and more for various industries';
+		}
+	} elseif ( $len == 2 ) {
+		$serviceList .= ', including ';
+		foreach ( $pages as $page ) {
+			if ( $i == 0 ) {
+				$serviceList .= $page->post_title;
+			} elseif ($i == 1 ) {
+				$serviceList .= ' and ' . $page->post_title;
+			}
+			$i++;
+		}
+	} elseif ( $len >= 3 ) {
+		$serviceList .= ', including ';
+		foreach ( $pages as $page ) {
+			$i++;
+			if ( $i < $len ) {
+				$serviceList .= $page->post_title . ", ";
+			} else {
+				$serviceList .= $page->post_title . ".";
+			}
 		}
 	}
+
 	return $serviceList;
 }
 // define the action for register yoast_variable replacments
-function register_custom_yoast_variables() {
+function register_service_archive_yoast_variables() {
     wpseo_register_var_replacement( '%%archiveservices%%', 'get_archive_services', 'advanced', 'pulls the first 3 child services, if any' );
 }
 // Add action
-add_action('wpseo_register_extra_replacements', 'register_custom_yoast_variables');
+add_action('wpseo_register_extra_replacements', 'register_service_archive_yoast_variables');
 
 
 // Single Service Page
@@ -250,108 +268,96 @@ function get_services() {
 
 		)
 	);
+	$description = '';
+	$len = count($pages);
+	$i = 0;
 
 	if ( is_single() ) {
-		$description = '';
-		$id = get_the_ID();
-		$len = count($pages);
-		$i = 0;
-
-		//check to see if it has child pages
-		$args = array(
-		    'post_parent' => $post->ID, // Current post's ID
-		);
-		$children = get_children( $args );
-
-		if ( empty($children) ) {
-			$description = 'for various industries, including ';
-
-			$industries = get_field('service_industries', $id);
-			$i_len = count(get_field('service_industries', $id));
-			$c = 0;
-			foreach ( $industries as $post ) {
-				$c++;
-				if ($c < $i_len) {
-					$description .= get_the_title($post) . ', ';
-				} elseif ($c == $i_len && $i_len == 1) {
-					$description .= get_the_title($post) . '.';
-				} elseif ($c == $i_len) {
-					$description .= 'and ' . get_the_title($post) . '.';
+		if ( $len == 0 ) {
+			$description = '';
+		} elseif ( $len == 1 ) {
+			foreach ( $pages as $page ) {
+				$description .= ', including ' . $page->post_title;
+			}
+		} elseif ( $len == 2 ) {
+			foreach ($pages as $page) {
+				$i++;
+				if ( $i < $len ) {
+					$description .= ', including ' . $page->post_title;
+				} elseif ( $i == $len ) {
+					$description .= ' and ' . $page->post_title;
 				}
 			}
-			$description .= ' Click here to learn more.';
-
-		} else {
-			//Has children
-			$c_len = count($children);
-			$c = 0;
-
-			if ( $c_len == 1 ) {
-				$description .= 'including ';
-				foreach ($children as $child) {
-					// code...
-					$description .= get_the_title($child);
-				}
-				$description .= ' and more for various industries';
-			} elseif ($c_len == 2) {
-				$description .= 'including ';
-				foreach ($children as $child) {
-					$c++;
-					if ( $c < $c_len ) {
-						$description .= get_the_title($child) . ', ';
-					} else {
-						$description .= get_the_title($child) . '.';
-					}
-				}
-			} elseif ( $c_len > 2 ) {
-				$description .= 'including ';
-				foreach ($children as $child) {
-					$description .= get_the_title($child) . ', ';
-				}
-				$description .= ' and more for various industries, including ';
-			}
-
-
-
-			$industries = get_field('service_industries', $id);
-			$i_len = count(get_field('service_industries', $id));
-			$c = 0;
-
-			if ( $i_len == 1 ) {
-				foreach ($industries as $post) {
-					$description .= get_the_title($post) . '.';
-				}
-			} elseif ( $i_len == 2 ) {
-				foreach ($industries as $post) {
-					$c++;
-					if ( $c < $i_len ) {
-						$description .= get_the_title($post);
-					} else {
-						$description .= ' and ' . get_the_title($post) . '.';
-					}
-				}
-			} elseif ( $i_len > 2 ) {
-				foreach ($industries as $post) {
-					$c++;
-					if ( $c < $i_len ) {
-						$description .= get_the_title($post) . ', ';
-					} else {
-						$description .= ' and ' . get_the_title($post) . '.';
-					}
+		} elseif ( $len > 2 ) {
+			$description .= ', including ';
+			foreach ($pages as $page) {
+				$i++;
+				if ( $i < $len ) {
+					$description .= $page->post_title . ', ';
+				} elseif ( $i >= $len - 1) {
+					$description .= 'and ' . $page->post_title;
 				}
 			}
-
 		}
 	}
 	return $description;
 
 }
 // define the action for register yoast_variable replacments
-function register_service_archive_yoast_variables() {
+function register_service_single_yoast_variables() {
     wpseo_register_var_replacement( '%%services%%', 'get_services', 'advanced', 'pulls all services, if any' );
 }
 // Add action
-add_action('wpseo_register_extra_replacements', 'register_service_archive_yoast_variables');
+add_action('wpseo_register_extra_replacements', 'register_service_single_yoast_variables');
+
+
+// Single Service Industry Page
+function get_service_industry() {
+	global $post;
+
+	$pID = $post->ID;
+	$industries = get_field('service_industries', $pID);
+	$len = count($industries);
+	$description = '';
+	$i = 0;
+
+	if ( $len == 0 ) {
+		$description .= '';
+	} elseif ( $len == 1 ) {
+		foreach ( $industries as $industry) {
+			$description .= get_the_title($industry);
+		}
+	} elseif ( $len == 2 ) {
+		foreach ( $industries as $industry) {
+			$i++;
+			if ( $i == 1 ) {
+				$description .= get_the_title($industry);
+			} else {
+				$description .= ' and ' . get_the_title($industry);
+			}
+		}
+	} elseif ( $len > 2 ) {
+		foreach ( $industries as $industry ) {
+			$i++;
+			if ( $i == 1 ) {
+				$description .= get_the_title($industry) . ', ';
+			} elseif ( $i == 2 ) {
+				$description .= get_the_title($industry);
+			} elseif ( $i == 3 ) {
+				$description .= ' and ' . get_the_title($industry);
+			}
+		}
+	}
+
+	return $description;
+
+}
+// define the action for register yoast_variable replacments
+function register_service_indutry_yoast_variables() {
+    wpseo_register_var_replacement( '%%service_industry%%', 'get_service_industry', 'advanced', 'pulls all services, if any' );
+}
+// Add action
+add_action('wpseo_register_extra_replacements', 'register_service_indutry_yoast_variables');
 
 
 
@@ -366,39 +372,19 @@ function get_archive_industry() {
 			'numberposts' => 4
 		)
 	);
-
-	$serviceList = '';
-
+	$description = '';
 	$i = 0;
 	$len = count($pages);
 
 	if ( $len == 1 ) {
-		foreach ($pages as $page) {
-			$serviceList .= $page->post_title;
-		}
+		$description .= $pages[0]->post_title . " industry";
 	} elseif ( $len == 2 ) {
-		foreach ($pages as $page) {
-			if ( $i == 0 ) {
-				$serviceList .= $page->post_title . " and ";
-			} else {
-				$serviceList .= $page->post_title . ".";
-			}
-			$i++;
-		}
+		$description .= $pages[0]->post_title . ' and ' . $pages[1]->post_title;
 	} elseif ( $len > 2 ) {
-		foreach ($pages as $page) {
-			if ( $i < 3 ) {
-				$serviceList .= $page->post_title . ", ";
-			} elseif ( $i == $len - 1 ) {
-				$serviceList .= $page->post_title . ", and ";
-			} else {
-				$serviceList .= $page->post_title . '.';
-			}
-			$i++;
-		}
+		$description .= $pages[0]->post_title . ', ' . $pages[1]->post_title . ' and ' . $pages[2]->post_title . ' industries';
 	}
 
-	return $serviceList;
+	return $description;
 
 }
 // define the action for register yoast_variable replacments
@@ -432,6 +418,16 @@ function get_single_industry() {
 	$i = 0;
 	$len = count($pages);
 
+	if ( $len == 0 ) {
+		$description = '';
+	} elseif ($len == 1 ) {
+		$description = $pages[0]->post_title;
+	} elseif ( $len == 2 ) {
+		$description = $pages[0]->post_title . ' and ' . $pages[1]->post_title;
+	} elseif ( $len == 3 ) {
+		$description = $pages[0]->post_title . ', ' . $pages[1]->post_title . ', ' . $pages[2]->post_title . ' and more';
+	}
+
 	if ( $len == 1 ) {
 		foreach ($pages as $page) {
 			$serviceList .= $page->post_title;
@@ -458,7 +454,7 @@ function get_single_industry() {
 		}
 	}
 
-	return $serviceList;
+	return $description;
 
 }
 // define the action for register yoast_variable replacments
