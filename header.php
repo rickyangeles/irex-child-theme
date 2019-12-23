@@ -58,7 +58,7 @@ function theme_get_customizer_css() {
 			color: white!important;
 		}
 
-		.single-sub-info, .btn-primary, .home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
+		.single-sub-info, .home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
 		.location-filter .searchandfilter select, input[type=text], form input, form textarea {
 			border-color: <?php echo $primary_color; ?>!important;
 		}
@@ -118,13 +118,10 @@ function theme_get_customizer_css() {
 			}
 		}
 
-		.btn-primary, .home-career .hc-right .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+		.home-career .hc-right .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active {
 			background-color:<?php echo $secondary_color; ?>!important;
 		}
 
-		.btn-primary {
-			border-color: <?php echo $secondary_color; ?>!important;
-		}
 		.footer .footer-contact-info strong, .page-template-sub-front-page .home-cta h5 {
 			color: <?php echo $secondary_color; ?>;
 		}
