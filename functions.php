@@ -221,10 +221,10 @@ function get_archive_services() {
 
 	if ( $len == 1 ) {
 		foreach ( $pages as $page ) {
-			$serviceList .= ', including ' . $page->post_title . ' and more for various industries';
+			$serviceList .= 'including ' . $page->post_title . ' and more for various industries';
 		}
 	} elseif ( $len == 2 ) {
-		$serviceList .= ', including ';
+		$serviceList .= 'including ';
 		foreach ( $pages as $page ) {
 			if ( $i == 0 ) {
 				$serviceList .= $page->post_title;
@@ -234,7 +234,7 @@ function get_archive_services() {
 			$i++;
 		}
 	} elseif ( $len >= 3 ) {
-		$serviceList .= ', including ';
+		$serviceList .= 'including ';
 		foreach ( $pages as $page ) {
 			$i++;
 			if ( $i < $len ) {
@@ -258,6 +258,8 @@ add_action('wpseo_register_extra_replacements', 'register_service_archive_yoast_
 // Single Service Page
 function get_services() {
 	global $post;
+	$serviceID = get_the_ID($post);
+	$serviceName = get_the_title($serviceID);
 	$pages = get_posts(
 		array(
 			'post_type' => 'service',
@@ -271,10 +273,11 @@ function get_services() {
 	$description = '';
 	$len = count($pages);
 	$i = 0;
+	$description .= $serviceName;
 
 	if ( is_single() ) {
 		if ( $len == 0 ) {
-			$description = '';
+			$description .= '';
 		} elseif ( $len == 1 ) {
 			foreach ( $pages as $page ) {
 				$description .= ' including ' . $page->post_title;
@@ -322,16 +325,16 @@ function get_service_industry() {
 	$i = 0;
 
 	if ( empty($industries) ) {
-		$description .= ' for various industries.';
+		$description .= 'for various industries.';
 	} elseif ( $len == 1 ) {
 		foreach ( $industries as $industry) {
-			$description .= ' for various industries, including ' . get_the_title($industry) . '.';
+			$description .= 'for various industries, including ' . get_the_title($industry) . '.';
 		}
 	} elseif ( $len == 2 ) {
 		foreach ( $industries as $industry) {
 			$i++;
 			if ( $i == 1 ) {
-				$description .= ' for various industries, including ' . get_the_title($industry);
+				$description .= 'for various industries, including ' . get_the_title($industry);
 			} else {
 				$description .= ' and ' . get_the_title($industry) . '.';
 			}
@@ -340,7 +343,7 @@ function get_service_industry() {
 		foreach ( $industries as $industry ) {
 			$i++;
 			if ( $i == 1 ) {
-				$description .= ' for various industries, including ' . get_the_title($industry) . ', ';
+				$description .= 'for various industries, including ' . get_the_title($industry) . ', ';
 			} elseif ( $i == 2 ) {
 				$description .= get_the_title($industry);
 			} elseif ( $i == 3 ) {
@@ -463,14 +466,6 @@ function register_industry_single_yoast_variables() {
 }
 // Add action
 add_action('wpseo_register_extra_replacements', 'register_industry_single_yoast_variables');
-
-
-
-
-
-
-
-
 
 
 // function remove_seo_meta_data_services() {
