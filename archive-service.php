@@ -66,7 +66,7 @@ get_header(); ?>
                             <?php if ( has_post_thumbnail()): ?>
                                 <?php the_post_thumbnail('service-archive-banner'); ?>
                             <?php else : ?>
-                                <img src="http://irex.local/wp-content/uploads/2013/10/Applied-LNG-Topock-Amien-Vessel-and-DeMethanizer-Vessel-2.png">
+                                <img src="<?php echo get_field('service_featured_image', 'options'); ?>">
                             <?php endif; ?>
                           <div class="card-body">
                               <div class="row">
@@ -84,7 +84,8 @@ get_header(); ?>
                                   <?php else : ?>
                                       <div class="col-md-12">
                                   <?php endif; ?>
-                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <p><?php echo  excerpt(20, $pID); ?></p>
+
                                       <!-- Counting the numbers of connections -->
 
                                       <ul class="service-button-list d-flex align-items-center">
