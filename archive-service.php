@@ -90,7 +90,10 @@ get_header(); ?>
 
                                       <ul class="service-button-list d-flex align-items-center">
                                           <li><a href="<?php echo the_permalink(); ?>" class="btn btn-primary btn-sm">View Service Page</a></li>
-                                          <li><?php echo total_connections($pID); ?> Providers</li>
+                                          <?php $providerCount = total_connections($pID); ?>
+                                          <?php if ($providerCount > 0) : ?>
+                                            <li><?php echo total_connections($pID); ?> Providers</li>
+                                        <?php endif; ?>
                                       </ul>
 
                                   </div>
