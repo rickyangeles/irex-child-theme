@@ -277,7 +277,7 @@ function get_services() {
 			$description = '';
 		} elseif ( $len == 1 ) {
 			foreach ( $pages as $page ) {
-				$description .= ', including ' . $page->post_title;
+				$description .= ' including ' . $page->post_title;
 			}
 		} elseif ( $len == 2 ) {
 			foreach ($pages as $page) {
@@ -321,30 +321,30 @@ function get_service_industry() {
 	$description = '';
 	$i = 0;
 
-	if ( $len == 0 ) {
-		$description .= '';
+	if ( empty($industries) ) {
+		$description .= ' for various industries.';
 	} elseif ( $len == 1 ) {
 		foreach ( $industries as $industry) {
-			$description .= get_the_title($industry);
+			$description .= ' for various industries, including ' . get_the_title($industry) . '.';
 		}
 	} elseif ( $len == 2 ) {
 		foreach ( $industries as $industry) {
 			$i++;
 			if ( $i == 1 ) {
-				$description .= get_the_title($industry);
+				$description .= ' for various industries, including ' . get_the_title($industry);
 			} else {
-				$description .= ' and ' . get_the_title($industry);
+				$description .= ' and ' . get_the_title($industry) . '.';
 			}
 		}
 	} elseif ( $len > 2 ) {
 		foreach ( $industries as $industry ) {
 			$i++;
 			if ( $i == 1 ) {
-				$description .= get_the_title($industry) . ', ';
+				$description .= ' for various industries, including ' . get_the_title($industry) . ', ';
 			} elseif ( $i == 2 ) {
 				$description .= get_the_title($industry);
 			} elseif ( $i == 3 ) {
-				$description .= ' and ' . get_the_title($industry);
+				$description .= ', and ' . get_the_title($industry) . '.';
 			}
 		}
 	}
@@ -381,7 +381,7 @@ function get_archive_industry() {
 	} elseif ( $len == 2 ) {
 		$description .= $pages[0]->post_title . ' and ' . $pages[1]->post_title;
 	} elseif ( $len > 2 ) {
-		$description .= $pages[0]->post_title . ', ' . $pages[1]->post_title . ' and ' . $pages[2]->post_title . ' industries';
+		$description .= $pages[0]->post_title . ', ' . $pages[1]->post_title . ', and ' . $pages[2]->post_title . ' industries';
 	}
 
 	return $description;
