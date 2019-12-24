@@ -6,6 +6,32 @@
             "key": "field_5dcae048bddb3",
             "label": "Industry",
             "name": "service_industries",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Commercial / Light Industrial": "Commercial / Light Industrial",
+                "Oil & Gas / Petrochemical": "Oil & Gas / Petrochemical",
+                "Power / Industrial": "Power / Industrial"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 1,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5e021397919bd",
+            "label": "Industry Hidden",
+            "name": "industry_select",
             "type": "relationship",
             "instructions": "",
             "required": 0,
@@ -15,11 +41,13 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "industry"
-            ],
+            "post_type": "",
             "taxonomy": "",
-            "filters": "",
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
             "elements": "",
             "min": "",
             "max": "",
@@ -38,13 +66,6 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "post"
-            }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
                 "value": "project_gallery"
             }
         ]
@@ -57,5 +78,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1574732611
+    "modified": 1577194661
 }
