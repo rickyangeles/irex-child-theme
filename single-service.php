@@ -20,6 +20,17 @@ get_header(); ?>
     $sub = get_field('subsidiary_site', 'options');
     $imgID = get_post_thumbnail_id($pID);
     $featuredImg = wp_get_attachment_image_src($imgID);
+
+    $ogIndustries = get_post_meta(get_the_ID(), 'service_industries', true);
+    $selectField = get_field('industry_select');
+    $industryID = array();
+    foreach ($ogIndustries as $industry => $value) {
+        // code...
+        $newIndustryID = get_page_by_title($value, OBJECT, 'industry');
+        $newID = $newIndustryID->ID;
+        array_push($industryID, $newID);
+    }
+    update_post_meta($post->ID, 'industry_select', $industryID);
 ?>
 <!-- Page Header -->
 <div class="container-fluid page-header">
@@ -71,7 +82,7 @@ get_header(); ?>
                                     ?>
                                     <?php if ($img): ?>
                                         <div class="swiper-slide">
-                                            <img src="<?php echo $img['url']; ?>" alt="">
+                                            <img src="<?php echo $img; ?>" alt="">
                                             <?php if ( $caption ) : ?>
                                             <div class="slide-caption"><?php echo $caption; ?></div>
                                         <?php endif; ?>
