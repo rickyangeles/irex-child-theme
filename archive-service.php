@@ -9,6 +9,8 @@
 
 
 get_header(); ?>
+
+<?php $sub = get_field('subsidiary_site', 'options'); ?>
 <!-- Page Header -->
 <div class="container-fluid page-header">
     <img src="<?php echo the_field('service_featured_image', 'options')?>">
@@ -89,10 +91,12 @@ get_header(); ?>
                                       <!-- Counting the numbers of connections -->
 
                                       <ul class="service-button-list d-flex align-items-center">
-                                          <li><a href="<?php echo the_permalink(); ?>" class="btn btn-primary btn-sm">View Service Page</a></li>
-                                          <?php $providerCount = total_connections($pID); ?>
-                                          <?php if ($providerCount > 0) : ?>
-                                            <li><?php echo total_connections($pID); ?> Providers</li>
+                                        <li><a href="<?php echo the_permalink(); ?>" class="btn btn-primary btn-sm">View Service Page</a></li>
+                                        <?php $providerCount = total_connections($pID); ?>
+                                        <?php if (!$sub) : ?>
+                                            <?php if ($providerCount > 0) : ?>
+                                                <li><?php echo total_connections($pID); ?> Providers</li>
+                                            <?php endif; ?>
                                         <?php endif; ?>
                                       </ul>
 

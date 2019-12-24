@@ -467,6 +467,29 @@ function register_industry_single_yoast_variables() {
 // Add action
 add_action('wpseo_register_extra_replacements', 'register_industry_single_yoast_variables');
 
+//Converting one industry field to another
+function service_industry_convert() {
+	global $post;
+
+	$meta_print_value=get_post_meta(get_the_ID(),'',true);
+	//print_r($meta_print_value);
+	$ogURL = get_post_meta(get_the_ID(),'dt_original_site_url',true);
+	$ogID = get_post_meta(get_the_ID(), 'dt_original_post_id', true);
+
+	$ogIndustryies = get_post_meta(get_the_ID(), 'service_industries', true);
+	$selectField = get_field('industry_select');
+	$industryID = array();
+	foreach ($ogIndustryies as $industry => $value) {
+		// code...
+		$newIndustryID = get_page_by_title($value, OBJECT, 'industry');
+		$newID = $newIndustryID->ID;
+		array_push($industryID, $newID);
+	}
+	update_post_meta($pID, 'industry_select', $industryID);
+}
+
+add_action('update_post_meta', 'service_industry_convert');
+
 
 // function remove_seo_meta_data_services() {
 // 	$allservices = get_posts( 'numberposts=-1&post_type=service' );

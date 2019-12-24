@@ -71,7 +71,7 @@ get_header(); ?>
                                     ?>
                                     <?php if ($img): ?>
                                         <div class="swiper-slide">
-                                            <img src="<?php echo $img; ?>" alt="">
+                                            <img src="<?php echo $img['url']; ?>" alt="">
                                             <?php if ( $caption ) : ?>
                                             <div class="slide-caption"><?php echo $caption; ?></div>
                                         <?php endif; ?>

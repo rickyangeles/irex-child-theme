@@ -49,7 +49,13 @@ get_header(); ?>
                     </p>
                     <ul class="d-flex align-items-center">
                         <li><a href="<?php echo get_the_permalink(); ?>" class="btn btn-primary btn-sm">View Industry</a></li>
-                        <li><?php echo $subCount; ?> Subsiduaries</li>
+                        <?php
+                            $total_connections = total_connections($post->ID);
+                        ?>
+
+                        <?php if ($total_connections > 1) :?>
+                            <li><?php echo total_connections($post->ID); ?> Subsidiaries</li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>

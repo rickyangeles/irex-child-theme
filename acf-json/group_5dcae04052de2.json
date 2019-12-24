@@ -23,7 +23,7 @@
             "elements": "",
             "min": "",
             "max": "",
-            "return_format": "id"
+            "return_format": "object"
         }
     ],
     "location": [

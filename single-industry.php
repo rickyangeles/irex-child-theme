@@ -83,7 +83,7 @@ get_header(); ?>
                 'meta_query' => array(
                     array(
                         'key' => 'service_industries', // name of custom field
-                        'value' => '"' . get_the_ID() . '"', // matches exactly "123", not just 123. This prevents a match for "1234"
+                        'value' => '"' . get_the_title() . '"', // matches exactly "123", not just 123. This prevents a match for "1234"
                         'compare' => 'LIKE'
                     )
                 )
