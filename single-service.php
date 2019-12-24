@@ -21,16 +21,19 @@ get_header(); ?>
     $imgID = get_post_thumbnail_id($pID);
     $featuredImg = wp_get_attachment_image_src($imgID);
 
-    $ogIndustries = get_post_meta(get_the_ID(), 'service_industries', true);
-    $selectField = get_field('industry_select');
-    $industryID = array();
-    foreach ($ogIndustries as $industry => $value) {
-        // code...
-        $newIndustryID = get_page_by_title($value, OBJECT, 'industry');
-        $newID = $newIndustryID->ID;
-        array_push($industryID, $newID);
+    if ( $sub ) {
+        $ogIndustries = get_post_meta(get_the_ID(), 'service_industries', true);
+        $selectField = get_field('industry_select');
+        $industryID = array();
+        foreach ($ogIndustries as $industry => $value) {
+            // code...
+            $newIndustryID = get_page_by_title($value, OBJECT, 'industry');
+            $newID = $newIndustryID->ID;
+            array_push($industryID, $newID);
+        }
+        update_post_meta($post->ID, 'industry_select', $industryID);
+
     }
-    update_post_meta($post->ID, 'industry_select', $industryID);
 ?>
 <!-- Page Header -->
 <div class="container-fluid page-header">
