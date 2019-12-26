@@ -110,6 +110,9 @@ $secondaryContent = get_field('secondary_content');
                             <div class="marker" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $long; ?>">
                                 <div class="inside-marker">
                                     <ul class="single-location">
+                                        <li>
+                                            <strong><?php the_title(); ?></strong>
+                                        </li>
                                         <?php if ( $branchName ) : ?>
                                             <li><?php echo $branchName; ?></li>
                                         <?php endif; ?>
@@ -158,6 +161,9 @@ $secondaryContent = get_field('secondary_content');
                             $fax            = get_field('fax');
                         ?>
                         <ul class="col-md-4 single-location">
+                            <li>
+                                <strong><?php the_title(); ?></strong>
+                            </li>
                             <?php if ( $branchName ) : ?>
                                 <li><?php echo $branchName; ?></li>
                             <?php endif; ?>
