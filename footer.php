@@ -131,9 +131,10 @@ $subFooter = get_field('subsidiary_site', 'options');
 					<?php endif; ?>
 
 
-					<h3>Site Links</h3>
+
 					<?php $siteLinks = get_field('footer_page_links', 'options');
 						if( $siteLinks  ): ?>
+						<h3>Site Links</h3>
 						    <ul class="site-links-footer">
 						    <?php foreach( $siteLinks as $post): ?>
 						        <?php setup_postdata($post); ?>
