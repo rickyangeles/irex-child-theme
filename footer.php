@@ -83,7 +83,7 @@ $subFooter = get_field('subsidiary_site', 'options');
 	                                $tollFree       = get_field('toll_free_number');
 	                                $fax            = get_field('fax');
 	                            ?>
-	                            <div class="col-md-4">
+	                            <div class="col-md-6">
 	                                <ul class="single-location">
 	                                    <?php if ( $branchName ) : ?>
 	                                        <li><?php echo $branchName; ?></li>
