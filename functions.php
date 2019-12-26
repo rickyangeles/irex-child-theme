@@ -410,7 +410,7 @@ function get_single_industry() {
 			'meta_query' => array(
 				array(
 					'key' => 'service_industries',
-					'value' => '"'. $post->ID . '"',
+					'value' => '"'. $post->title . '"',
 					'compare' => 'LIKE'
 				)
 			)

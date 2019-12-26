@@ -31,9 +31,9 @@ get_header(); ?>
             $newID = $newIndustryID->ID;
             array_push($industryID, $newID);
         }
-        update_post_meta($post->ID, 'industry_select', $industryID);
-
+        update_post_meta($pID, 'industry_select', $industryID);
     }
+
 ?>
 <!-- Page Header -->
 <div class="container-fluid page-header">
@@ -85,7 +85,7 @@ get_header(); ?>
                                     ?>
                                     <?php if ($img): ?>
                                         <div class="swiper-slide">
-                                            <img src="<?php echo $img; ?>" alt="">
+                                            <img src="<?php echo $img['url']; ?>" alt="">
                                             <?php if ( $caption ) : ?>
                                             <div class="slide-caption"><?php echo $caption; ?></div>
                                         <?php endif; ?>
