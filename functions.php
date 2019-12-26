@@ -495,6 +495,18 @@ add_filter( 'the_excerpt', 'shortcode_unautop');
 add_filter( 'the_excerpt', 'do_shortcode');
 
 
+is_post_type_archive
+
+add_action( 'pre_get_posts',  'change_number_posts_partners'  );
+function change_number_posts_partners( $query ) {
+
+	if ( is_post_type_archive('partner') ) {
+    	$query->set( 'posts_per_page', -1 );
+		return $query;
+	}
+}
+
+
 
 // function remove_seo_meta_data_services() {
 // 	$allservices = get_posts( 'numberposts=-1&post_type=service' );
