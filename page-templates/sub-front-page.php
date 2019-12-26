@@ -152,11 +152,44 @@ $container = get_theme_mod( 'understrap_container_type' );
                 			$title 			= get_the_title();
                 			$lat            = get_field('latitude', $pID);
                 			$long           = get_field('longitude', $pID);
+                            $branchName     = get_field('branch_name', $pID);
+                            $address1       = get_field('address_1', $pID);
+                            $address2       = get_field('address_2', $pID);
+                            $city           = get_field('city', $pID);
+                            $state          = get_field('state', $pID);
+                            $zip            = get_field('zip_code', $pID);
+                            $tel            = get_field('telephone', $pID);
+                            $tollFree       = get_field('toll_free_number', $pID);
+                            $fax            = get_field('fax', $pID);
+                            $meta           = get_post_meta($pID, 'dt_connection_map', false);
                         ?>
 
                         <div class="marker" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $long; ?>" data-img="<?php echo $type_icon; ?>">
                             <div class="inside-marker">
-                                <h5><?php echo $title; ?></h5>
+                                <?php if ( $branchName ) : ?>
+                                    <li><?php echo $branchName; ?></li>
+                                <?php endif; ?>
+                                <?php if ( $address1 ) : ?>
+                                    <li><?php echo $address1; ?></li>
+                                <?php endif; ?>
+                                <?php if ( $address2 ) : ?>
+                                    <li><?php echo $address2; ?></li>
+                                <?php endif; ?>
+                                <?php if ( $city && $state && $zip ) : ?>
+                                    <li><?php echo $city . ', ' . $state . ' ' . $zip; ?></li>
+                                <?php endif; ?>
+                                <?php if ( $tel ) : ?>
+                                    <li>P: <?php echo $tel; ?></li>
+                                <?php endif; ?>
+                                <?php if ($tollFree) :?>
+                                    <li>P: <?php echo $tollFree; ?></li>
+                                <?php endif; ?>
+                                <?php if ( $fax ) : ?>
+                                    <li>F: <?php echo $fax; ?></li>
+                                <?php endif; ?>
+                                <?php if ( $url ) : ?>
+                                    <li><a href="<?php echo $url; ?>">visit website ></a></li>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endwhile; ?>

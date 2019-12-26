@@ -37,6 +37,12 @@
             height: 450px;
             border: #ccc solid 1px;
             margin: 20px 0;
+
+            .inside-marker {
+                li {
+                    list-style-type: none;
+                }
+            }
         }
 
         h3 {
@@ -60,7 +66,7 @@
                 padding-left: 0;
 
                 li:first-child {
-                    font-weight: bold; 
+                    font-weight: bold;
                 }
             }
         }
