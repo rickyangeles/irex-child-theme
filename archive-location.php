@@ -19,7 +19,16 @@ get_header(); ?>
     </div>
 </div>
 <?php
-    $map = array('post_type' => 'location','posts_per_page' => '-1');
+    $map = array(
+        'post_type' => 'location',
+        'posts_per_page' => -1,
+        'meta_query' => array(
+            array(
+                'key'   => 'show_on_subsidiary_contact_page',
+                'value' => 'yes',
+            )
+        )
+    );
     $mapQuery = new WP_Query($map);
 ?>
 <div class="container-fluid map-wrapper">

@@ -86,7 +86,16 @@ $secondaryContent = get_field('secondary_content');
                 <h5>Branch Locations & Contact Information</h5>
                 <h6 class="service-area-title"><strong>Services Area(s):</strong> <?php the_field('service_area'); ?></h6>
                 <?php
-                    $map = array('post_type' => 'location','posts_per_page' => -1,);
+                    $map = array(
+                        'post_type' => 'location',
+                        'posts_per_page' => -1,
+                        'meta_query' => array(
+                            array(
+                                'key'   => 'show_on_subsidiary_contact_page',
+                                'value' => 'yes',
+                            )
+                        )
+                    );
                     $mapQuery = new WP_Query($map);
                 ?>
                 <?php if ( $mapQuery->have_posts() ) : ?>

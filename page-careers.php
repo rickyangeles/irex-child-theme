@@ -76,9 +76,7 @@ $sub = get_field('subsidiary_site', 'options');
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php get_template_part( 'loop-templates/content', 'page' ); ?>
-                    <?php if ( $sub ) : ?>
-                        <a href="https://irexcontracting.kinsta.cloud/careers/" class="btn btn-primary">View Job Listings</a>
-                    <?php else:  ?>
+                    <?php if ( !$sub ) : ?>
                         <script type="text/javascript">
                             var headingText = "Current Openings";
                             //var categoryTitlePrefix = " Active ";
