@@ -63,6 +63,9 @@ get_header(); ?>
                                     <img src="https://via.placeholder.com/195x53" alt="">
                                 <?php endif ?>
                             </li>
+                            <li>
+                                <strong><?php the_title(); ?></strong>
+                            </li>
                             <?php if ( $branchName ) : ?>
                                 <li><?php echo $branchName; ?></li>
                             <?php endif; ?>
@@ -155,6 +158,9 @@ get_header(); ?>
                             <?php else : ?>
                                 <img src="https://via.placeholder.com/195x53" alt="">
                             <?php endif ?>
+                        </li>
+                        <li>
+                            <strong><?php the_title(); ?></strong>
                         </li>
                         <?php if ( $branchName ) : ?>
                             <li><?php echo $branchName; ?></li>
