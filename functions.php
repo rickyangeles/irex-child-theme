@@ -490,8 +490,9 @@ add_shortcode('bloginfo', function($atts) {
 
 
 add_filter('acf/format_value/type=textarea', 'do_shortcode');
-
 add_filter('acf/format_value/type=text', 'do_shortcode');
+add_filter( 'the_excerpt', 'shortcode_unautop');
+add_filter( 'the_excerpt', 'do_shortcode');
 
 
 
