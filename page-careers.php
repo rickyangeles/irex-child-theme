@@ -75,13 +75,17 @@ $container = get_theme_mod( 'understrap_container_type' );
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php get_template_part( 'loop-templates/content', 'page' ); ?>
-                    <script type="text/javascript">
-				var headingText = "Current Openings";
-				//var categoryTitlePrefix = " Active ";
-				var categoryTitleSuffix = " Jobs ";
-				var returnURL = "http://www.irexcontracting.com/working-for-irex/";
-			</script>
-			<script language="javascript" type="text/javascript" src="//IrexContractingGroup.ourcareerpages.com/Resources/js/ccp_widget.aspx?GroupBy=label&ccpLoc=bottom" ></script>
+                    <?php if ( $sub ) : ?>
+                        <a href="https://irexcontracting.kinsta.cloud/careers/" class="btn btn-primary">View Job Listings</a>
+                    <?php else:  ?>
+                        <script type="text/javascript">
+                            var headingText = "Current Openings";
+                            //var categoryTitlePrefix = " Active ";
+                            var categoryTitleSuffix = " Jobs ";
+                            var returnURL = "http://www.irexcontracting.com/working-for-irex/";
+                        </script>
+                        <script language="javascript" type="text/javascript" src="//IrexContractingGroup.ourcareerpages.com/Resources/js/ccp_widget.aspx?GroupBy=label&ccpLoc=bottom" ></script>
+                    <?php endif; ?>
 
 
 				<?php endwhile; // end of the loop. ?>
