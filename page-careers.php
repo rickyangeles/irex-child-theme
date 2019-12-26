@@ -15,6 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 $container = get_theme_mod( 'understrap_container_type' );
+$sub = get_field('subsidiary_site', 'options');
 ?>
 
 <?php if ( is_front_page() ) : ?>

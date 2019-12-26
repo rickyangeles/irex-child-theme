@@ -526,6 +526,19 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
     .acf-map img {
        max-width: inherit !important;
     }
+
+    .inside-marker {
+        .single-location {
+            padding-left: 0;
+            padding: 10px;
+            margin-bottom: 0;
+        }
+        .location-logo {
+            margin-bottom: 10px;
+            max-width: 200px;
+            max-height: 80px;
+        }
+    }
 }
 
 .location-list {
@@ -544,6 +557,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
         }
 
         li {
+            &:first-child {
+                font-weight: bold;
+            }
             &:last-child {
                 margin-top: 20px;
                 text-decoration: underline;

@@ -1,5 +1,7 @@
 (function($) {
 
+    var global_markers = [];
+    var global_infowindows = [];
 /*
 *  new_map
 *
@@ -12,6 +14,8 @@
 *  @param   $el (jQuery element)
 *  @return  n/a
 */
+
+lastWindow=null;
 
 function new_map( $el ) {
 
@@ -47,6 +51,17 @@ function new_map( $el ) {
     // center map
     center_map( map );
 
+    // Toggles between infowindows
+    for (var i = 0; i < global_markers.length; i++) {
+        // Keep value of 'i' in event creation
+        (function(i) {
+            google.maps.event.addListener(global_markers[i], 'click', function() {
+                closeInfowindows();
+                global_infowindows[i].open(map, global_markers[i]);
+            });
+        }(i));
+    }
+
 
     // return
     return map;
@@ -80,6 +95,7 @@ function add_marker( $marker, map ) {
 
     // add to array
     map.markers.push( marker );
+    global_markers.push( marker );
 
     // if marker contains HTML, add it to an infoWindow
     if( $marker.html() )
@@ -89,15 +105,18 @@ function add_marker( $marker, map ) {
             content     : $marker.html()
         });
 
+        // PUSH INTO GLOBAL_INFOWINDOWS
+        global_infowindows.push( infowindow );
+
         // show info window when marker is clicked
-        google.maps.event.addListener(marker, 'click', function() {
-
-            infowindow.open( map, marker );
-
-        });
+        // google.maps.event.addListener(marker, 'click', function() {
+        //     infowindow.open( map, marker );
+        // });
     }
 
 }
+
+
 
 /*
 *  center_map
@@ -154,6 +173,13 @@ function center_map( map ) {
 *  @return  n/a
 */
 // global var
+
+function closeInfowindows() {
+    for (var x = 0; x < global_infowindows.length; x++) {
+        global_infowindows[x].close();
+    }
+}
+
 var map = null;
 
 $(document).ready(function(){

@@ -72,12 +72,12 @@ get_header(); ?>
                 <?php endif; ?>
                 </div>
 				<div class="row project-cta d-flex align-items-center">
-                <div class="col-md-8 project-cta-content">
+                <div class="col-md-12 project-cta-content">
                     <?php echo $projectCTAcontent; ?>
                 </div>
-                <div class="col-md-4 project-cta-btn">
+                <!-- <div class="col-md-4 project-cta-btn">
                     <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
-                </div>
+                </div> -->
             </div>
             </div>
         <?php else:  ?>
