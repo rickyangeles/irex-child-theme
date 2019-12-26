@@ -20,6 +20,15 @@ $corpFax	= get_field('c_fax_number', 'options');
 $customerPhone = get_field('customer_phone', 'options');
 $supplyPhone = get_field('suppliers_phone', 'options');
 $subFooter = get_field('subsidiary_site', 'options');
+
+$siteLinks = get_field('footer_page_links', 'options');
+
+$args = array(
+	'post_type' => 'post',
+	'posts_per_page' => 5,
+);
+$news = new WP_QUERY($args);
+
 ?>
 
 <?php get_template_part( 'sidebar-templates/sidebar', 'footerfull' ); ?>
@@ -60,7 +69,11 @@ $subFooter = get_field('subsidiary_site', 'options');
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6 footer-locations">
+				<?php if (!$news && !$siteLinks) :?>
+					<div class="col-md-12 footer-locations">
+				<?php else:  ?>
+					<div class="col-md-6 footer-locations">
+				<?php endif; ?>
 					<h3>Locations</h3>
 					<div class="row">
 						<?php
@@ -83,7 +96,11 @@ $subFooter = get_field('subsidiary_site', 'options');
 	                                $tollFree       = get_field('toll_free_number');
 	                                $fax            = get_field('fax');
 	                            ?>
-	                            <div class="col-md-6">
+								<?php if (!$news && !$siteLinks) :?>
+									<div class="col-md-4 footer-locations">
+								<?php else:  ?>
+									<div class="col-md-6 footer-locations">
+								<?php endif; ?>
 	                                <ul class="single-location">
 	                                    <?php if ( $branchName ) : ?>
 	                                        <li><?php echo $branchName; ?></li>
@@ -114,13 +131,7 @@ $subFooter = get_field('subsidiary_site', 'options');
 					</div>
 				</div>
 				<div class="col-md-6">
-					<?php
-						$args = array(
-							'post_type' => 'post',
-							'posts_per_page' => 5,
-						);
-						$news = new WP_QUERY($args);
-					?>
+
 					<?php if ( $news->have_posts() ) : ?>
 						<h3>News</h3>
 						<ul class="latest-news-footer">
@@ -132,7 +143,7 @@ $subFooter = get_field('subsidiary_site', 'options');
 
 
 
-					<?php $siteLinks = get_field('footer_page_links', 'options');
+					<?php
 						if( $siteLinks  ): ?>
 						<h3>Site Links</h3>
 						    <ul class="site-links-footer">

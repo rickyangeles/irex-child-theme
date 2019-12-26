@@ -494,9 +494,6 @@ add_filter('acf/format_value/type=text', 'do_shortcode');
 add_filter( 'the_excerpt', 'shortcode_unautop');
 add_filter( 'the_excerpt', 'do_shortcode');
 
-
-is_post_type_archive
-
 add_action( 'pre_get_posts',  'change_number_posts_partners'  );
 function change_number_posts_partners( $query ) {
 
