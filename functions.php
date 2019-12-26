@@ -491,6 +491,8 @@ add_shortcode('bloginfo', function($atts) {
 
 add_filter('acf/format_value/type=textarea', 'do_shortcode');
 
+add_filter('acf/format_value/type=text', 'do_shortcode');
+
 
 
 // function remove_seo_meta_data_services() {
