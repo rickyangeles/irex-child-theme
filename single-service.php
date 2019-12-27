@@ -66,12 +66,12 @@ get_header(); ?>
             <?php the_content(); ?>
             </div>
         <?php
-            $images = get_field('gallery');
+            $images = get_field('service_gallery');
             $size = 'service-slideshow'; // (thumbnail, medium, large, full or custom size)
             $count = count(get_field('service_gallery'));
 
             ?>
-            <?php if( have_rows('new_gallery') ): ?>
+            <?php if( have_rows('service_gallery') || have_rows('new_gallery') ): ?>
                 <div class="col-md-6 slideshow">
                     <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
                     <!-- Additional required wrapper -->
@@ -79,20 +79,18 @@ get_header(); ?>
                             <?php get_service_gallery($pID); ?>
                         <?php else : ?>
                             <div class="swiper-wrapper">
-                                <?php while( have_rows('new_gallery') ): the_row(); ?>
-                                    <?php
-                                        $img = get_sub_field('image');
-                                        $caption = get_sub_field('caption');
-                                    ?>
-                                    <?php if ($img): ?>
-                                        <div class="swiper-slide">
-                                            <img src="<?php echo $img['url']; ?>" alt="">
-                                            <?php if ( $caption ) : ?>
-                                            <div class="slide-caption"><?php echo $caption; ?></div>
-                                        <?php endif; ?>
-                                        </div>
+                                <?php
+                                    $images = get_field('service_gallery');
+                                    $size = 'full'; // (thumbnail, medium, large, full or custom size)
+                                    if( $images ): ?>
+
+                                            <?php foreach( $images as $image ): ?>
+                                                <div class="swiper-slide">
+                                                    <img src="<?php echo $image['url']; ?>" alt="">
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </ul>
                                     <?php endif; ?>
-                                <?php endwhile; ?>
                             </div>
                             <?php if ( $count > 1) : ?>
                                 <div class="nav-wrap">
