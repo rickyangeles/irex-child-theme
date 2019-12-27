@@ -96,9 +96,9 @@ get_header(); ?>
                 <h4>Services:</h4>
                 <ul class="service-list">
 					<?php while ( $service_query->have_posts() ) : $service_query->the_post(); ?>
-		                  <?php if (has_term($post_slug, 'industry_tax')) :?>
-		                  <li><a href="<?php the_permalink();?>"><?php the_title(); ?></a></li>
-							<?php endif; ?>
+						<?php if (has_term($post_slug, 'industry_tax')) :?>
+							<li><a href="<?php the_permalink();?>"><?php the_title(); ?></a></li>
+						<?php endif; ?>
 					<?php endwhile; ?>
 					<?php wp_reset_postdata(); ?>
 				</ul>
@@ -130,14 +130,13 @@ get_header(); ?>
         'order' => 'ASC',
         'public'   => true,
         'post_parent' => 0,
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'industry_tax',   // taxonomy name
-                'field' => 'name',           // term_id, slug or name
-                'terms' => $title,                  // term id, term slug or term name
-
-            )
-        )
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'industry_tax',
+				'field'    => 'slug',
+				'terms' => $post_slug,
+			),
+		)
     ) );
 ?>
 
@@ -149,6 +148,7 @@ get_header(); ?>
         <div class="row">
             <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
                 <?php setup_postdata($post); ?>
+			<?php if (has_term($post_slug, 'industry_tax')) :?>
                 <div class="col-md-6 single-featured-project d-flex align-items-center">
                             <div class="sfp-left">
                                 <a href="<?php the_permalink(); ?>">
@@ -167,6 +167,7 @@ get_header(); ?>
                             </a>
                             </div>
                     </div>
+			<?php endif; ?>
             <?php endwhile; ?>
             <div class="fp-btn text-center">
                 <a href="/project-gallery" class="view-all btn btn-primary">View All Projects</a>
