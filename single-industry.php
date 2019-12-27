@@ -77,28 +77,37 @@ get_header(); ?>
         </div>
 
     <div class="row">
+		<?php wp_reset_postdata(); ?>
         <?php
-            $services = get_posts(array(
-                'post_type' => 'service',
-                'meta_query' => array(
-                    array(
-                        'key' => 'service_industries', // name of custom field
-                        'value' => '"' . get_the_title() . '"', // matches exactly "123", not just 123. This prevents a match for "1234"
-                        'compare' => 'LIKE'
-                    )
-                )
-            ));
+		$title = get_the_title();
+		$service_query = new WP_Query( array(
+			'post_type' => 'service',          // name of post type.
+			'posts_per_page' => -1,
+			'orderby' => 'title',
+			'order' => 'ASC',
+			'public'   => true,
+			'post_parent' => 0,
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'industry_tax',   // taxonomy name
+					'field' => 'name',           // term_id, slug or name
+					'terms' => $title,                  // term id, term slug or term name
+				)
+			)
+		) );
         ?>
-        <?php if( $services ) : ?>
+        <?php if( $service_query ) : ?>
             <div class="col-md-6 service-sub-pages">
                 <h4>Services:</h4>
                 <ul class="service-list">
-                <?php foreach ($services as $service) : ?>
-                    <li><a href="<?php the_permalink($service->ID); ?>"><?php echo get_the_title($service->ID); ?></a></li>
-                <?php endforeach; ?>
+					<?php while ( $service_query->have_posts() ) : $service_query->the_post(); ?>
+						<li><a href="<?php the_permalink();?>"><?php the_title(); ?></a></li>
+					<?php endwhile; ?>
+					<?php wp_reset_postdata(); ?>
+				</ul>
             </div>
         <?php endif; ?>
-        <?php if( $services ) : ?>
+        <?php if( $query ) : ?>
             <div class="col-md-6 service-cta-wrap">
         <?php else : ?>
             <div class="col-md-8 service-cta-wrap offset-md-2">
@@ -114,6 +123,61 @@ get_header(); ?>
         </div>
     </div>
 </div>
+
+<!-- Projects -->
+<?php
+    $project_query = new WP_Query( array(
+        'post_type' => 'project_gallery',          // name of post type.
+        'posts_per_page' => 4,
+        'orderby' => 'title',
+        'order' => 'ASC',
+        'public'   => true,
+        'post_parent' => 0,
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'industry_tax',   // taxonomy name
+                'field' => 'name',           // term_id, slug or name
+                'terms' => $title,                  // term id, term slug or term name
+            )
+        )
+    ) );
+?>
+
+<?php if ( $project_query ) :?>
+    <div class="container home-featured-projects">
+        <div class="row">
+            <h2 class="title">Featured Projects</h2>
+        </div>
+        <div class="row">
+            <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
+                <?php setup_postdata($post); ?>
+                <div class="col-md-6 single-featured-project d-flex align-items-center">
+                            <div class="sfp-left">
+                                <a href="<?php the_permalink(); ?>">
+                                <h5><?php the_title(); ?></h5>
+                                <p><?php echo project_excerpt(20, $post->ID); ?></p>
+                                </a>
+                            </div>
+                            <div class="sfp-right d-flex align-items-center">
+                                <a href="<?php the_permalink(); ?>">
+                                <?php if ( has_post_thumbnail()): ?>
+                                    <?php the_post_thumbnail('featured-project'); ?>
+                                <?php else : ?>
+                                    <img src="https://via.placeholder.com/300">
+                                <?php endif; ?>
+                                <div class="d-flex justify-content-center align-items-center"><span class="read-more btn btn-sm">Read More</span></div>
+                            </a>
+                            </div>
+                    </div>
+            <?php endwhile; ?>
+            <div class="fp-btn text-center">
+                <a href="/project-gallery" class="view-all btn btn-primary">View All Projects</a>
+            </div>
+        </div>
+    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+        </div>
+    </div>
+<?php endif; ?>
 
 <!-- Contractor -->
 <div class="container page-contractor">

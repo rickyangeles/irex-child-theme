@@ -319,7 +319,7 @@ function get_service_industry() {
 	global $post;
 
 	$pID = $post->ID;
-	$industries = get_field('service_industries', $pID);
+	$industries = get_the_terms($pID, 'industry_tax');
 	$len = count($industries);
 	$description = '';
 	$i = 0;
@@ -401,19 +401,20 @@ add_action('wpseo_register_extra_replacements', 'register_industry_archive_yoast
 function get_single_industry() {
 	global $post;
 	$industyName = get_the_title($post->ID);
+    $post_slug = $post->post_name;
 	$pages = get_posts(
 		array(
 			'post_type' => 'service',
 			'orderby' => 'title',
 			'order' => 'ASC',
 			'numberposts' => 3,
-			'meta_query' => array(
-				array(
-					'key' => 'service_industries',
-					'value' => '"'. $post->title . '"',
-					'compare' => 'LIKE'
+			'tax_query' => array(
+				array (
+					'taxonomy' => 'industry_tax',
+					'field' => 'slug',
+					'terms' => $post_slug,
 				)
-			)
+			),
 		)
 	);
 
