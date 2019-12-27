@@ -15,6 +15,7 @@ get_header(); ?>
     $industryCTAcontent = get_field('industry_cta_text') ? get_field('industry_cta_text') : get_field('industry_cta_content', 'options');
     $industryCTAbtn     = get_field('industry_cta_button') ? get_field('industry_cta_button') : get_field('industry_cta_button', 'options');
     $pID                = get_the_ID();
+	$post_slug = $post->post_name;
     $sub = get_field('subsidiary_site', 'options');
 ?>
 <!-- Page Header -->
@@ -80,35 +81,30 @@ get_header(); ?>
     <div class="row">
 		<?php wp_reset_postdata(); ?>
         <?php
-		$title = get_the_title();
-		$service_query = new WP_Query( array(
-			'post_type' => 'service',          // name of post type.
-			'posts_per_page' => -1,
-			'orderby' => 'title',
-			'order' => 'ASC',
-			'public'   => true,
-			'post_parent' => 0,
-			'tax_query' => array(
-				array(
-					'taxonomy' => 'industry_tax',   // taxonomy name
-					'field' => 'name',           // term_id, slug or name
-					'terms' => $title,                  // term id, term slug or term name
-				)
-			)
-		) );
+			$title = get_the_title();
+			$service_query = new WP_Query( array(
+				'post_type' => 'service',          // name of post type.
+				'posts_per_page' => -1,
+				'orderby' => 'title',
+				'order' => 'ASC',
+				'public'   => true,
+				'post_parent' => 0,
+			));
         ?>
-        <?php if( $service_query ) : ?>
+        <?php if( $service_query->have_posts() ) : ?>
             <div class="col-md-6 service-sub-pages">
                 <h4>Services:</h4>
                 <ul class="service-list">
 					<?php while ( $service_query->have_posts() ) : $service_query->the_post(); ?>
-						<li><a href="<?php the_permalink();?>"><?php the_title(); ?></a></li>
+		                  <?php if (has_term($post_slug, 'industry_tax')) :?>
+		                  <li><a href="<?php the_permalink();?>"><?php the_title(); ?></a></li>
+							<?php endif; ?>
 					<?php endwhile; ?>
 					<?php wp_reset_postdata(); ?>
 				</ul>
             </div>
         <?php endif; ?>
-        <?php if( $query ) : ?>
+        <?php if( $service_query ) : ?>
             <div class="col-md-6 service-cta-wrap">
         <?php else : ?>
             <div class="col-md-8 service-cta-wrap offset-md-2">
@@ -139,6 +135,7 @@ get_header(); ?>
                 'taxonomy' => 'industry_tax',   // taxonomy name
                 'field' => 'name',           // term_id, slug or name
                 'terms' => $title,                  // term id, term slug or term name
+
             )
         )
     ) );
