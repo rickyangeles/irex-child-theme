@@ -20,6 +20,7 @@ get_header(); ?>
     $sub = get_field('subsidiary_site', 'options');
     $imgID = get_post_thumbnail_id($pID);
     $featuredImg = wp_get_attachment_image_src($imgID);
+    $post_slug = $post->post_name;
 
     if ( $sub ) {
         $ogIndustries = get_post_meta(get_the_ID(), 'service_industries', true);
@@ -189,34 +190,55 @@ get_header(); ?>
     <?php endif; ?>
 
     <!-- Featured Projects -->
-    <?php if( $relatedProjects ): ?>
+    <?php
+        $project_query = new WP_Query( array(
+            'post_type' => 'project_gallery',          // name of post type.
+            'posts_per_page' => 4,
+            'orderby' => 'title',
+            'order' => 'ASC',
+            'public'   => true,
+            'post_parent' => 0,
+    		'tax_query' => array(
+    			array(
+    				'taxonomy' => 'industry_tax',
+    				'field'    => 'slug',
+    				'terms' => $post_slug,
+    			),
+    		)
+        ) );
+    ?>
+    <?php if ( $project_query->have_posts() ) : ?>
         <div class="container home-featured-projects">
             <div class="row">
                 <h2 class="title">Featured Projects</h2>
             </div>
             <div class="row">
-                <?php foreach( $relatedProjects as $post): // variable must be called $post (IMPORTANT) ?>
+                <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
                     <?php setup_postdata($post); ?>
+    			<?php if (has_term($post_slug, 'industry_tax')) :?>
                     <div class="col-md-6 single-featured-project d-flex align-items-center">
-                        <div class="sfp-left">
-                            <h5><?php the_title(); ?></h5>
-                            <p><?php echo excerpt(20, $post->ID); ?></p>
+                                <div class="sfp-left">
+                                    <a href="<?php the_permalink(); ?>">
+                                    <h5><?php the_title(); ?></h5>
+                                    <p><?php echo project_excerpt(20, $post->ID); ?></p>
+                                    </a>
+                                </div>
+                                <div class="sfp-right d-flex align-items-center">
+                                    <a href="<?php the_permalink(); ?>">
+                                    <?php if ( has_post_thumbnail()): ?>
+                                        <?php the_post_thumbnail('featured-project'); ?>
+                                    <?php else : ?>
+                                        <img src="https://via.placeholder.com/300">
+                                    <?php endif; ?>
+                                    <div class="d-flex justify-content-center align-items-center"><span class="read-more btn btn-sm">Read More</span></div>
+                                </a>
+                                </div>
                         </div>
-                        <div class="sfp-right d-flex align-items-center">
-                            <?php if ( has_post_thumbnail()): ?>
-                                <?php the_post_thumbnail('featured-project'); ?>
-                            <?php else : ?>
-                                <img src="https://via.placeholder.com/300">
-                            <?php endif; ?>
-                            <span><a class="read-more btn btn-sm" href="<?php the_permalink(); ?>">Read More</a></span>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-                <?php if ( $projectButton ) : ?>
-                    <div class="fp-btn text-center">
-                        <a href="<?php echo $projectButton['url']; ?>" class="view-all btn btn-primary"><?php echo $projectButton['title']; ?></a>
-                    </div>
-                <?php endif; ?>
+    			<?php endif; ?>
+                <?php endwhile; ?>
+                <div class="fp-btn text-center">
+                    <a href="/project-gallery" class="view-all btn btn-primary">View All Projects</a>
+                </div>
             </div>
         <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
             </div>
