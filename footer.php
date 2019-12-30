@@ -50,7 +50,7 @@ $news = new WP_QUERY($args);
 <div class="wrapper footer" id="wrapper-footer">
 	<?php if ( $subFooter ) : ?>
 		<div class="<?php echo esc_attr( $container ); ?>">
-			<div class="row">
+			<div class="row d-flex align-items-center">
 				<div class="col-md-3">
 					<img src="<?php echo $footerLogo['url']; ?>" alt="" class="footer-logo">
 					<ul class="footer-social-media">
