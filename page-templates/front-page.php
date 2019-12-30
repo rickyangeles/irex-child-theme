@@ -21,6 +21,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <?php
 
     //Fields
+    $banner = get_field('banner_image');
     $bannerImg = wp_get_attachment_url( get_field('banner_image') );
     $srcset = wp_get_attachment_image_srcset( get_field('banner_image') );
     $bannerContent = get_field('banner_content');
@@ -46,6 +47,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     $careerSlideshow = get_field('career_slideshow');
     $careerBG = get_field('career_background_image') ? 'style="background-image:url(' . get_field('career_background_image') . ');"' : '';
     $careerButton = get_field('career_button');
+    $slideCount = 0;
 
     if ( $introBG ) {
         $introBG = 'style="background-image:url(' . get_field('intro_bg') . ')";';
@@ -63,16 +65,36 @@ $container = get_theme_mod( 'understrap_container_type' );
 <div class="wrapper home-page-wrapper" id="full-width-page-wrapper">
 
     <!-- Banner -->
-    <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg; ?>');">
-        <div class="banner-content">
-            <?php echo $bannerContent; ?>
-            <ul class="banner-buttons">
-                <li><a href="<?php echo $bannerPrimary['url']; ?>" class="btn btn-primary"><?php echo $bannerPrimary['title']; ?></a></li>
-                <?php if ($bannerSecondary) : ?>
-                    <li><a href="<?php echo $bannerSecondary['url']; ?>" class="btn btn-secondary"><?php echo $bannerSecondary['title']; ?></a></li>
-                <?php endif; ?>
-            </ul>
-        </div>
+    <div class="container-fluid banner home-banner px-0">
+        <div class="swiper-container slider-container">
+            <div class="swiper-wrapper">
+                <?php while( have_rows('banner_image') ): the_row();
+                     // vars
+                     //$image = get_sub_field('image');
+                     $image = wp_get_attachment_url( get_sub_field('image') );
+                     $content = get_sub_field('content');
+                     // $button = get_sub_field( 'primary_button' );
+                     // $button2 = get_sub_field( 'secondary_button');
+                ?>
+                     <div class="swiper-slide"  style="background-image:url('<?php echo $image; ?>');">
+                         <div class="banner-content">
+                             <?php echo $content; ?>
+                             <ul class="banner-buttons">
+                                 <li><a href="<?php echo $bannerPrimary['url']; ?>" class="btn btn-primary"><?php echo $bannerPrimary['title']; ?></a></li>
+                                 <?php if ($bannerSecondary) : ?>
+                                     <li><a href="<?php echo $bannerSecondary['url']; ?>" class="btn btn-secondary"><?php echo $bannerSecondary['title']; ?></a></li>
+                                 <?php endif; ?>
+                             </ul>
+                         </div>
+                        <!-- <img src="<?php echo $url; ?>" alt="<?php echo $image['alt'] ?>" style="object-fit: <?php echo get_sub_field('slide_image_position'); ?>; object-position: <?php echo get_sub_field('slide_image_cover_position'); ?>;" /> -->
+                     </div><?php $slideCount++; ?>
+                 <?php endwhile; ?>
+             </div>
+         </div>
+             <?php if ( $slideCount > 1 ) : ?>
+                 <div class="swiper-button-next slide-button-next"></div>
+                 <div class="swiper-button-prev slide-button-prev"></div>
+             <?php endif; ?>
     </div>
 
     <!-- Intro -->
