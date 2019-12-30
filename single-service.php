@@ -216,7 +216,7 @@ get_header(); ?>
             <div class="row">
                 <h2 class="title">Featured Projects</h2>
             </div>
-            <div class="row">
+            <div class="row d-flex justify-content-center">
                 <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
                     <?php setup_postdata($post); ?>
     			<?php if (has_term($term_ids, 'industry_tax')) :?>

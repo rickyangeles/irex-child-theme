@@ -80,6 +80,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                     </div>
                 <?php endif; ?>
             	<?php endwhile; ?>
+                <?php wp_reset_query(); ?>
             </div>
         </div>
 	</div><!-- .row end -->
