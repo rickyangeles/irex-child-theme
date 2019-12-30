@@ -58,7 +58,7 @@ get_header(); ?>
 </div>
 <div class="container main-content">
     <div class="row">
-        <?php if ( $serviceSlideshow ): ?>
+        <?php if ( have_rows('service_gallery') || have_rows('new_gallery') ): ?>
             <div class="col-md-6 service-content">
         <?php else : ?>
             <div class="col-md-12 service-content">
@@ -189,21 +189,27 @@ get_header(); ?>
 
     <!-- Featured Projects -->
     <?php
-        $project_query = new WP_Query( array(
-            'post_type' => 'project_gallery',          // name of post type.
-            'posts_per_page' => 4,
-            'orderby' => 'title',
-            'order' => 'ASC',
-            'public'   => true,
-            'post_parent' => 0,
-    		'tax_query' => array(
-    			array(
-    				'taxonomy' => 'industry_tax',
-    				'field'    => 'slug',
-    				'terms' => $post_slug,
-    			),
-    		)
-        ) );
+        //Get array of terms
+    $terms = get_the_terms( $post->ID , 'industry_tax', 'string');
+    //Pluck out the IDs to get an array of IDS
+    $term_ids = wp_list_pluck($terms,'term_id');
+
+    //Query posts with tax_query. Choose in 'IN' if want to query posts with any of the terms
+    //Chose 'AND' if you want to query for posts with all terms
+      $project_query = new WP_Query( array(
+          'post_type' => 'project_gallery',
+          'tax_query' => array(
+                        array(
+                            'taxonomy' => 'industry_tax',
+                            'field' => 'id',
+                            'terms' => $term_ids,
+                            'operator'=> 'IN' //Or 'AND' or 'NOT IN'
+                         )),
+          'posts_per_page' => 3,
+          'ignore_sticky_posts' => 1,
+          'orderby' => 'rand',
+          'post_not_in'=>array($post->ID)
+       ) );
     ?>
     <?php if ( $project_query->have_posts() ) : ?>
         <div class="container home-featured-projects">
@@ -213,7 +219,7 @@ get_header(); ?>
             <div class="row">
                 <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
                     <?php setup_postdata($post); ?>
-    			<?php if (has_term($post_slug, 'industry_tax')) :?>
+    			<?php if (has_term($term_ids, 'industry_tax')) :?>
                     <div class="col-md-6 single-featured-project d-flex align-items-center">
                                 <div class="sfp-left">
                                     <a href="<?php the_permalink(); ?>">
