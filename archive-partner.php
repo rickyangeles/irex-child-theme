@@ -33,7 +33,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <div class="wrapper" id="full-width-page-wrapper">
 	<div class="<?php echo esc_attr( $container ); ?> partnerships" id="content">
         <h2>Partners & Memberships</h2>
-		<div class="row content-area d-flex align-items-center sub-partnerships" id="primary">
+		<div class="row content-area d-flex align-items-center justify-content-center sub-partnerships" id="primary">
             <?php while ( have_posts() ) : the_post();
                 $id = get_the_ID();
         		// vars

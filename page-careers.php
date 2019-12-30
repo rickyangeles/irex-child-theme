@@ -85,7 +85,7 @@ $sub = get_field('subsidiary_site', 'options');
                         </script>
                         <script language="javascript" type="text/javascript" src="//IrexContractingGroup.ourcareerpages.com/Resources/js/ccp_widget.aspx?GroupBy=label&ccpLoc=bottom" ></script>
                     <?php else : ?>
-                        <a href="https://irexcontracting.kinsta.cloud/careers/" class="career-btn btn btn-primary">View Job Listings</a>
+                        <a href="https://irexcontracting.kinsta.cloud/careers/" class="career-btn btn btn-primary">View Job Openings</a>
                     <?php endif; ?>
 
 
