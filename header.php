@@ -59,7 +59,7 @@ function theme_get_customizer_css() {
 		}
 
 		.single-sub-info, .home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
-		.location-filter .searchandfilter select, input[type=text], form input, form textarea {
+		.location-filter .searchandfilter select, input[type=text], form input, form textarea, .hc-left a.btn-primary {
 			border-color: <?php echo $primary_color; ?>!important;
 		}
 
@@ -73,7 +73,7 @@ function theme_get_customizer_css() {
 		.home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
 		.home-featured-projects .sfp-right, .related-projects .sfp-right, .no-banner, .cta.dark-theme, .page-header, .page-item.active .page-link,
 	     #main-menu>.menu-item-has-children>.dropdown-menu li .dropdown-menu, .card .card-header button[aria-expanded=true], .home-career:after,
-		 .short-header.solid-header, .home-banner, form .gform_button {
+		 .short-header.solid-header, .home-banner, form .gform_button, .hc-left a.btn-primary {
 			background-color:  <?php echo $primary_color; ?>!important;
 		}
 

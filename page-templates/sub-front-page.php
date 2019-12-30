@@ -341,7 +341,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <h2 class="title">Featured Projects</h2>
             </div>
             <?php if( $featuredProjects ): ?>
-            <div class="row">
+            <div class="row d-flex justify-content-center">
                 <?php foreach( $featuredProjects as $post): // variable must be called $post (IMPORTANT) ?>
                     <?php setup_postdata($post); ?>
                         <div class="col-md-6 single-featured-project d-flex align-items-center">
