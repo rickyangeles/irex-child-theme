@@ -976,3 +976,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
 .career-btn {
     color: $white!important;
 }
+
+.gform_wrapper.gf_browser_chrome .gfield_checkbox li input, .gform_wrapper.gf_browser_chrome .gfield_checkbox li input[type=checkbox], .gform_wrapper.gf_browser_chrome .gfield_radio li input[type=radio] {
+    margin-top: 0!important;
+}
