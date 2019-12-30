@@ -52,7 +52,7 @@ function theme_get_customizer_css() {
 		  color: <?php echo $primary_color; ?>!important;
 		}
 
-		.home-featured-projects:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link,
+		.home-featured-projects .single-featured-project:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link,
 		.home-banner .banner-content h1, .page-template-sub-front-page .home-cta .row h5, .footer h1, .footer h2, .footer h3, .footer h4, .footer h5,
 		.footer h6 {
 			color: white!important;
@@ -73,11 +73,11 @@ function theme_get_customizer_css() {
 		.home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
 		.home-featured-projects .sfp-right, .related-projects .sfp-right, .no-banner, .cta.dark-theme, .page-header, .page-item.active .page-link,
 	     #main-menu>.menu-item-has-children>.dropdown-menu li .dropdown-menu, .card .card-header button[aria-expanded=true], .home-career:after,
-		 .short-header.solid-header, .home-banner {
+		 .short-header.solid-header, .home-banner, form .gform_button {
 			background-color:  <?php echo $primary_color; ?>!important;
 		}
 
-		.slide-caption, .location-filter .searchandfilter select, input[type=text], .card:nth-child(odd) .card-header, .card .card-body {
+		.slide-caption, .location-filter .searchandfilter select, input[type=text], .card:nth-child(odd) .card-header, .card .card-body, textarea {
 			background-color: <?php echo $primary_light; ?>!important;
 		}
 

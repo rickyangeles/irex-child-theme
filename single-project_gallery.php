@@ -125,7 +125,7 @@ get_header(); ?>
           'post_type' => 'project_gallery',
           'tax_query' => array(
                         array(
-                            'taxonomy' => 'product_tags',
+                            'taxonomy' => 'industry_tax',
                             'field' => 'id',
                             'terms' => $term_ids,
                             'operator'=> 'IN' //Or 'AND' or 'NOT IN'

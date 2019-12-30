@@ -878,6 +878,13 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
         }
     }
 
+    .gform_footer {
+        input[type=submit] {
+            border-radius: 25px;
+            border-color: none;
+        }
+    }
+
     .contact-page-map {
         .acf-map {
         	width: 100%;
