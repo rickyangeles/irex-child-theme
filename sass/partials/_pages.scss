@@ -191,7 +191,7 @@
 
             .nav-wrap {
                 display: block;
-                width: 50%;
+                width: 90%;
                 height: 40px;
                 position: relative;
                 margin: 0 auto;
@@ -399,7 +399,7 @@
 
                 .nav-wrap {
                     display: block;
-                    width: 50%;
+                    width: 90%;
                     height: 40px;
                     position: relative;
                     margin: 0 auto;
@@ -648,7 +648,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
     }
 }
 
-#left-sidebar {
+#left-sidebar, #right-sidebar {
     .widget_nav_menu {
         .menu {
             padding-left: 0;
