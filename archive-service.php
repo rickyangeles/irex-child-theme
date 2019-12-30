@@ -38,7 +38,7 @@ get_header(); ?>
                 <input type="text" placeholder="Search Services" name="service-search" id="service-search" value="">
             </div>
             <div class="expand-btn">
-                <a id="toggleAccordions-show">Expand All</a> / <a id="toggleAccordions-hide">collapse All</a>
+                <a id="toggleAccordions-show">Expand All</a> / <a id="toggleAccordions-hide">Collapse All</a>
             </div>
             <?php
                 $services = array(
