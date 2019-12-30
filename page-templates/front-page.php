@@ -21,7 +21,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 <?php
 
     //Fields
-    $banner = get_field('banner_image');
     $bannerImg = wp_get_attachment_url( get_field('banner_image') );
     $srcset = wp_get_attachment_image_srcset( get_field('banner_image') );
     $bannerContent = get_field('banner_content');
@@ -47,7 +46,6 @@ $container = get_theme_mod( 'understrap_container_type' );
     $careerSlideshow = get_field('career_slideshow');
     $careerBG = get_field('career_background_image') ? 'style="background-image:url(' . get_field('career_background_image') . ');"' : '';
     $careerButton = get_field('career_button');
-    $slideCount = 0;
 
     if ( $introBG ) {
         $introBG = 'style="background-image:url(' . get_field('intro_bg') . ')";';
@@ -65,36 +63,16 @@ $container = get_theme_mod( 'understrap_container_type' );
 <div class="wrapper home-page-wrapper" id="full-width-page-wrapper">
 
     <!-- Banner -->
-    <div class="container-fluid banner home-banner px-0">
-        <div class="swiper-container slider-container">
-            <div class="swiper-wrapper">
-                <?php while( have_rows('banner_image') ): the_row();
-                     // vars
-                     //$image = get_sub_field('image');
-                     $image = wp_get_attachment_url( get_sub_field('image') );
-                     $content = get_sub_field('content');
-                     // $button = get_sub_field( 'primary_button' );
-                     // $button2 = get_sub_field( 'secondary_button');
-                ?>
-                     <div class="swiper-slide"  style="background-image:url('<?php echo $image; ?>');">
-                         <div class="banner-content">
-                             <?php echo $content; ?>
-                             <ul class="banner-buttons">
-                                 <li><a href="<?php echo $bannerPrimary['url']; ?>" class="btn btn-primary"><?php echo $bannerPrimary['title']; ?></a></li>
-                                 <?php if ($bannerSecondary) : ?>
-                                     <li><a href="<?php echo $bannerSecondary['url']; ?>" class="btn btn-secondary"><?php echo $bannerSecondary['title']; ?></a></li>
-                                 <?php endif; ?>
-                             </ul>
-                         </div>
-                        <!-- <img src="<?php echo $url; ?>" alt="<?php echo $image['alt'] ?>" style="object-fit: <?php echo get_sub_field('slide_image_position'); ?>; object-position: <?php echo get_sub_field('slide_image_cover_position'); ?>;" /> -->
-                     </div><?php $slideCount++; ?>
-                 <?php endwhile; ?>
-             </div>
-         </div>
-             <?php if ( $slideCount > 1 ) : ?>
-                 <div class="swiper-button-next slide-button-next"></div>
-                 <div class="swiper-button-prev slide-button-prev"></div>
-             <?php endif; ?>
+    <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg; ?>');">
+        <div class="banner-content">
+            <?php echo $bannerContent; ?>
+            <ul class="banner-buttons">
+                <li><a href="<?php echo $bannerPrimary['url']; ?>" class="btn btn-primary"><?php echo $bannerPrimary['title']; ?></a></li>
+                <?php if ($bannerSecondary) : ?>
+                    <li><a href="<?php echo $bannerSecondary['url']; ?>" class="btn btn-secondary"><?php echo $bannerSecondary['title']; ?></a></li>
+                <?php endif; ?>
+            </ul>
+        </div>
     </div>
 
     <!-- Intro -->
@@ -122,8 +100,10 @@ $container = get_theme_mod( 'understrap_container_type' );
             	?>
                 <div class="col-md-5 point">
                     <?php echo $icon; ?>
-                    <h4><?php echo $title; ?></h4>
-                    <?php echo $content; ?>
+                    <div class="point-content">
+                        <h4><?php echo $title; ?></h4>
+                        <p><?php echo $content; ?></p>
+                    </div>
                 </div>
             	<?php endwhile; ?>
             <?php endif; ?>
@@ -136,7 +116,7 @@ $container = get_theme_mod( 'understrap_container_type' );
             <h2 class="title"><?php echo $industyTitle; ?></h2>
         	<ul class="industry-list">
                 <?php
-                // the query
+                	// the query
                     $industry = new WP_Query( array(
                         'post_type' => 'industry',
                         'posts_per_page' => -1,
@@ -193,6 +173,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                         $services = $url . "/wp/v2/service/";
                         $locations = $url . "/wp/v2/location/";
                         $logo = $url . "/acf/v3/options/options/header_logo";
+						$about = $url . "/acf/v3/options/options/about_text";
                     ?>
                     <div class="menu-item col-md-3 single-sub">
                       <a href="#">
@@ -203,7 +184,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                               <div class="col-md-6">
                                   <h2><?php echo $title; ?></h2>
                                   website: www.<?php echo $cleanUrl; ?>
-                                  <p class="description">description goes here</p>
+                                  <?php echo get_about_rest($about); ?>
                                   <a href="<?php echo $siteURL; ?>" class="btn btn-primary">Visit Site</a>
                               </div>
                               <div class="col-md-3">

@@ -29,8 +29,6 @@ function get_services_rest_name($services) {
 			$serviceArray[] = $post['title']['rendered'];
 		}
 	}
-
-
 	return $serviceArray;
 }
 
@@ -67,6 +65,20 @@ function get_logo_rest($url) {
 	}
 }
 
+//Get sub footer about
+function get_about_rest($url) {
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL,$url);
+	$result=curl_exec($ch);
+	$result=curl_exec($ch);
+	$aboutField = json_decode($result, true);
+	foreach ($aboutField as $v) {
+		$about = $v;
+		echo $about;
+	}
+}
 //get number of connections
 function total_connections($id) {
 	$connection_map = get_post_meta( $id, 'dt_connection_map', true );
