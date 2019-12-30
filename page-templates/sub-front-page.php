@@ -387,6 +387,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <?php endif; ?>
             </div>
             <div class="col-md-6 hc-right">
+                <?php $slideCount = 0; ?>
                 <?php if( have_rows('career_slideshow') ): ?>
                     <div class="swiper-container">
                         <!-- Additional required wrapper -->
@@ -403,15 +404,18 @@ $container = get_theme_mod( 'understrap_container_type' );
                                <div class="slide-caption"><?php echo $content; ?></div>
                            <?php endif; ?>
                        </div>
+                       <?php $slideCount++; ?>
                 	<?php endwhile; ?>
                 </div>
                     <!-- If we need pagination -->
-                    <div class="nav-wrap">
-                        <div class="swiper-pagination"></div>
-                        <!-- If we need navigation buttons -->
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
+                    <?php if ( $slideCount > 1 ) : ?>
+                        <div class="nav-wrap">
+                            <div class="swiper-pagination"></div>
+                            <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    <?php endif; ?>
                     </div>
                     <script type="text/javascript">
                     var mySwiper = new Swiper ('.swiper-container', {

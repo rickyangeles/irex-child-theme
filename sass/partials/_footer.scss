@@ -81,7 +81,7 @@
         }
     }
     p {
-        margin: 45px 0;
+        margin: 0 0 35px 0;;
     }
     .footer-contact-info {
         line-height: 25px;
@@ -108,6 +108,9 @@
         a {
             color: white;
         }
+    }
+    #menu-site-link-menu {
+        padding-left: 0;
     }
 
     .footer-locations {
