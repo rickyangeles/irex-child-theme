@@ -71,7 +71,7 @@ add_action( 'after_setup_theme', 'register_my_menu' );
 function register_my_menu() {
   register_nav_menu( 'top-menu', __( 'Top Menu', 'understrap' ) );
   register_nav_menu( 'footer-menu', __( 'Footer Menu', 'understrap' ) );
-  register_nav_menu( 'footer-menu', __( 'Site Link Menu', 'understrap' ) );
+  register_nav_menu( 'site-link-menu', __( 'Site Link Menu', 'understrap' ) );
 }
 
 //Adding Option Pages
