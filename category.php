@@ -69,9 +69,10 @@ $container = get_theme_mod( 'understrap_container_type' );
 								<div class="col-md-8">
 									<header class="entry-header">
 										<a href="<?php echo get_the_permalink(); ?>"><?php the_title( '<h5 class="entry-title">', '</h5>' ); ?></a>
-										<div class="entry-meta">
+										<!-- <div class="entry-meta">
 											Published: <?php the_time('F, j, Y'); ?> | By: <?php the_author(); ?> | Categories: <?php the_category(', '); ?>
-										</div><!-- .entry-meta -->
+										</div> -->
+										<!-- .entry-meta -->
 									</header><!-- .entry-header -->
 									<div class="entry-content">
 										<?php echo excerpt(30, $pID); ?>

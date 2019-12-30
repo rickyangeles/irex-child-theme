@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<div class="entry-meta">
 
-			<div class="entry-meta">
+			<!-- <div class="entry-meta">
 				Published: <?php the_time('F, j, Y'); ?> | By: <?php the_author(); ?> | Categories: <?php the_category(', '); ?>
 			</div><!-- .entry-meta -->
 

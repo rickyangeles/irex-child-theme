@@ -646,8 +646,30 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
             }
         }
     }
+}
 
+#left-sidebar {
+    .widget_nav_menu {
+        .menu {
+            padding-left: 0;
+            li {
+                list-style: none;
+                ul.sub-menu {
+                    padding-left: 15px;
 
+                    li {
+                        &:before {
+                            content: "-";
+                            margin-right: 5px;
+                        }
+                    }
+                    ul.sub-menu {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
 }
 
 /* News  Page */
