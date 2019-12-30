@@ -652,6 +652,12 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
     .widget_nav_menu {
         .menu {
             padding-left: 0;
+
+            & > li {
+                & > a {
+                    font-weight: bold;
+                }
+            }
             li {
                 list-style: none;
                 ul.sub-menu {

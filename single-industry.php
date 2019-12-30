@@ -218,6 +218,7 @@ get_header(); ?>
                         $services = $url . "/wp/v2/service/";
                         $locations = $url . "/wp/v2/location/";
                         $logo = $url . "/acf/v3/options/options/header_logo";
+                        $about = $url . "/acf/v3/options/options/about_text";
                     ?>
                     <div class="menu-item col-md-3 single-sub">
                       <a href="#">
@@ -228,7 +229,7 @@ get_header(); ?>
                               <div class="col-md-6">
                                   <h2><?php echo $title; ?></h2>
                                   website: www.<?php echo $cleanUrl; ?>
-                                  <p class="description">description goes here</p>
+                                   <?php echo get_about_rest($about); ?>
                                   <a href="<?php echo $siteURL; ?>" class="btn btn-primary">Visit Site</a>
                               </div>
                               <div class="col-md-3">
