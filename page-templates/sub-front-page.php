@@ -19,7 +19,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 <?php endif; ?>
 
 <?php
-
     //Fields
     $bannerImg = wp_get_attachment_url( get_field('banner_image') );
     $srcset = wp_get_attachment_image_srcset( get_field('banner_image') );
@@ -35,9 +34,8 @@ $container = get_theme_mod( 'understrap_container_type' );
     $serviceContent = get_field('service_content');
     $certLogo = get_field('cerification_logo');
     $certText = get_field('certification_content');
-    $serviceCTATitle = get_field('home_cta_title');
-    $serviceCTAText = get_field('home_cta_text');
-    $serviceCTAButton = get_field('home_cta_button');
+    $serviceCTAcontent = get_field('service_cta_content', 'options');
+    $serviceCTAbtn     = get_field('service_cta_button', 'options');
     $testimonials = get_field('select_testimonials');
     $testimonialTitle = get_field('testimonial_title');
     $projectTitle = get_field('project_title');
@@ -280,16 +278,15 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 
     <!-- CTA -->
-    <?php if ( $serviceCTATitle ) : ?>
+    <?php if ( $serviceCTAcontent ) : ?>
         <div class="container-fluid home-cta">
             <div class="row d-flex align-items-center">
                 <div class="col-md-9">
-                    <h5><?php echo $serviceCTATitle; ?></h5>
-                    <p><?php echo $serviceCTAText; ?></p>
+                    <p><?php echo $serviceCTAcontent; ?></p>
                 </div>
                 <div class="col-md-3">
-                    <?php if ( $serviceCTAButton ) : ?>
-                        <a href="<?php echo $serviceCTAButton['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAButton['title']; ?></a>
+                    <?php if ( $serviceCTAbtn ) : ?>
+                        <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
                     <?php endif; ?>
                 </div>
             </div>

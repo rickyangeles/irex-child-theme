@@ -43,7 +43,7 @@ function theme_get_customizer_css() {
 		.full-service-list a, .home-service-location .cert-wrap p, .home-intro .home-intro-left a.learn-more,
 		.page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-next:after,
 	    .page-template-sub-front-page .home-testimonial .row .swiper-container .swiper-button-prev:after, .home-featured-projects .sfp-right span a,
-		.related-projects .sfp-right span a, #left-sidebar aside a, #right-sidebar aside a, #page-wrapper a,
+		.related-projects .sfp-right span a, #left-sidebar aside a, #right-sidebar aside a, #page-wrapper a:not(.btn),
 		.full-width.light-theme, .industry-card ul li, .location-list .single-location, .location-list .single-location a,
 		.location-filter .searchandfilter select, .blog-archive article, .page-link, input[type=text], .header .navbar-toggler .navbar-toggler-icon,
 		.home-career .hc-right .swiper-container .swiper-button-prev:after, .home-career .hc-right .swiper-container .swiper-button-next:after,
