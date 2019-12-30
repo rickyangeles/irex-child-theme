@@ -141,21 +141,18 @@ $news = new WP_QUERY($args);
 						</ul>
 					<?php endif; ?>
 
+					<h3>Site Links</h3>
+					    <ul class="site-links-footer">
+							<?php
+								if ( has_nav_menu('site-link-menu') ) {
+									wp_nav_menu( array(
+										'menu' => 'Site Link Menu',
+										'container_class' => 'site-link-menu-wrap',
+									));
+								}
+							?>
+					    </ul>
 
-
-					<?php
-						if( $siteLinks  ): ?>
-						<h3>Site Links</h3>
-						    <ul class="site-links-footer">
-						    <?php foreach( $siteLinks as $post): ?>
-						        <?php setup_postdata($post); ?>
-						        <li>
-						            <a href="<?php echo get_the_permalink(); ?>"><?php echo get_the_title(); ?></a>
-						        </li>
-						    <?php endforeach; ?>
-						    </ul>
-						    <?php wp_reset_postdata();?>
-						<?php endif; ?>
 				</div>
 			</div>
 
