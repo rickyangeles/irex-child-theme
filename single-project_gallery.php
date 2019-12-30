@@ -18,6 +18,7 @@ get_header(); ?>
     $projectDetails     = get_field('project_details');
     $pID                = get_the_ID();
     $sub = get_field('subsidiary_site', 'options');
+    $industries = get_terms()
 ?>
 <!-- Page Header -->
 <div class="no-banner"></div>
@@ -71,9 +72,9 @@ get_header(); ?>
                         <div class="col-md-12 project-cta-content">
                             <?php echo $projectCTAcontent; ?>
                         </div>
-                    <!-- <div class="col-md-4 project-cta-btn">
-                        <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
-                    </div> -->
+                        <div class="col-md-4 project-cta-btn">
+                            <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
+                        </div>
                     </div>
                 </div>
             <?php else:  ?>
@@ -93,6 +94,14 @@ get_header(); ?>
                 <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
                     <?php get_project_gallery($pID); ?>
                 </div>
+                <div class="row project-cta d-flex align-items-center">
+                    <div class="col-md-8 project-cta-content">
+                        <?php echo $projectCTAcontent; ?>
+                    </div>
+                    <div class="col-md-4 project-cta-btn">
+                        <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
+                    </div>
+                </div>
             </div>
         <?php endif; ?>
 
@@ -103,30 +112,66 @@ get_header(); ?>
         <?php the_content(); ?>
     </div>
 </div>
-<div class="container">
-    <?php if( $relatedProjects ): ?>
-    <div class="row related-projects">
-        <h2 class="title">Related Projects</h2>
-        <?php foreach( $relatedProjects as $post): // variable must be called $post (IMPORTANT) ?>
-            <?php setup_postdata($post); ?>
-            <div class="col-md-6 single-featured-project d-flex align-items-center">
-                <div class="sfp-left">
-                    <h5><?php the_title(); ?></h5>
-                    <p><?php echo excerpt(20, $post->ID); ?></p>
-                </div>
-                <div class="sfp-right d-flex align-items-center">
-                    <?php if ( has_post_thumbnail()): ?>
-                        <?php the_post_thumbnail('featured-project'); ?>
-                    <?php else : ?>
-                        <img src="https://via.placeholder.com/300">
-                    <?php endif; ?>
-                    <span><a class="read-more btn btn-sm" href="<?php the_permalink(); ?>">Read More</a></span>
-                </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+<?php
+
+    //Get array of terms
+    $terms = get_the_terms( $post->ID , 'industry_tax', 'string');
+    //Pluck out the IDs to get an array of IDS
+    $term_ids = wp_list_pluck($terms,'term_id');
+
+    //Query posts with tax_query. Choose in 'IN' if want to query posts with any of the terms
+    //Chose 'AND' if you want to query for posts with all terms
+      $project_query = new WP_Query( array(
+          'post_type' => 'project_gallery',
+          'tax_query' => array(
+                        array(
+                            'taxonomy' => 'product_tags',
+                            'field' => 'id',
+                            'terms' => $term_ids,
+                            'operator'=> 'IN' //Or 'AND' or 'NOT IN'
+                         )),
+          'posts_per_page' => 3,
+          'ignore_sticky_posts' => 1,
+          'orderby' => 'rand',
+          'post__not_in'=>array($post->ID)
+       ) );
+
+?>
+
+<?php if ( $project_query->have_posts() ) : ?>
+    <div class="container home-featured-projects">
+        <div class="row">
+            <h2 class="title">Related Projects</h2>
+        </div>
+        <div class="row">
+            <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
+                <?php setup_postdata($post); ?>
+			<?php if (has_term($post_slug, 'industry_tax')) :?>
+                <div class="col-md-6 single-featured-project d-flex align-items-center">
+                            <div class="sfp-left">
+                                <a href="<?php the_permalink(); ?>">
+                                <h5><?php the_title(); ?></h5>
+                                <p><?php echo project_excerpt(20, $post->ID); ?></p>
+                                </a>
+                            </div>
+                            <div class="sfp-right d-flex align-items-center">
+                                <a href="<?php the_permalink(); ?>">
+                                <?php if ( has_post_thumbnail()): ?>
+                                    <?php the_post_thumbnail('featured-project'); ?>
+                                <?php else : ?>
+                                    <img src="https://via.placeholder.com/300">
+                                <?php endif; ?>
+                                <div class="d-flex justify-content-center align-items-center"><span class="read-more btn btn-sm">Read More</span></div>
+                            </a>
+                            </div>
+                    </div>
+			<?php endif; ?>
+            <?php endwhile; ?>
+        </div>
     <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-    <?php endif; ?>
-</div>
+        </div>
+    </div>
+<?php endif; ?>
+
 
 <?php get_footer(); ?>

@@ -11,7 +11,7 @@
 get_header(); ?>
 
 <?php
-    $serviceSlideshow = get_field('new_gallery');
+    $serviceSlideshow = get_field('service_gallery');
     $serviceCTAcontent = get_field('service_cta_content', 'options');
     $serviceCTAbtn     = get_field('service_cta_button', 'options');
     $testimonials = get_field('testimonials');
