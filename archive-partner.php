@@ -58,7 +58,7 @@ $container = get_theme_mod( 'understrap_container_type' );
             <div class="col-md-6">
                 <h3><?php bloginfo('name'); ?> is a subsidiary of</h3>
                 <div class="col-md-12 single-partner">
-                    <img src="http://irex.local/wp-content/uploads/2019/08/irex_logo.png" alt="">
+                    <img src="https://irexcontracting.kinsta.cloud/wp-content/uploads/2019/08/irex_logo.png" alt="">
                 </div>
             </div>
             <div class="col-md-6">
