@@ -18,6 +18,7 @@ get_header(); ?>
     $relatedProjects = get_field('related_projects');
     $pID                = get_the_ID();
     $sub = get_field('subsidiary_site', 'options');
+    $musser = get_field('musser_park', 'options');
     $imgID = get_post_thumbnail_id($pID);
     $featuredImg = wp_get_attachment_image_src($imgID);
     $post_slug = $post->post_name;
@@ -75,7 +76,7 @@ get_header(); ?>
                 <div class="col-md-6 slideshow">
                     <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
                     <!-- Additional required wrapper -->
-                        <?php if ( $sub ) : ?>
+                        <?php if ( $sub && !$musser ) : ?>
                             <?php get_service_gallery($pID); ?>
                         <?php else : ?>
                             <div class="swiper-wrapper">

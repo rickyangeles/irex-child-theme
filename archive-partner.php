@@ -8,6 +8,8 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 $container = get_theme_mod( 'understrap_container_type' );
+
+$musser = get_field('musser_park', 'options');
 ?>
 
 <?php if ( is_front_page() ) : ?>
@@ -58,11 +60,13 @@ $container = get_theme_mod( 'understrap_container_type' );
             <div class="col-md-6">
                 <h3><?php bloginfo('name'); ?> is a subsidiary of</h3>
                 <div class="col-md-12 single-partner">
-                    <img src="https://irexcontracting.kinsta.cloud/wp-content/uploads/2019/08/irex_logo.png" alt="">
+                    <?php if ( $musser ) : ?>
+                    <?php else :  ?>
+                        <img src="https://irexcontracting.kinsta.cloud/wp-content/uploads/2019/08/irex_logo.png" alt="">
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-md-6">
-                <h3>IREX is a member of:</h3>
                 <?php while ( have_posts() ) : the_post();
                     $id = get_the_ID();
             		// vars
@@ -73,6 +77,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                     $global = get_field('global_partnership');
             	?>
                 <?php if ($global) : ?>
+                    <h3>IREX is a member of:</h3>
                     <div class="col-md-12 single-partner">
                         <a href="<?php echo $link; ?>">
                             <?php echo $logo; ?>

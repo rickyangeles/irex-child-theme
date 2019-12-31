@@ -18,6 +18,7 @@ get_header(); ?>
     $projectDetails     = get_field('project_details');
     $pID                = get_the_ID();
     $sub = get_field('subsidiary_site', 'options');
+    $musser = get_field('musser_park', 'options');
     $industries = get_terms()
 ?>
 <!-- Page Header -->
@@ -41,7 +42,7 @@ get_header(); ?>
         <?php endif; ?>
             <?php echo $projectDetails; ?>
         </div>
-        <?php if ( !$sub ) : ?>
+        <?php if ( !$sub && !$musser ) : ?>
             <?php if ( $projectSlideshow ) : ?>
                 <?php $count = count($projectSlideshow); ?>
                 <div class="col-md-6 slideshow">
