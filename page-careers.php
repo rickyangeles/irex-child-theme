@@ -16,6 +16,7 @@ defined( 'ABSPATH' ) || exit;
 get_header();
 $container = get_theme_mod( 'understrap_container_type' );
 $sub = get_field('subsidiary_site', 'options');
+$musser = get_field('musser_park', 'options');
 ?>
 
 <?php if ( is_front_page() ) : ?>
@@ -84,7 +85,7 @@ $sub = get_field('subsidiary_site', 'options');
                             var returnURL = "http://www.irexcontracting.com/working-for-irex/";
                         </script>
                         <script language="javascript" type="text/javascript" src="//IrexContractingGroup.ourcareerpages.com/Resources/js/ccp_widget.aspx?GroupBy=label&ccpLoc=bottom" ></script>
-                    <?php else : ?>
+                    <?php elseif ( !$musser ) : ?>
                         <a href="https://irexcontracting.kinsta.cloud/careers/" class="career-btn btn btn-primary">View Job Openings</a>
                     <?php endif; ?>
 
