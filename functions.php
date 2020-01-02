@@ -241,7 +241,7 @@ function get_archive_services() {
 			if ( $i < $len ) {
 				$serviceList .= $page->post_title . ", ";
 			} else {
-				$serviceList .= $page->post_title . ".";
+				$serviceList .= 'and ' . $page->post_title . ".";
 			}
 		}
 	}
@@ -329,26 +329,26 @@ function get_service_industry() {
 		$description .= 'for various industries.';
 	} elseif ( $len == 1 ) {
 		foreach ( $industries as $industry) {
-			$description .= 'for various industries, including ' . get_the_title($industry) . '.';
+			$description .= 'for various industries, including ' . $industry->name . '.';
 		}
 	} elseif ( $len == 2 ) {
 		foreach ( $industries as $industry) {
 			$i++;
 			if ( $i == 1 ) {
-				$description .= 'for various industries, including ' . get_the_title($industry);
+				$description .= 'for various industries, including ' . $industry->name;
 			} else {
-				$description .= ' and ' . get_the_title($industry) . '.';
+				$description .= ' and ' . $industry->name . '.';
 			}
 		}
 	} elseif ( $len > 2 ) {
 		foreach ( $industries as $industry ) {
 			$i++;
 			if ( $i == 1 ) {
-				$description .= 'for various industries, including ' . get_the_title($industry) . ', ';
+				$description .= 'for various industries, including ' . $industry->name . ', ';
 			} elseif ( $i == 2 ) {
-				$description .= get_the_title($industry);
+				$description .= $industry->name;
 			} elseif ( $i == 3 ) {
-				$description .= ', and ' . get_the_title($industry) . '.';
+				$description .= ', and ' . $industry->name . '.';
 			}
 		}
 	}
