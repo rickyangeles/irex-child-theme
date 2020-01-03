@@ -19,16 +19,7 @@ get_header(); ?>
     </div>
 </div>
 <?php
-    $map = array(
-        'post_type' => 'location',
-        'posts_per_page' => -1,
-        'meta_query' => array(
-            array(
-                'key'   => 'show_on_subsidiary_contact_page',
-                'value' => 'yes',
-            )
-        )
-    );
+    $map = array('post_type' => 'location','posts_per_page' => '-1');
     $mapQuery = new WP_Query($map);
 ?>
 <div class="container-fluid map-wrapper">
@@ -71,9 +62,6 @@ get_header(); ?>
                                 <?php else : ?>
                                     <img src="https://via.placeholder.com/195x53" alt="">
                                 <?php endif ?>
-                            </li>
-                            <li>
-                                <strong><?php the_title(); ?></strong>
                             </li>
                             <?php if ( $branchName ) : ?>
                                 <li><?php echo $branchName; ?></li>
@@ -167,9 +155,6 @@ get_header(); ?>
                             <?php else : ?>
                                 <img src="https://via.placeholder.com/195x53" alt="">
                             <?php endif ?>
-                        </li>
-                        <li>
-                            <strong><?php the_title(); ?></strong>
                         </li>
                         <?php if ( $branchName ) : ?>
                             <li><?php echo $branchName; ?></li>

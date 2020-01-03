@@ -62,7 +62,9 @@ $musser = get_field('musser_park', 'options');
                 <div class="col-md-12 single-partner">
                     <?php if ( $musser ) : ?>
                     <?php else :  ?>
-                        <img src="https://irexcontracting.kinsta.cloud/wp-content/uploads/2019/08/irex_logo.png" alt="">
+                        <a href="https://irexcontracting.kinsta.cloud">
+                            <img src="https://irexcontracting.kinsta.cloud/wp-content/uploads/2019/08/irex_logo.png" alt="">
+                        </a>
                     <?php endif; ?>
                 </div>
             </div>

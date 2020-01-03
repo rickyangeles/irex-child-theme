@@ -175,7 +175,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                         $logo = $url . "/acf/v3/options/options/header_logo";
 						$about = $url . "/acf/v3/options/options/about_text";
                     ?>
-                    <div class="menu-item col-md-3 single-sub">
+                    <div class="menu-item col-md-3 single-sub d-flex align-items-center">
                       <a href="#">
                         <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo get_logo_rest($logo); ?>"/>
                       </a>

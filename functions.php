@@ -95,14 +95,6 @@ if( function_exists('acf_add_options_page') ) {
 }
 
 
-//Search and Filter Query Mod
-function sf_filter_query_args( $query_args, $sfid ) {
-  if($sfid==5438) {}
-  return $query_args;
-}
-add_filter( 'sf_edit_query_args', 'sf_filter_query_args', 10, 2 );
-
-
 
 function theme_customize_register( $wp_customize ) {
   // Primary color
@@ -495,6 +487,7 @@ add_filter('acf/format_value/type=textarea', 'do_shortcode');
 add_filter('acf/format_value/type=text', 'do_shortcode');
 add_filter( 'the_excerpt', 'shortcode_unautop');
 add_filter( 'the_excerpt', 'do_shortcode');
+
 
 // add_action( 'pre_get_posts',  'change_number_posts_partners'  );
 // function change_number_posts_partners( $query ) {

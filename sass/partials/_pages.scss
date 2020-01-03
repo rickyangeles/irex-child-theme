@@ -762,6 +762,14 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
 
 /* Partners page */
 
+.sub-partnerships {
+    .single-partner {
+        img {
+            max-height: 160px;
+            width: auto;
+        }
+    }
+}
 .single-partner {
     text-align:center;
 

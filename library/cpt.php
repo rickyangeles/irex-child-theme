@@ -538,7 +538,7 @@ function industry_tax() {
 		'show_in_rest'               => true,
 		'rest_base'                  => 'industry_tax',
 	);
-	register_taxonomy( 'industry_tax', array( 'post', 'page', 'service', 'project_gallery', 'testimonial' ), $args );
+	register_taxonomy( 'industry_tax', array( 'post', 'page', 'service', 'project_gallery', 'location', 'testimonial' ), $args );
 
 }
 add_action( 'init', 'industry_tax', 0 );
