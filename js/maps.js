@@ -23,12 +23,21 @@ function new_map( $el ) {
 
     var $markers = $el.find('.marker');
 
-
+    var myStyles =[
+        {
+            featureType: "poi",
+            elementType: "labels",
+            stylers: [
+                  { visibility: "off" }
+            ]
+        }
+    ];
     // vars
     var args = {
         zoom        : 16,
         center      : new google.maps.LatLng(0, 0),
-        mapTypeId   : google.maps.MapTypeId.ROADMAP
+        mapTypeId   : google.maps.MapTypeId.ROADMAP,
+        styles: myStyles 
     };
 
 
