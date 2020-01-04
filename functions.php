@@ -534,3 +534,15 @@ add_filter( 'the_excerpt', 'do_shortcode');
 //
 // }
 // add_action('acf/save_post','convert_gallery_acf');
+
+//Change order of news posts from youngest to oldest
+add_action( 'pre_get_posts', 'my_change_sort_order');
+function my_change_sort_order($query){
+    if(is_home()):
+     //If you wanted it for the archive of a custom post type use: is_post_type_archive( $post_type )
+       //Set the order ASC or DESC
+       $query->set( 'order', 'ASC' );
+       //Set the orderby
+       $query->set( 'orderby', 'date' );
+    endif;
+};
