@@ -211,16 +211,12 @@ get_header(); ?>
           'orderby' => 'rand',
           'post_not_in'=>array($post->ID)
        ) );
-       $project_count = $project_query->found_posts;
+
     ?>
     <?php if ( $project_query->have_posts() ) : ?>
         <div class="container home-featured-projects">
             <div class="row">
-                <?php if ( $project_count > 1 ) : ?>
-                    <h2 class="title">Featured Projects</h2>
-                <?php elseif :  ?>
-                    <h2 class="title">Featured Project</h2>
-                <?php endif; ?>
+                <h2 class="title">Featured Projects</h2>
             </div>
             <div class="row d-flex justify-content-center">
                 <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
