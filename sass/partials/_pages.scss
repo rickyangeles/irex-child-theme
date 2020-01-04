@@ -765,8 +765,11 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
 .sub-partnerships {
     .single-partner {
         img {
-            max-height: 160px;
-            width: auto;
+            margin-bottom: 30px;
+            max-width: 200px;
+            width: 100%;
+            height: 140px;
+            max-height: 140px;
         }
     }
 }

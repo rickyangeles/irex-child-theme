@@ -39,7 +39,7 @@ $musser = get_field('musser_park', 'options');
             <?php while ( have_posts() ) : the_post();
                 $id = get_the_ID();
         		// vars
-        		$logo = get_the_post_thumbnail();
+        		$logo = get_the_post_thumbnail_url();
                 $name = get_the_title();
         		$desc = get_the_content();
         		$link = get_field('parter_link');
@@ -48,7 +48,7 @@ $musser = get_field('musser_park', 'options');
             <?php if (!$global) : ?>
                 <div class="col-md-4 single-partner">
                     <a href="<?php echo $link; ?>">
-                        <?php echo $logo; ?>
+                        <img src="<?php echo $logo; ?>" alt="">
                     </a>
                     <h5><?php echo $name; ?></h5>
                     <p><?php echo $desc; ?></p>
