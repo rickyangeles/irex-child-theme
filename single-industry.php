@@ -135,7 +135,7 @@ get_header(); ?>
 				'taxonomy' => 'industry_tax',
 				'field'    => 'slug',
 				'terms' => $post_slug,
-			),
+			), 
 		)
     ) );
 ?>
