@@ -56,16 +56,15 @@ $musser = get_field('musser_park', 'options');
             <?php endif; ?>
         	<?php endwhile; ?>
 		</div><!-- #primary -->
+        <?php if ( $musser ) : ?>
+        <?php else :  ?>
         <div class="row global-partnerships">
             <div class="col-md-6">
                 <h3><?php bloginfo('name'); ?> is a subsidiary of</h3>
                 <div class="col-md-12 single-partner">
-                    <?php if ( $musser ) : ?>
-                    <?php else :  ?>
                         <a href="https://irexcontracting.kinsta.cloud">
                             <img src="https://irexcontracting.kinsta.cloud/wp-content/uploads/2019/08/irex_logo.png" alt="">
                         </a>
-                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-md-6">
@@ -90,6 +89,7 @@ $musser = get_field('musser_park', 'options');
                 <?php wp_reset_query(); ?>
             </div>
         </div>
+    <?php endif; ?>
 	</div><!-- .row end -->
 </div><!-- #content -->
 
