@@ -35,7 +35,7 @@ get_header(); ?>
         <?php the_title(); ?>
     </h1>
     <div class="row">
-        <?php if ( $projectSlideshow || $sub ) : ?>
+        <?php if ( $projectSlideshow && $sub || $projectSlideshow && $musser ) : ?>
         <div class="col-md-6 project-content">
         <?php else :  ?>
             <div class="col-md-12 project-content">

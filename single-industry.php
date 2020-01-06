@@ -17,6 +17,7 @@ get_header(); ?>
     $pID                = get_the_ID();
 	$post_slug = $post->post_name;
     $sub = get_field('subsidiary_site', 'options');
+    $musser = get_field('musser_park', 'options');
 ?>
 <!-- Page Header -->
 <div class="container-fluid page-header">
@@ -40,40 +41,45 @@ get_header(); ?>
 </div>
 <div class="container main-content">
     <div class="row">
-        <?php if ( $slideshow ): ?>
+        <?php if ( have_rows('industry_gallery') ): ?>
             <div class="col-md-6 service-content">
         <?php else : ?>
             <div class="col-md-12 service-content">
         <?php endif; ?>
             <?php the_content(); ?>
             </div>
+
         <?php
             $images = get_field('gallery');
             $size = 'service-slideshow'; // (thumbnail, medium, large, full or custom size)
 
-            if( $slideshow ): ?>
-                <div class="col-md-6 slideshow">
-                    <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
+            if( have_rows('industry_gallery') ): ?>
+            <div class="col-md-6 slideshow">
+                <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
+                <?php if ( $sub ) : ?>
+                    <?php get_industry_gallery($pID); ?>
+                <?php else: ?>
                     <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <?php foreach( $slideshow as $image ): ?>
-                                <div class="swiper-slide">
-                                    <?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
-                                    <?php if ( $image['caption'] ) : ?>
-                                        <div class="slide-caption"><?php echo $image['caption']; ?></div>
-                                    <?php endif; ?>
-                                </div>
+                    <div class="swiper-wrapper">
+                        <?php foreach( $slideshow as $image ): ?>
+                            <div class="swiper-slide">
+                                <?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
+                                <?php if ( $image['caption'] ) : ?>
+                                    <div class="slide-caption"><?php echo $image['caption']; ?></div>
+                                <?php endif; ?>
+                            </div>
 
-                            <?php endforeach; ?>
-                        </div>
-                        <div class="nav-wrap">
-                            <div class="swiper-pagination"></div>
-                            <!-- If we need navigation buttons -->
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
+                    <div class="nav-wrap">
+                        <div class="swiper-pagination"></div>
+                        <!-- If we need navigation buttons -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                <?php endif; ?>
                 </div>
+            </div>
             <?php endif; ?>
             <!-- If we need pagination -->
         </div>
@@ -135,7 +141,7 @@ get_header(); ?>
 				'taxonomy' => 'industry_tax',
 				'field'    => 'slug',
 				'terms' => $post_slug,
-			), 
+			),
 		)
     ) );
 ?>
