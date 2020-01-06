@@ -35,7 +35,7 @@ get_header(); ?>
         <?php the_title(); ?>
     </h1>
     <div class="row">
-        <?php if ( $projectSlideshow && $sub || $projectSlideshow && $musser ) : ?>
+        <?php if ( have_rows('project_gallery') ) : ?>
         <div class="col-md-6 project-content">
         <?php else :  ?>
             <div class="col-md-12 project-content">
@@ -70,7 +70,7 @@ get_header(); ?>
                         <?php endif; ?>
                     </div>
     				<div class="row project-cta d-flex align-items-center">
-                        <div class="col-md-12 project-cta-content">
+                        <div class="col-md-8 project-cta-content">
                             <?php echo $projectCTAcontent; ?>
                         </div>
                         <div class="col-md-4 project-cta-btn">
