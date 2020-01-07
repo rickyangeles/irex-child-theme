@@ -25,9 +25,8 @@ get_header(); ?>
 <div class="container-fluid map-wrapper">
     <?php if ( $mapQuery->have_posts() ) : ?>
         <div class="acf-map location-container" style="overflow: hidden; position: relative;">
-            <?php while ( $mapQuery->have_posts() ) : ?>
+            <?php while ($mapQuery->have_posts() ) : $mapQuery->the_post(); ?>
                 <?php
-                    $mapQuery->the_post();
                     $lat            = get_field('latitude');
                     $long           = get_field('longitude');
                     $branchName     = get_field('branch_name');
@@ -131,7 +130,7 @@ get_header(); ?>
 
 
                     ?>
-                    <li class="col-md-3" data-sub="<?php the_title(); ?>" data-state="<?php echo $state; ?>">
+                    <li class="col-md-3">
 
                     <ul class="single-location">
                         <li class="d-flex align-items-end">
