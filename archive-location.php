@@ -41,28 +41,21 @@ get_header(); ?>
                     $fax            = get_field('fax');
                     $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
 
-                    foreach ($meta as $k => $v) {
-                        foreach ($v as $kk => $vv) {
-                            if ($kk == 'external') {
-                                reset($vv);
-                                $t = key($vv);
-                            }
-                        }
-                    }
+                    // foreach ($meta as $k => $v) {
+                    //     foreach ($v as $kk => $vv) {
+                    //         if ($kk == 'external') {
+                    //             reset($vv);
+                    //             $t = key($vv);
+                    //         }
+                    //     }
+                    // }
                     $url = get_post_meta($t, 'dt_external_connection_url', true);
-                    $logo = $url . "/acf/v3/options/options/header_logo";
+                    //$logo = $url . "/acf/v3/options/options/header_logo";
                 ?>
 
                 <div class="marker" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $long; ?>">
                     <div class="inside-marker">
                         <ul class="single-location">
-                            <li>
-                                <?php if ( $logo ) : ?>
-                                    <img class="location-logo" src="<?php echo get_logo_rest($logo); ?>"/>
-                                <?php else : ?>
-                                    <img src="https://via.placeholder.com/195x53" alt="">
-                                <?php endif ?>
-                            </li>
                             <?php if ( $branchName ) : ?>
                                 <li><?php echo $branchName; ?></li>
                             <?php endif; ?>
@@ -91,8 +84,8 @@ get_header(); ?>
                     </div>
                 </div>
             <?php endwhile; ?>
-        <?php endif; ?>
         </div>
+    <?php endif; ?>
 </div>
 
 <div class="container breadcrumb">
@@ -100,11 +93,6 @@ get_header(); ?>
         <div class="col-md-12">
             <?php bcn_display(); ?>
         </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <?php get_service_taxonomy(); ?>
     </div>
 </div>
 <div class="container map-content">
@@ -131,27 +119,24 @@ get_header(); ?>
                         $show           = get_field('hide_in_location_page');
                         $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
 
-                        foreach ($meta as $k => $v) {
-                            foreach ($v as $kk => $vv) {
-                                if ($kk == 'external') {
-                                    reset($vv);
-                                    $t = key($vv);
-                                }
-                            }
-                        }
+                        $meta_s = reset($meta);
+                        $meta_t = reset($meta_s);
+                        $meta_f = reset($meta_t);
+                        $dist_post_id = key($meta_t);
+                        $logo = get_field('sub_logo', $dist_post_id);
 
                         $url = get_post_meta($t, 'dt_external_connection_url', true);
-                        $services = $url . "/wp/v2/service?per_page=100";
-                        $logo = $url . "/acf/v3/options/options/header_logo";
-                        $subName = get_the_title($t);
+                        //$services = $url . "/wp/v2/service?per_page=100";
+                        //$logo = $url . "/acf/v3/options/options/header_logo";
+
 
                     ?>
-                    <li class="col-md-3" data-sub="<?php echo $subName; ?>" data-state="<?php echo $state; ?>">
+                    <li class="col-md-3" data-sub="<?php the_title(); ?>" data-state="<?php echo $state; ?>">
 
                     <ul class="single-location">
-                        <li>
+                        <li class="d-flex align-items-end">
                             <?php if ( $logo ) : ?>
-                                <img class="location-logo" src="<?php echo get_logo_rest($logo); ?>"/>
+                                <img class="location-logo" src="<?php echo $logo; ?>"/>
                             <?php else : ?>
                                 <img src="https://via.placeholder.com/195x53" alt="">
                             <?php endif ?>

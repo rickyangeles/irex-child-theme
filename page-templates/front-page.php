@@ -183,7 +183,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                           <div class="row">
                               <div class="col-md-6">
                                   <h2><?php echo $title; ?></h2>
-                                  website: www.<?php echo $cleanUrl; ?>
+                                  website: <?php echo $cleanUrl; ?>
                                   <?php echo get_about_rest($about); ?>
                                   <a href="<?php echo $siteURL; ?>" class="btn btn-primary">Visit Site</a>
                               </div>
