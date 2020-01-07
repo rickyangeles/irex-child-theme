@@ -323,7 +323,7 @@
         },
         {
             "key": "field_527a740ac0c2f",
-            "label": "Show Location Publicly",
+            "label": "Show on Subsidiary Contact Page",
             "name": "show_on_subsidiary_contact_page",
             "type": "radio",
             "instructions": "",
@@ -335,15 +335,15 @@
                 "id": ""
             },
             "choices": {
-                "yes": "Yes",
-                "no": "No"
+                "Yes": "Yes",
+                "No": "No"
             },
-            "allow_null": 0,
             "other_choice": 0,
+            "save_other_choice": 0,
             "default_value": "Yes",
             "layout": "vertical",
-            "return_format": "value",
-            "save_other_choice": 0
+            "allow_null": 0,
+            "return_format": "value"
         },
         {
             "key": "field_528e1d4d8f94f",
@@ -409,6 +409,25 @@
             "return_format": "object",
             "multiple": 0,
             "allow_null": 0
+        },
+        {
+            "key": "field_5e149c282cf07",
+            "label": "Subsidiary Name",
+            "name": "subsidiary_name",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -431,5 +450,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1577389199
+    "modified": 1578409035
 }

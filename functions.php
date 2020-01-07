@@ -239,6 +239,7 @@ function get_archive_services() {
 	}
 
 	return $serviceList;
+	wp_reset_postdata();
 }
 // define the action for register yoast_variable replacments
 function register_service_archive_yoast_variables() {
@@ -297,6 +298,7 @@ function get_services() {
 		}
 	}
 	return $description;
+	wp_reset_postdata();
 
 }
 // define the action for register yoast_variable replacments
@@ -346,6 +348,7 @@ function get_service_industry() {
 	}
 
 	return $description;
+	wp_reset_postdata();
 
 }
 // define the action for register yoast_variable replacments
@@ -381,6 +384,7 @@ function get_archive_industry() {
 	}
 
 	return $description;
+	wp_reset_postdata();
 
 }
 // define the action for register yoast_variable replacments
@@ -452,6 +456,7 @@ function get_single_industry() {
 	}
 
 	return $description;
+	wp_reset_postdata();
 
 }
 // define the action for register yoast_variable replacments
@@ -487,6 +492,7 @@ add_filter('acf/format_value/type=textarea', 'do_shortcode');
 add_filter('acf/format_value/type=text', 'do_shortcode');
 add_filter( 'the_excerpt', 'shortcode_unautop');
 add_filter( 'the_excerpt', 'do_shortcode');
+
 
 
 // add_action( 'pre_get_posts',  'change_number_posts_partners'  );
@@ -546,3 +552,10 @@ function my_change_sort_order($query){
        $query->set( 'orderby', 'date' );
     endif;
 };
+
+
+function my_acf_load_value( $value, $post_id, $field ) {
+    $value = get_the_title();
+    return $value;
+}
+add_filter('acf/load_value/name=subsidiary_name', 'my_acf_load_value', 10, 3);

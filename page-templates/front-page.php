@@ -21,7 +21,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <?php
 
     //Fields
-    $bannerImg = wp_get_attachment_url( get_field('banner_image') );
+    $bannerImg = get_field('banner_image');
     $srcset = wp_get_attachment_image_srcset( get_field('banner_image') );
     $bannerContent = get_field('banner_content');
     $bannerPrimary = get_field('banner_primary_button');
@@ -63,7 +63,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <div class="wrapper home-page-wrapper" id="full-width-page-wrapper">
 
     <!-- Banner -->
-    <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg; ?>');">
+    <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg['url']; ?>');">
         <div class="banner-content">
             <?php echo $bannerContent; ?>
             <ul class="banner-buttons">
@@ -172,12 +172,19 @@ $container = get_theme_mod( 'understrap_container_type' );
                         $title = get_the_title(get_the_ID());
                         $services = $url . "/wp/v2/service/";
                         $locations = $url . "/wp/v2/location/";
-                        $logo = $url . "/acf/v3/options/options/header_logo";
+                        //$logo = $url . "/acf/v3/options/options/header_logo";
 						$about = $url . "/acf/v3/options/options/about_text";
+
+                        $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
+                        $meta_s = reset($meta);
+                        $meta_t = reset($meta_s);
+                        $meta_f = reset($meta_t);
+                        $dist_post_id = key($meta_t);
+                        $logo = get_field('sub_logo', $dist_post_id);
                     ?>
                     <div class="menu-item col-md-3 single-sub d-flex align-items-center">
                       <a href="#">
-                        <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo get_logo_rest($logo); ?>"/>
+                        <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo $logo; ?>"/>
                       </a>
                       <div class="folding-content single-sub-info container-fluid">
                           <div class="row">
