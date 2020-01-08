@@ -54,6 +54,56 @@ get_header(); ?>
     <div class="row">
         <div class="col-md-12">
             <?php bcn_display(); ?>
+            <?php
+                $meta = get_post_meta(get_the_ID(), 'dt_connection_map', true);
+//                print_r($meta);
+
+                $meta   = get_post_meta($post->ID, 'dt_connection_map', false);
+                $meta_s = reset($meta);
+                $meta_t = reset($meta_s);
+                $meta_f = reset($meta_t);
+                $ext = array_keys($meta_t);
+                global $wp_query;
+                $main_ID = $wp_query->post->ID;
+                foreach ($ext as $key) {
+                    // code...
+                    $title = get_the_title($key);
+                    //echo get_the_title($key) . '<br>';
+
+                    $args = array('post_type' => 'location', 's' => $title, 'posts_per_page' => -1);
+                    $the_query = new WP_Query( $args );
+
+                    if ( $the_query->have_posts() ) {
+                        while ( $the_query->have_posts() ) {
+                            $the_query->the_post();
+                            //whatever you want to do with each post
+                            $location_id = get_the_ID();
+                            $service_title = get_the_title($main_ID);
+                            //echo $service_title . ' -> ' . $location_id;
+                            $field_key = "field_5da9ce7f6e4aa";
+
+                            $service_list = array();
+
+                            array_push($service_list, $service_title);
+
+                            //update_field( $field_key, $service_title, $location_id);
+                        }
+
+                        var_dump($service_list);
+                    } else {
+                         // no posts found
+                    }
+
+                }
+
+
+                //print_r($meta_t);
+                //print_r(array_keys($meta_t));
+                //$dist_post_id = key($meta_t);
+                //$logo = get_title($dist_post_id);
+
+            ?>
+            <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
         </div>
     </div>
 </div>

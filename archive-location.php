@@ -39,6 +39,11 @@ get_header(); ?>
                     $tollFree       = get_field('toll_free_number');
                     $fax            = get_field('fax');
                     $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
+                    $meta_s = reset($meta);
+                    $meta_t = reset($meta_s);
+                    $meta_f = reset($meta_t);
+                    $dist_post_id = key($meta_t);
+                    $logo = get_field('sub_logo', $dist_post_id);
 
                     // foreach ($meta as $k => $v) {
                     //     foreach ($v as $kk => $vv) {
@@ -55,6 +60,13 @@ get_header(); ?>
                 <div class="marker" data-lat="<?php echo $lat; ?>" data-lng="<?php echo $long; ?>">
                     <div class="inside-marker">
                         <ul class="single-location">
+                            <li class="d-flex align-items-end">
+                                <?php if ( $logo ) : ?>
+                                    <img class="location-logo" src="<?php echo $logo; ?>"/>
+                                <?php else : ?>
+                                    <img src="https://via.placeholder.com/195x53" alt="">
+                                <?php endif ?>
+                            </li>
                             <?php if ( $branchName ) : ?>
                                 <li><?php echo $branchName; ?></li>
                             <?php endif; ?>

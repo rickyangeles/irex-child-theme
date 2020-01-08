@@ -167,6 +167,8 @@ function display_custom_post_type(){
     $args = array(
         'post_type' => 'literature-downloads',
         'post_status' => 'publish',
+		'orderby' => 'title',
+		'order' => 'ASC',
 		'posts_per_page' => -1,
 		'meta_query' => array(
 		    array(
