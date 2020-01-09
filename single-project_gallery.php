@@ -136,7 +136,7 @@ get_header(); ?>
           'orderby' => 'rand',
           'post__not_in'=>array($post->ID)
        ) );
-       $p_count = count($project_query);
+       $p_count = $project_query->found_posts;
 
 ?>
 

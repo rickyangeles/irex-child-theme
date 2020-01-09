@@ -144,7 +144,7 @@ get_header(); ?>
 			),
 		)
     ) )
-     $p_count = count($project_query);
+     $p_count = $project_query->found_posts;
 ?>
 
 <?php if ( $project_query->have_posts() ) : ?>

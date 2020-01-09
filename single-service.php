@@ -154,7 +154,6 @@ get_header(); ?>
                         <?php endif; ?>
                     </div>
                 </div>
-
             <?php endif; ?>
             <!-- If we need pagination -->
         </div>
@@ -261,7 +260,7 @@ get_header(); ?>
           'orderby' => 'rand',
           'post_not_in'=>array($post->ID)
        ) );
-       $p_count = count($project_query);
+       $p_count = $project_query->found_posts;
 
     ?>
     <?php if ( $project_query->have_posts() ) : ?>
