@@ -43,8 +43,10 @@ get_header(); ?>
             <?php
                 $services = array(
                     'post_type' => 'service',
-                    'orderby'  => 'title',
-                    'order'    => 'ASC',
+                    'orderby' => array(
+                    'menu_order' => 'ASC',
+                       'title'      => 'ASC'
+                   ),
                     'posts_per_page' => -1,
                     'post_parent' => 0
                 );
