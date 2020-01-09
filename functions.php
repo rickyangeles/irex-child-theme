@@ -561,3 +561,14 @@ function my_acf_load_value( $value, $post_id, $field ) {
     return $value;
 }
 add_filter('acf/load_value/name=subsidiary_name', 'my_acf_load_value', 10, 3);
+
+
+function excerpt_sentence( $excerpt ) {
+
+  if ( ( $pos = mb_strrpos( $excerpt, '.' ) ) !== false ) {
+    $excerpt = substr( $excerpt, 0, $pos + 1 );
+  }
+
+  return $excerpt;
+}
+add_filter( 'the_excerpt', 'excerpt_sentence' );

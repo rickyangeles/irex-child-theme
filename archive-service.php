@@ -86,7 +86,7 @@ get_header(); ?>
                                   <?php else : ?>
                                       <div class="col-md-12">
                                   <?php endif; ?>
-                                        <p><?php echo  excerpt(20, $pID); ?></p>
+                                        <p><?php echo service_excerpt($pID); ?></p>
 
                                       <!-- Counting the numbers of connections -->
 
@@ -106,7 +106,8 @@ get_header(); ?>
                                           'post_type' => 'service',
                                           'post_parent' => $pID,
                                           'posts_per_page' => -1,
-                                          'orderby' => 'title'
+                                          'orderby' => 'title',
+                                          'order'   => "ASC"
                                       ));
                                    ?>
                                   <?php if( $subpages->have_posts() ) : ?>

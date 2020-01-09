@@ -122,6 +122,15 @@ function excerpt($limit, $id) {
   return $excerpt;
 }
 
+
+
+function service_excerpt($id) {
+	$content = get_the_excerpt($id);
+	$pos = strpos($content, '.');
+    return substr($content, 0, $pos+1);
+}
+
+
 function project_excerpt($limit, $id) {
   $excerpt = explode(' ', get_field('project_details', $id), $limit);
   if (count($excerpt)>=$limit) {

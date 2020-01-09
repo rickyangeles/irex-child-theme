@@ -114,7 +114,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 		.service-accordion .card-body .btn-primary, .home-featured-projects a.btn-primary {
 			background-color:<?php echo $secondary_color; ?>!important;
 		}
-		.hc-left a.btn-primary, .service-accordion .card-body .btn-primary {
+		.hc-left a.btn-primary, .service-accordion .card-body .btn-primary, .home-featured-projects a.btn-primary {
 			border-color: <?php echo $secondary_color; ?>
 		}
 		.footer .footer-contact-info strong, .page-template-sub-front-page .home-cta h5, .home-featured-projects .sfp-left p {
