@@ -110,13 +110,14 @@ $container = get_theme_mod( 'understrap_container_type' );
 				color: white!important;
 			}
 		}
-		.home-career .hc-right .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active, .hc-left a.btn-primary, .service-accordion .card-body .btn-primary {
+		.home-career .hc-right .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active, .hc-left a.btn-primary,
+		.service-accordion .card-body .btn-primary, .home-featured-projects a.btn-primary {
 			background-color:<?php echo $secondary_color; ?>!important;
 		}
 		.hc-left a.btn-primary, .service-accordion .card-body .btn-primary {
 			border-color: <?php echo $secondary_color; ?>
 		}
-		.footer .footer-contact-info strong, .page-template-sub-front-page .home-cta h5 {
+		.footer .footer-contact-info strong, .page-template-sub-front-page .home-cta h5, .home-featured-projects .sfp-left p {
 			color: <?php echo $secondary_color; ?>;
 		}
 		.btn-secondary, .footer-menu li:last-child a {
