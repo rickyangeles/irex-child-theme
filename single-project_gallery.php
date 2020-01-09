@@ -42,7 +42,21 @@ get_header(); ?>
         <?php endif; ?>
             <?php echo $projectDetails; ?>
         </div>
-        <?php if ( !$sub && !$musser ) : ?>
+        <?php if ( $sub && !$musser ) : ?>
+            <div class="col-md-6 slideshow">
+                <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
+                    <?php get_project_gallery($pID); ?>
+                </div>
+                <div class="row project-cta d-flex align-items-center">
+                    <div class="col-md-8 project-cta-content">
+                        <?php echo $projectCTAcontent; ?>
+                    </div>
+                    <div class="col-md-4 project-cta-btn">
+                        <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
+                    </div>
+                </div>
+            </div>
+        <?php else : ?>
             <?php if ( $projectSlideshow ) : ?>
                 <?php $count = count($projectSlideshow); ?>
                 <div class="col-md-6 slideshow">
@@ -90,20 +104,7 @@ get_header(); ?>
                     </div>
                 </div>
             <?php endif; ?>
-        <?php else : ?>
-            <div class="col-md-6 slideshow">
-                <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
-                    <?php get_project_gallery($pID); ?>
-                </div>
-                <div class="row project-cta d-flex align-items-center">
-                    <div class="col-md-8 project-cta-content">
-                        <?php echo $projectCTAcontent; ?>
-                    </div>
-                    <div class="col-md-4 project-cta-btn">
-                        <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
-                    </div>
-                </div>
-            </div>
+
         <?php endif; ?>
 
     </div>
