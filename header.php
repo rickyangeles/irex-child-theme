@@ -30,11 +30,14 @@ $container = get_theme_mod( 'understrap_container_type' );
 		ob_start();
 
 		$primary_color = get_theme_mod( 'primary_color', '' );
-		$secondary_color = get_theme_mod( 'secondary_color', '' );
-		$dark_color = get_theme_mod( 'secondary_color', '' );
+		$primary_light = adjustBrightness($primary_color, 115);
+		$primary_lighter = adjustBrightness($primary_color, 140);
+		$primary_lightest = adjustBrightness($primary_color, 165);
 		$primary_dark = adjustBrightness($primary_color, -50);
-		$primary_light = adjustBrightness($primary_color, 150);
+		$secondary_color = get_theme_mod( 'secondary_color', '' );
 		$secondary_dark = adjustBrightness($secondary_color, -50);
+		$dark_color = get_theme_mod( 'secondary_color', '' );
+
 
 		if ( ! empty( $primary_color ) ) {
 		?>
@@ -72,11 +75,11 @@ $container = get_theme_mod( 'understrap_container_type' );
 		.short-header.solid-header, .home-banner, form .gform_button {
 			background-color:  <?php echo $primary_color; ?>!important;
 		}
-		.slide-caption, .location-filter .searchandfilter select, input[type=text], .card:nth-child(odd) .card-header, .card .card-body, textarea {
+		.slide-caption, .location-filter .searchandfilter select, input[type=text], .card:nth-child(odd) .card-header, textarea {
 			background-color: <?php echo $primary_light; ?>!important;
 		}
 		.card:nth-child(even) .card-header {
-			background-color: <?php echo $primary_color; ?>!important;
+			background-color: <?php echo $primary_lightest; ?>!important;
 		}
 		.page-header:after, .short-header:after, .tall-header:after, .home-banner:after {
 			background: <?php echo $primary_color; ?>;
@@ -107,10 +110,10 @@ $container = get_theme_mod( 'understrap_container_type' );
 				color: white!important;
 			}
 		}
-		.home-career .hc-right .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active, .hc-left a.btn-primary {
+		.home-career .hc-right .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active, .hc-left a.btn-primary, .service-accordion .card-body .btn-primary {
 			background-color:<?php echo $secondary_color; ?>!important;
 		}
-		.hc-left a.btn-primary {
+		.hc-left a.btn-primary, .service-accordion .card-body .btn-primary {
 			border-color: <?php echo $secondary_color; ?>
 		}
 		.footer .footer-contact-info strong, .page-template-sub-front-page .home-cta h5 {
