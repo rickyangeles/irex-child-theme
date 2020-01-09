@@ -136,13 +136,18 @@ get_header(); ?>
           'orderby' => 'rand',
           'post__not_in'=>array($post->ID)
        ) );
+       $p_count = count($project_query);
 
 ?>
 
 <?php if ( $project_query->have_posts() ) : ?>
     <div class="container home-featured-projects">
         <div class="row">
-            <h2 class="title">Related Projects</h2>
+            <?php if ( $p_count > 1 ) : ?>
+                <h2 class="title">Related Projects</h2>
+            <?php else : ?>
+                <h2 class="title">Related Project</h2>
+            <?php endif; ?>
         </div>
         <div class="row">
             <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>

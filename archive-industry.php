@@ -54,7 +54,7 @@ get_header(); ?>
                         ?>
 
                         <?php if ($total_connections > 1) :?>
-                            <li><?php echo total_connections($post->ID); ?> Subsidiaries</li>
+                            <li><?php echo total_connections($post->ID); ?> Companies</li>
                         <?php endif; ?>
                     </ul>
                 </div>

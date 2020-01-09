@@ -40,6 +40,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     $testimonialTitle = get_field('testimonial_title');
     $projectTitle = get_field('project_title');
     $featuredProjects = get_field('select_projects_to_feature');
+    $p_count = count($featuredProjects);
     $projectButton = get_field('project_button');
     $careerTitle = get_field('career_title');
     $careerContent = get_field('career_content');
@@ -338,7 +339,11 @@ $container = get_theme_mod( 'understrap_container_type' );
     <?php if( $featuredProjects ): ?>
         <div class="container home-featured-projects">
             <div class="row">
-                <h2 class="title">Featured Projects</h2>
+                <?php if ( $p_count > 1 ) : ?>
+                    <h2 class="title">Featured Projects</h2>
+                <?php else : ?>
+                    <h2 class="title">Featured Project</h2>
+                <?php endif; ?>
             </div>
             <?php if( $featuredProjects ): ?>
             <div class="row d-flex justify-content-center">

@@ -60,7 +60,7 @@ $musser = get_field('musser_park', 'options');
         <?php else :  ?>
         <div class="row global-partnerships">
             <div class="col-md-6">
-                <h3><?php bloginfo('name'); ?> is a subsidiary of</h3>
+                <h3><?php bloginfo('name'); ?> is a company of</h3>
                 <div class="col-md-12 single-partner">
                         <a href="https://irexcontracting.kinsta.cloud">
                             <img src="https://irexcontracting.kinsta.cloud/wp-content/uploads/2019/08/irex_logo.png" alt="">
@@ -68,7 +68,25 @@ $musser = get_field('musser_park', 'options');
                 </div>
             </div>
             <div class="col-md-6">
-                <?php while ( have_posts() ) : the_post();
+                <?php
+                    $args = array(
+                        'post_type' => 'partner',
+                        'posts_per_page' => -1,
+                        'meta_query' => array(
+                            array(
+                                'key' => 'global_partnership',
+                                'value' => '1',
+                                'compare' => '==' // not really needed, this is the default
+                            )
+                        )
+                    );
+
+                    $global_partners = new WP_Query($args);
+                ?>
+                <?php if ( $global_partners->have_posts() ) : ?>
+                    <h3>IREX is a member of:</h3>
+                    <div class="row d-flex align-items-center justify-content-center">
+                <?php while ( $global_partners->have_posts() ) : $global_partners->the_post();
                     $id = get_the_ID();
             		// vars
             		$logo = get_the_post_thumbnail();
@@ -77,15 +95,14 @@ $musser = get_field('musser_park', 'options');
             		$link = get_field('parter_link', $id);
                     $global = get_field('global_partnership');
             	?>
-                <?php if ($global) : ?>
-                    <h3>IREX is a member of:</h3>
-                    <div class="col-md-12 single-partner">
+                    <div class="col-md-6 single-partner">
                         <a href="<?php echo $link; ?>">
                             <?php echo $logo; ?>
                         </a>
                     </div>
-                <?php endif; ?>
             	<?php endwhile; ?>
+                </div>
+            <?php endif; ?>
                 <?php wp_reset_query(); ?>
             </div>
         </div>

@@ -59,7 +59,7 @@ function theme_get_customizer_css() {
 		}
 
 		.single-sub-info, .home-featured-projects .single-featured-project:hover .sfp-left, .related-projects .single-featured-project:hover .sfp-left,
-		.location-filter .searchandfilter select, input[type=text], form input, form textarea, .hc-left a.btn-primary {
+		.location-filter .searchandfilter select, input[type=text], form input, form textarea {
 			border-color: <?php echo $primary_color; ?>!important;
 		}
 
@@ -118,7 +118,7 @@ function theme_get_customizer_css() {
 			}
 		}
 
-		.home-career .hc-right .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active {
+		.home-career .hc-right .swiper-container span.swiper-pagination-bullet.swiper-pagination-bullet-active, .hc-left a.btn-primary {
 			background-color:<?php echo $secondary_color; ?>!important;
 		}
 

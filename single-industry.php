@@ -143,13 +143,18 @@ get_header(); ?>
 				'terms' => $post_slug,
 			),
 		)
-    ) );
+    ) )
+     $p_count = count($project_query);
 ?>
 
 <?php if ( $project_query->have_posts() ) : ?>
     <div class="container home-featured-projects">
         <div class="row">
-            <h2 class="title">Featured Projects</h2>
+            <?php if ( $p_count > 1 ) : ?>
+                <h2 class="title">Featured Projects</h2>
+            <?php else : ?>
+                <h2 class="title">Featured Project</h2>
+            <?php endif; ?>
         </div>
         <div class="row d-flex justify-content-center">
             <?php while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
@@ -175,9 +180,12 @@ get_header(); ?>
                     </div>
 			<?php endif; ?>
             <?php endwhile; ?>
-            <div class="fp-btn text-center">
-                <a href="/project-gallery" class="view-all btn btn-primary">View All Projects</a>
-            </div>
+            <?php if ( $p_count > 1 ) : ?>
+                <div class="fp-btn text-center">
+                    <a href="/project-gallery" class="view-all btn btn-primary">View All Projects</a>
+                </div>
+            <?php else : ?>
+            <?php endif; ?>
         </div>
     <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
         </div>
@@ -234,7 +242,7 @@ get_header(); ?>
                           <div class="row">
                               <div class="col-md-6">
                                   <h2><?php echo $title; ?></h2>
-                                  website: www.<?php echo $cleanUrl; ?>
+                                  website: <?php echo $cleanUrl; ?>
                                    <?php echo get_about_rest($about); ?>
                                   <a href="<?php echo $siteURL; ?>" class="btn btn-primary">Visit Site</a>
                               </div>
