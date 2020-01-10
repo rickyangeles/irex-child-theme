@@ -173,7 +173,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                         $services = $url . "/wp/v2/service/";
                         $locations = $url . "/wp/v2/location/";
                         //$logo = $url . "/acf/v3/options/options/header_logo";
-						$about = $url . "/acf/v3/options/options/about_text";
+						$about = $url . "/acf/v3/options/options/site_description";
 
                         $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
                         $meta_s = reset($meta);
