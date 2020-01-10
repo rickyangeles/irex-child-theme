@@ -239,18 +239,3 @@ add_filter( 'the_excerpt', 'excerpt_sentence' );
 //
 // }
 // add_action('acf/save_post','convert_gallery_acf');
-
-
-
-//Push site tagline to acf field
-add_action('init', 'get_site_tagline');
-function get_site_tagline() {
-
-	global $pagenow;
-
-	if ( $pagenow === 'options-general.php') {
-		$tagline = get_bloginfo('description');
-		$field = 'site_description';
-		update_field($field, $tagline, 'option');
-	}
-}
