@@ -25,25 +25,6 @@
             "max_height": "",
             "max_size": "",
             "mime_types": ""
-        },
-        {
-            "key": "field_5e18b4e7d73bc",
-            "label": "Site Description",
-            "name": "site_description",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
         }
     ],
     "location": [
@@ -63,5 +44,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1578677498
+    "modified": 1578687008
 }
