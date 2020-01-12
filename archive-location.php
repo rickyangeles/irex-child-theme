@@ -142,7 +142,7 @@ get_header(); ?>
 
 
                     ?>
-                    <li class="col-md-3">
+                    <li class="col-md-4">
 
                     <ul class="single-location">
                         <li class="d-flex align-items-end">
