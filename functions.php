@@ -193,16 +193,45 @@ function excerpt_sentence( $excerpt ) {
 }
 add_filter( 'the_excerpt', 'excerpt_sentence' );
 
-
-// add_action( 'pre_get_posts',  'change_number_posts_partners'  );
-// function change_number_posts_partners( $query ) {
+// function set_location_service() {
 //
-// 	if ( is_post_type_archive('partner') ) {
-//     	$query->set( 'posts_per_page', -1 );
-// 		return $query;
+// 	if ( is_singular('location') {
+// 		$location_title = get_the_title();
+//
+// 		$args = array('post_type' => 'location', 's' => $location_title, 'posts_per_page' => -1);
+// 		    $the_query = new WP_Query( $args );
+//
+// 		    if ( $the_query->have_posts() ) {
+// 		        while ( $the_query->have_posts() ) {
+// 		            $the_query->the_post();
+// 		            //whatever you want to do with each post
+// 		            $location_id = get_the_ID();
+// 		            $service_title = get_the_title($main_ID);
+// 		            //echo $service_title . ' -> ' . $location_id;
+// 		            $field_key = "field_5da9ce7f6e4aa";
+//
+// 		            $service_list = array();
+//
+// 		            array_push($service_list, $service_title);
+//
+// 		            //update_field( $field_key, $service_title, $location_id);
+// 		        }
+//
+// 		        var_dump($service_list);
+// 		    } else {
+// 		         // no posts found
+// 		    }
+//
+// 		}
+//
+//
+// 		print_r($meta_t);
+// 		print_r(array_keys($meta_t));
+// 		$dist_post_id = key($meta_t);
+// 		$logo = get_title($dist_post_id);
+//
 // 	}
 // }
-
 
 
 // function remove_seo_meta_data_services() {
@@ -216,26 +245,3 @@ add_filter( 'the_excerpt', 'excerpt_sentence' );
 // 	}
 // }
 // add_action('init', 'remove_seo_meta_data_services');
-
-//
-//
-// //Turn ACF Gallery into a repeater field
-// function convert_gallery_acf() {
-// 	$posts = get_post($post->ID);
-//     foreach ( $posts as $post ) {
-// 		$field_key = "field_5ddd47ea444e7"; //New Gallery Field
-// 		$value = get_field($field_key, $post->ID);
-// 		$serviceSlideshow = get_field('service_gallery', $post->ID);//Old Gallery Field
-//         // Run a loop and update every meta data
-// 		if ($serviceSlideshow ) {
-// 			foreach ($serviceSlideshow as $image) {
-// 				if( $image ) {
-// 					$value[] = array("image" => $image['url'], "caption" => $image['caption']);
-// 				}
-// 			}
-// 			update_field( $field_key, $value, $post->ID);
-// 		}
-//     }
-//
-// }
-// add_action('acf/save_post','convert_gallery_acf');
