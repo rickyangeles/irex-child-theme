@@ -23,9 +23,10 @@ $container = get_theme_mod( 'understrap_container_type' );
     //Fields
     $bannerImg = get_field('banner_image');
     $srcset = wp_get_attachment_image_srcset( get_field('banner_image') );
-    $bannerContent = get_field('banner_content');
+    //$bannerContent = get_field('banner_content');
     $bannerPrimary = get_field('banner_primary_button');
     $bannerSecondary = get_field('banner_secondary_button');
+    $sliderCount = count(get_field('slider'));
     $introLeft = get_field('intro_content');
     $introRight = get_field('intro_video');
     $introBG = get_field('intro_bg');
@@ -63,7 +64,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <div class="wrapper home-page-wrapper" id="full-width-page-wrapper">
 
     <!-- Banner -->
-    <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg['url']; ?>');">
+    <!-- <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg['url']; ?>');">
         <div class="banner-content">
             <?php echo $bannerContent; ?>
             <ul class="banner-buttons">
@@ -73,6 +74,39 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <?php endif; ?>
             </ul>
         </div>
+    </div> -->
+    <div class="container-fluid banner home-slider px-0">
+        <div class="swiper-container slider-container">
+            <div class="swiper-wrapper">
+            <?php while( have_rows('slider') ): the_row();
+                // vars
+                $image = get_sub_field('slider_image');
+                $content = get_sub_field('slider_content');
+                $imagePosition = get_sub_field('slide_image_cover_postion');
+                $url = $image['url'];
+            ?>
+
+                <div class="swiper-slide" style="background-image:url('<?php echo $url; ?>');">
+                    <div class="slide-content">
+                        <div class="banner-content">
+                            <p><?php echo $content; ?><?php echo get_sub_field('image_position');?></p>
+                            <ul class="banner-buttons">
+                                <li><a href="<?php echo $bannerPrimary['url']; ?>" class="btn btn-primary"><?php echo $bannerPrimary['title']; ?></a></li>
+                            <?php if ($bannerSecondary) : ?>
+                                <li><a href="<?php echo $bannerSecondary['url']; ?>" class="btn btn-secondary"><?php echo $bannerSecondary['title']; ?></a></li>
+                            <?php endif; ?>
+                            </ul>
+                        </div>
+                    </div>
+                <!-- <img src="<?php echo $url; ?>" alt="<?php echo $image['alt'] ?>" style="object-fit: <?php echo get_sub_field('slide_image_position'); ?>; object-position: <?php echo get_sub_field('slide_image_cover_position'); ?>;" /> -->
+                </div>
+            <?php endwhile; ?>
+            </div>
+        </div>
+        <?php if ( $sliderCount > 1 ) :?>
+            <div class="swiper-button-next slide-button-next"></div>
+            <div class="swiper-button-prev slide-button-prev"></div>
+        <?php endif; ?>
     </div>
 
     <!-- Intro -->
@@ -288,6 +322,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                       // Optional parameters
                       direction: 'horizontal',
                       loop: true,
+                      watchOverflow: true,
 
                       // If we need pagination
                       pagination: {

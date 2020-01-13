@@ -66,7 +66,6 @@ jQuery(document).ready(function( $ ) {
         var sSlider = new Swiper('.slide-'+id, {
             // Optional parameters
             direction: 'horizontal',
-            loop: true,
             autoHeight: true,
 
             // If we need pagination
@@ -91,8 +90,9 @@ jQuery(document).ready(function( $ ) {
     var mySwiper = new Swiper ('.swiper-container', {
       // Optional parameters
       direction: 'horizontal',
-      loop: true,
-
+      loop: false,
+      simulateTouch: false,
+      watchOverflow: true,
       // If we need pagination
       pagination: {
         el: '.swiper-pagination',
@@ -108,7 +108,7 @@ jQuery(document).ready(function( $ ) {
       scrollbar: {
         el: '.swiper-scrollbar',
       },
-    })
+  });
 
     $('#accordion').collapse({
       toggle: false

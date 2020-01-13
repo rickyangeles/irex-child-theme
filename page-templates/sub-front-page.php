@@ -21,6 +21,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <?php
     //Fields
     $bannerImg = wp_get_attachment_url( get_field('banner_image') );
+    $bannerImgPos = get_field('iamge_position_sub');
     $srcset = wp_get_attachment_image_srcset( get_field('banner_image') );
     $bannerContent = get_field('banner_content');
     $bannerPrimary = get_field('banner_primary_button');
@@ -64,7 +65,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <div class="wrapper home-page-wrapper" id="full-width-page-wrapper">
 
     <!-- Banner -->
-    <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg; ?>');">
+    <div class="container-fluid banner home-banner px-0" style="background-image:url('<?php echo $bannerImg; ?>'); background-position-y:<?php echo $bannerImgPos; ?>">
         <div class="banner-content">
             <?php echo $bannerContent; ?>
             <ul class="banner-buttons">

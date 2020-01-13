@@ -55,7 +55,7 @@
 
     .home-major-points {
         .point {
-            margin-bottom: 0; 
+            margin-bottom: 0;
             text-align: center;
             .livicon-evo {
                 margin-top: 12%;
@@ -174,7 +174,7 @@
     }
 
     //Page header styles
-    .page-header {
+    .page-header, .tall-header {
         img {
             width: 100%;
             max-height: 120px;
@@ -186,6 +186,7 @@
             bottom: 10px;
         }
     }
+
 
     /* Single Service mobile Styles */
     .service-cta-wrap, .service-cta {
