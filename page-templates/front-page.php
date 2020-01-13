@@ -86,10 +86,10 @@ $container = get_theme_mod( 'understrap_container_type' );
                 $url = $image['url'];
             ?>
 
-                <div class="swiper-slide" style="background-image:url('<?php echo $url; ?>');">
+                <div class="swiper-slide" style="background-image:url('<?php echo $url; ?>'); background-position-y:<?php echo $bannerImgPos; ?>">
                     <div class="slide-content">
                         <div class="banner-content">
-                            <p><?php echo $content; ?><?php echo get_sub_field('image_position');?></p>
+                            <p><?php echo $content; ?></p>
                             <ul class="banner-buttons">
                                 <li><a href="<?php echo $bannerPrimary['url']; ?>" class="btn btn-primary"><?php echo $bannerPrimary['title']; ?></a></li>
                             <?php if ($bannerSecondary) : ?>
@@ -98,7 +98,6 @@ $container = get_theme_mod( 'understrap_container_type' );
                             </ul>
                         </div>
                     </div>
-                <!-- <img src="<?php echo $url; ?>" alt="<?php echo $image['alt'] ?>" style="object-fit: <?php echo get_sub_field('slide_image_position'); ?>; object-position: <?php echo get_sub_field('slide_image_cover_position'); ?>;" /> -->
                 </div>
             <?php endwhile; ?>
             </div>
