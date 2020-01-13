@@ -179,43 +179,6 @@ add_action( 'prefix_daily_event', 'get_service_taxonomy' );
  * On the scheduled action hook, run a function.
  */
 
-function get_service_taxonomy() {
- 	// query for your post type
- 	$args = array( 'post_type' => 'location', 'posts_per_page' => -1);
- 	$loop = new WP_Query( $args );
-
- 	while ( $loop->have_posts() ) : $loop->the_post();
- 		$id = get_the_ID();
- 		$meta = get_post_meta($id, 'dt_connection_map', false);
- 		$term = get_field('services', $id);
- 		$title = get_the_title();
-
- 		foreach ($meta as $k => $v) {
- 			foreach ($v as $kk => $vv) {
- 				if ($kk == 'external') {
- 					reset($vv);
- 					$t = key($vv);
- 				}
- 			}
- 		}
-
- 		$url = get_post_meta($t, 'dt_external_connection_url', true);
- 		$services = $url . "/wp/v2/service?&per_page=100";
-
- 		$serviceList = get_services_rest_name($services);
- 		$array = array_values($serviceList);
-		$services = array();
-
- 		foreach ( $array as $serviceName => $v) {
- 			//Create if it doesnt exsists
-			$services[] .= $v;
- 		}
-		$list = implode(', ', $services);
-		wp_set_post_terms($id, $list, 'service_tax');
-
- 	endwhile;
- }
-
  function get_service_gallery($pID) {
  	$o_post = get_post_meta($pID, 'dt_original_post_id', true);
  	$o_site = get_post_meta($pID, 'dt_original_site_url', true);

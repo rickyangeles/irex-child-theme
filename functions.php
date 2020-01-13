@@ -193,6 +193,48 @@ function excerpt_sentence( $excerpt ) {
 }
 add_filter( 'the_excerpt', 'excerpt_sentence' );
 
+
+//getting services assigned to Locations
+add_action( 'save_post_location', 'service_tax_location', 10, 3);
+
+function service_tax_location() {
+	// query for your post type
+ 	$args = array( 'post_type' => 'location', 'posts_per_page' => -1);
+ 	$loop = new WP_Query( $args );
+
+ 	while ( $loop->have_posts() ) : $loop->the_post();
+ 		$id = get_the_ID();
+ 		$meta = get_post_meta($id, 'dt_connection_map', false);
+ 		$term = get_field('services', $id);
+ 		$title = get_the_title();
+
+ 		foreach ($meta as $k => $v) {
+ 			foreach ($v as $kk => $vv) {
+ 				if ($kk == 'external') {
+ 					reset($vv);
+ 					$t = key($vv);
+ 				}
+ 			}
+ 		}
+
+ 		$url = get_post_meta($t, 'dt_external_connection_url', true);
+ 		$services = $url . "/wp/v2/service?&per_page=100";
+
+ 		$serviceList = get_services_rest_name($services);
+ 		$array = array_values($serviceList);
+		$services = array();
+
+ 		foreach ( $array as $serviceName => $v) {
+ 			//Create if it doesnt exsists
+			$services[] .= $v;
+ 		}
+		$list = implode(', ', $services);
+		wp_set_post_terms($id, $list, 'service_tax');
+
+ 	endwhile;
+}
+
+
 // function set_location_service() {
 //
 // 	if ( is_singular('location') {

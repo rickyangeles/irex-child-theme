@@ -307,7 +307,7 @@ get_header(); ?>
                     $meta_f = reset($meta_t);
                     $dist_post_id = key($meta_t);
                     $logo = get_field('sub_logo', $dist_post_id);
-                    $about = $url . "/acf/v3/options/options/about_text";
+                    $about = $url . "/acf/v3/options/options/site_description";
                     $total_connections = total_connections($pID);
                 ?>
                 <div class="menu-item col-md-3 single-sub d-flex align-items-center">
