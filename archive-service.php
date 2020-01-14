@@ -185,12 +185,17 @@ get_header(); ?>
                     $title = get_the_title(get_the_ID());
                     $services = $url . "/wp/v2/service?per_page=100";
                     $locations = $url . "/wp/v2/location/?per_page=100";
-                    $logo = $url . "/acf/v3/options/options/header_logo";
-                    $about = $url . "/acf/v3/options/options/about_text";
+                    $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
+                    $meta_s = reset($meta);
+                    $meta_t = reset($meta_s);
+                    $meta_f = reset($meta_t);
+                    $dist_post_id = key($meta_t);
+                    $logo = get_field('sub_logo', $dist_post_id);
+                    $about = $url . "/acf/v3/options/options/site_description";
                 ?>
                 <div class="menu-item col-md-3 single-sub">
                   <a href="#">
-                    <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo get_logo_rest($logo); ?>"/>
+                    <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo $logo; ?>"/>
                   </a>
                   <div class="folding-content single-sub-info container-fluid">
                       <div class="row">

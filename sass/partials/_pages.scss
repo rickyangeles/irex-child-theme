@@ -35,7 +35,7 @@
 .page-header, .tall-header, .short-header {
 
     .page-title {
-        z-index: 2;
+        z-index: -99;
         font-size: 60px;
     }
     &:after {
