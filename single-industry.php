@@ -142,8 +142,8 @@ get_header(); ?>
 				'field'    => 'slug',
 				'terms' => $post_slug,
 			),
-		)
-    ) )
+		),
+    ) );
      $p_count = $project_query->found_posts;
 ?>
 
@@ -231,12 +231,18 @@ get_header(); ?>
                         $title = get_the_title(get_the_ID());
                         $services = $url . "/wp/v2/service/";
                         $locations = $url . "/wp/v2/location/";
-                        $logo = $url . "/acf/v3/options/options/header_logo";
+                        //$logo = $url . "/acf/v3/options/options/header_logo";
+                        $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
+                        $meta_s = reset($meta);
+                        $meta_t = reset($meta_s);
+                        $meta_f = reset($meta_t);
+                        $dist_post_id = key($meta_t);
+                        $logo = get_field('sub_logo', $dist_post_id);
                         $about = $url . "/acf/v3/options/options/about_text";
                     ?>
                     <div class="menu-item col-md-3 single-sub d-flex align-items-center">
                       <a href="#">
-                        <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo get_logo_rest($logo); ?>"/>
+                        <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo $logo; ?>"/>
                       </a>
                       <div class="folding-content single-sub-info container-fluid">
                           <div class="row">
