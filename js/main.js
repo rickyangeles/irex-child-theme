@@ -90,7 +90,7 @@ jQuery(document).ready(function( $ ) {
     var mySwiper = new Swiper ('.swiper-container', {
       // Optional parameters
       direction: 'horizontal',
-      loop: false,
+      loop: true,
       simulateTouch: false,
       watchOverflow: true,
       // If we need pagination

@@ -48,6 +48,12 @@ $container = get_theme_mod( 'understrap_container_type' );
     $careerBG = get_field('career_background_image') ? 'style="background-image:url(' . get_field('career_background_image') . ');"' : '';
     $careerButton = get_field('career_button');
 
+    if ( $sliderCount > 1 ) {
+        $slideLoop = 'true';
+    } else {
+        $slideLoop = 'false';
+    }
+
     if ( $introBG ) {
         $introBG = 'style="background-image:url(' . get_field('intro_bg') . ')";';
     } else {
@@ -320,7 +326,9 @@ $container = get_theme_mod( 'understrap_container_type' );
                     var mySwiper = new Swiper ('.swiper-container', {
                       // Optional parameters
                       direction: 'horizontal',
-                      loop: true,
+                        loop: <?php echo $slideLoop; ?>,
+                      //autoplay: $('.swiper-slide').length > 1 ? true : false,
+
                       watchOverflow: true,
 
                       // If we need pagination
