@@ -88,7 +88,7 @@ get_header(); ?>
                                 <li>F: <?php echo $fax; ?></li>
                             <?php endif; ?>
                             <?php if ( $url ) : ?>
-                                <li><a href="<?php echo $urlclean; ?>">visit website ></a></li>
+                                <li><a href="<?php echo $urlclean; ?>">visit website</a></li>
                             <?php endif; ?>
                         </ul>
                     </div>
@@ -174,7 +174,7 @@ get_header(); ?>
                             <li>F: <?php echo $fax; ?></li>
                         <?php endif; ?>
                         <?php if ( $url ) : ?>
-                            <li><a href="<?php echo $urlclean; ?>">visit website ></a></li>
+                            <li><a href="<?php echo $urlclean; ?>">visit website</a></li>
                         <?php endif; ?>
                     </ul>
                 </li>
