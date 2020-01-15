@@ -183,8 +183,8 @@ get_header(); ?>
                     $cleanUrl = str_replace($remove,'', $url);
                     $siteURL = str_replace('/wp-json', '', $url);
                     $title = get_the_title(get_the_ID());
-                    $services = $url . "/wp/v2/service?per_page=100";
-                    $locations = $url . "/wp/v2/location/?per_page=100";
+                    $services = $url . "/wp/v2/service?per_page=70";
+                    $locations = $url . "/wp/v2/location/?per_page=40";
                     $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
                     $meta_s = reset($meta);
                     $meta_t = reset($meta_s);

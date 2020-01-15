@@ -204,22 +204,26 @@ $container = get_theme_mod( 'understrap_container_type' );
                         //     echo '<div class="home-contractor-row container"><div class="row">';
                         // endif; ?>
                 		<?php
-                        $remove = array("/wp-json", "http://");
-                        $url = get_post_meta(get_the_ID(), 'dt_external_connection_url', true);
-                        $cleanUrl = str_replace($remove,'', $url);
-                        $siteURL = str_replace('/wp-json', '', $url);
-                        $title = get_the_title(get_the_ID());
-                        $services = $url . "/wp/v2/service/";
-                        $locations = $url . "/wp/v2/location/";
-                        //$logo = $url . "/acf/v3/options/options/header_logo";
-						$about = $url . "/acf/v3/options/options/site_description";
+                        $remove         = array("/wp-json", "http://");
+                        $url            = get_post_meta(get_the_ID(), 'dt_external_connection_url', true);
+                        $cleanUrl       = str_replace($remove,'', $url);
+                        $siteURL        = str_replace('/wp-json', '', $url);
+                        $title          = get_the_title(get_the_ID());
+                        $ext_id         = get_the_ID();
+                        $services       = $url . "/wp/v2/service/";
+                        $locations      = $url . "/wp/v2/location/";
+                        //$logo         = $url . "/acf/v3/options/options/header_logo";
+                        $about          = $url . "/acf/v3/options/options/site_description";
+
 
                         $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
-                        $meta_s = reset($meta);
-                        $meta_t = reset($meta_s);
-                        $meta_f = reset($meta_t);
-                        $dist_post_id = key($meta_t);
-                        $logo = get_field('sub_logo', $dist_post_id);
+                        $ext            = get_post_meta($post->ID, 'dt_connection_map', true);
+                        $ext_id         = array_key_first($ext['external']);
+                        $meta_s         = reset($meta);
+                        $meta_t         = reset($meta_s);
+                        $meta_f         = reset($meta_t);
+                        $dist_post_id   = key($meta_t);
+                        $logo           = get_field('sub_logo', $dist_post_id);
                     ?>
                     <div class="menu-item col-md-3 single-sub d-flex align-items-center">
                       <a href="#">
@@ -235,11 +239,60 @@ $container = get_theme_mod( 'understrap_container_type' );
                               </div>
                               <div class="col-md-3">
                                   <h4>Services</h4>
-                                  <?php echo get_services_rest($services); ?>
+                                  <?php
+                                      $args = array(
+                                          'post_type' => 'service',
+                                          'orderby' => 'title',
+                                          'order' => 'ASC',
+                                          'posts_per_page' => -1,
+                                          'post_parent' => 0,
+                                          'meta_query' => array(
+                                              array(
+                                                  'key' => 'dt_connection_map',
+                                                  'value' => $post->ID ,
+                                                  'compare' => 'LIKE',
+                                              )
+                                          )
+                                      );
+                                      $service_query = new WP_Query($args);
+                                  ?>
+                                  <?php if ( $service_query->have_posts() ) :?>
+                                      <ul>
+                                          <?php while ($service_query->have_posts()) : ?>
+                                              <?php $service_query->the_post(); ?>
+
+                                              <li>
+                                                  <?php $link = str_replace(home_url(), '', get_permalink());  ?>
+                                                 <a href="<?php echo $siteURL . $link ?>"><?php echo get_the_title(); ?></a>
+                                              </li>
+                                          <?php endwhile; wp_reset_postdata();?>
+                                      </ul>
+                                  <?php endif; ?>
+
                               </div>
                               <div class="col-md-3">
                                   <h4>Locations</h4>
-                                  <?php echo get_locations_rest($locations, $title); ?>
+                                    <?php echo get_locations_rest($locations, $title); ?>
+                                    <!-- <?php
+                                        $args = array(
+                                            'post_type' => 'location',
+                                            'meta_query' => array(
+                                                array(
+                                                    'key' => 'dt_connection_map',
+                                                    'value' => $post->ID ,
+                                                    'compare' => 'LIKE',
+
+                                                )
+                                            )
+                                        );
+                                        $location_query = new WP_Query($args);
+                                    ?>
+                                    <ul>
+                                        <?php while ($location_query->have_posts()) : ?>
+                                            <?php $location_query->the_post(); ?>
+                                            <li><?php echo get_field('branch_name', get_the_ID()); ?></li>
+                                        <?php endwhile; wp_reset_postdata();?>
+                                    </ul> -->
                               </div>
                           </div>
                       </div>

@@ -352,6 +352,8 @@ get_header(); ?>
                     $logo = get_field('sub_logo', $dist_post_id);
                     $about = $url . "/acf/v3/options/options/site_description";
                     $total_connections = total_connections($pID);
+                    $ext            = get_post_meta($post->ID, 'dt_connection_map', true);
+                    $ext_id         = array_key_first($ext['external']);
                 ?>
                 <div class="menu-item col-md-3 single-sub d-flex align-items-center">
                   <a href="#">
@@ -369,7 +371,36 @@ get_header(); ?>
                           </div>
                           <div class="col-md-3">
                               <h4>Services</h4>
-                              <?php echo get_services_rest($services); ?>
+                              <?php
+                                  $args = array(
+                                      'post_type' => 'service',
+                                      'orderby' => 'title',
+                                      'order' => 'ASC',
+                                      'posts_per_page' => -1,
+                                      'post_parent' => 0,
+                                      'meta_query' => array(
+                                          array(
+                                              'key' => 'dt_connection_map',
+                                              'value' => $post->ID ,
+                                              'compare' => 'LIKE',
+                                          )
+                                      )
+                                  );
+                                  $service_query = new WP_Query($args);
+                              ?>
+                              <?php if ( $service_query->have_posts() ) :?>
+                                  <ul>
+                                      <?php while ($service_query->have_posts()) : ?>
+                                          <?php $service_query->the_post(); ?>
+
+                                          <li>
+                                              <?php $link = str_replace(home_url(), '', get_permalink());  ?>
+                                             <a href="<?php echo $siteURL . $link ?>"><?php echo get_the_title(); ?></a>
+                                          </li>
+                                      <?php endwhile;?>
+                                  </ul>
+                              <?php endif; ?>
+                              <?php wp_reset_postdata(); wp_reset_query(); ?>
                           </div>
                           <div class="col-md-3">
                               <h4>Locations</h4>

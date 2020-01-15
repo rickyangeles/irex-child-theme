@@ -220,7 +220,7 @@ function service_tax_location() {
  		}
 
  		$url = get_post_meta($t, 'dt_external_connection_url', true);
- 		$services = $url . "/wp/v2/service?&per_page=100";
+ 		$services = $url . "/wp/v2/service?&per_page=70";
 
  		$serviceList = get_services_rest_name($services);
  		$array = array_values($serviceList);

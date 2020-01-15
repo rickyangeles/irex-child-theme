@@ -19,7 +19,7 @@ get_header(); ?>
     $pID                = get_the_ID();
     $sub = get_field('subsidiary_site', 'options');
     $musser = get_field('musser_park', 'options');
-    $industries = get_terms()
+    $industries = get_terms();
 ?>
 <!-- Page Header -->
 <div class="no-banner"></div>
