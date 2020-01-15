@@ -38,9 +38,7 @@ get_header(); ?>
 </div>
 <div class="container main-content">
     <div class="row">
-        <?php
-            get_service_taxonomy();
-        ?>
+=
     </div>
 
 </div>

@@ -84,7 +84,7 @@ $musser = get_field('musser_park', 'options');
                     $global_partners = new WP_Query($args);
                 ?>
                 <?php if ( $global_partners->have_posts() ) : ?>
-                    <h3>IREX is a member of:</h3>
+                    <h3>Irex is a member of:</h3>
                     <div class="row d-flex align-items-center justify-content-center">
                 <?php while ( $global_partners->have_posts() ) : $global_partners->the_post();
                     $id = get_the_ID();

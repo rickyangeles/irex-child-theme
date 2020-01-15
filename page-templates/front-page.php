@@ -233,7 +233,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                           <div class="row">
                               <div class="col-md-6">
                                   <h2><?php echo $title; ?></h2>
-                                  website: <?php echo $cleanUrl; ?>
+                                  <!-- website: <?php echo $cleanUrl; ?> -->
                                   <p><?php echo get_about_rest($about); ?></p>
                                   <a href="<?php echo $siteURL; ?>" class="btn btn-primary">Visit Site</a>
                               </div>
@@ -272,27 +272,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                               </div>
                               <div class="col-md-3">
                                   <h4>Locations</h4>
-                                    <?php echo get_locations_rest($locations, $title); ?>
-                                    <!-- <?php
-                                        $args = array(
-                                            'post_type' => 'location',
-                                            'meta_query' => array(
-                                                array(
-                                                    'key' => 'dt_connection_map',
-                                                    'value' => $post->ID ,
-                                                    'compare' => 'LIKE',
-
-                                                )
-                                            )
-                                        );
-                                        $location_query = new WP_Query($args);
-                                    ?>
-                                    <ul>
-                                        <?php while ($location_query->have_posts()) : ?>
-                                            <?php $location_query->the_post(); ?>
-                                            <li><?php echo get_field('branch_name', get_the_ID()); ?></li>
-                                        <?php endwhile; wp_reset_postdata();?>
-                                    </ul> -->
+                                  <?php echo get_locations_rest($locations, $title); ?>
                               </div>
                           </div>
                       </div>
