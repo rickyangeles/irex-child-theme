@@ -107,23 +107,58 @@ $container = get_theme_mod( 'understrap_container_type' );
                     $services = $url . "/wp/v2/service/";
                     $locations = $url . "/wp/v2/location/";
                     $logo = $url . "/acf/v3/options/options/header_logo";
-					$about = $url . "/acf/v3/options/options/about_text";
+					$about = $url . "/acf/v3/options/options/site_description";
+                    $meta           = get_post_meta($post->ID, 'dt_connection_map', false);
+                    $meta_s = reset($meta);
+                    $meta_t = reset($meta_s);
+                    $meta_f = reset($meta_t);
+                    $dist_post_id = key($meta_t);
+                    $logo = get_field('sub_logo', $dist_post_id);
                 ?>
                 <div class="menu-item col-md-3 single-sub">
                   <a href="#">
-                    <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo get_logo_rest($logo); ?>"/>
+                    <img class="sub-title" data-url="<?php echo $cleanUrl;?>" src="<?php echo $logo; ?>"/>
                   </a>
                   <div class="folding-content single-sub-info container-fluid">
                       <div class="row">
                           <div class="col-md-6">
                               <h2><?php echo $title; ?></h2>
-                              website: www.<?php echo $cleanUrl; ?>
+                              website: <?php echo $cleanUrl; ?>
                               <?php echo get_about_rest($about); ?>
                               <a href="<?php echo $siteURL; ?>" class="btn btn-primary">Visit Site</a>
                           </div>
                           <div class="col-md-3">
                               <h4>Services</h4>
-                              <?php echo get_services_rest($services); ?>
+                              <?php
+                                  $args = array(
+                                      'post_type' => 'service',
+                                      'orderby' => 'title',
+                                      'order' => 'ASC',
+                                      'posts_per_page' => -1,
+                                      'post_parent' => 0,
+                                      'meta_query' => array(
+                                          array(
+                                              'key' => 'dt_connection_map',
+                                              'value' => $post->ID ,
+                                              'compare' => 'LIKE',
+                                          )
+                                      )
+                                  );
+                                  $service_query = new WP_Query($args);
+                              ?>
+                              <?php if ( $service_query->have_posts() ) :?>
+                                  <ul>
+                                      <?php while ($service_query->have_posts()) : ?>
+                                          <?php $service_query->the_post(); ?>
+
+                                          <li>
+                                              <?php $link = str_replace(home_url(), '', get_permalink());  ?>
+                                             <a href="<?php echo $siteURL . $link ?>"><?php echo get_the_title(); ?></a>
+                                          </li>
+                                      <?php endwhile;?>
+                                  </ul>
+                              <?php endif; ?>
+                              <?php wp_reset_postdata(); wp_reset_query(); ?>
                           </div>
                           <div class="col-md-3">
                               <h4>Locations</h4>

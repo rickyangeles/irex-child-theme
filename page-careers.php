@@ -86,7 +86,7 @@ $musser = get_field('musser_park', 'options');
                         </script>
                         <script language="javascript" type="text/javascript" src="//IrexContractingGroup.ourcareerpages.com/Resources/js/ccp_widget.aspx?GroupBy=label&ccpLoc=bottom" ></script>
                     <?php elseif ( !$musser ) : ?>
-                        <a href="https://irexcontracting.kinsta.cloud/careers/" class="career-btn btn btn-primary">View Job Openings</a>
+                        <a href="http://www.irexcontracting.com/" class="career-btn btn btn-primary">View Job Openings</a>
                     <?php endif; ?>
 
 

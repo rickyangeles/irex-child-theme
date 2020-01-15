@@ -238,7 +238,7 @@ get_header(); ?>
                         $meta_f = reset($meta_t);
                         $dist_post_id = key($meta_t);
                         $logo = get_field('sub_logo', $dist_post_id);
-                        $about = $url . "/acf/v3/options/options/about_text";
+                        $about = $url . "/acf/v3/options/options/site_description";
                     ?>
                     <div class="menu-item col-md-3 single-sub d-flex align-items-center">
                       <a href="#">
@@ -249,7 +249,9 @@ get_header(); ?>
                               <div class="col-md-6">
                                   <h2><?php echo $title; ?></h2>
                                   website: <?php echo $cleanUrl; ?>
-                                   <?php echo get_about_rest($about); ?>
+                                  <p>
+                                       <?php echo get_about_rest($about); ?>
+                                  </p>
                                   <a href="<?php echo $siteURL; ?>" class="btn btn-primary">Visit Site</a>
                               </div>
                               <div class="col-md-3">
