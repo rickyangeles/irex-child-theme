@@ -237,6 +237,7 @@ function service_tax_location() {
 }
 
 
+
 // function set_location_service() {
 //
 // 	if ( is_singular('location') {

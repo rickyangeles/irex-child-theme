@@ -36,6 +36,34 @@ get_header(); ?>
         update_post_meta($pID, 'industry_select', $industryID);
     }
 
+    $old_id = get_post_meta(get_the_ID(), 'service_gallery', true );
+    $new_id = array();
+    //print_r($old_id);
+
+    foreach( $old_id as $mediaID ) {
+        $args = array(
+            'posts_per_page' => '1',
+            'post_status' => 'any',
+            'post_type'=> 'attachment',
+            'meta_query'        => array(
+                array(
+                    'key'       => 'dt_original_media_id',
+                    'value'     => $mediaID,
+                    'type'      => 'numeric',
+                )
+            ),
+        );
+        $new_image = new WP_Query($args);
+        //
+        if ( $new_image->have_posts() ) {
+            while ( $new_image->have_posts() ) {
+                $new_image->the_post();
+                $new_id[] = get_the_ID();
+            }
+            wp_reset_postdata();
+        }
+    }
+
 ?>
 <!-- Page Header -->
 <div class="container-fluid page-header">
@@ -77,7 +105,22 @@ get_header(); ?>
                     <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
                     <!-- Additional required wrapper -->
                         <?php if ( $sub && !$musser ) : ?>
-                            <?php get_service_gallery($pID); ?>
+                            <div class="swiper-wrapper">
+                                <?php foreach( $new_id as $id ): ?>
+                                    <div class="swiper-slide">
+                                        <?php $image = wp_get_attachment_url($id); ?>
+                                        <img src="<?php echo $image; ?>" alt="">
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php if ( count($new_id) > 1) : ?>
+                                <div class="nav-wrap">
+                                    <div class="swiper-pagination"></div>
+                                    <!-- If we need navigation buttons -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+                                </div>
+                            <?php endif; ?>
                         <?php else : ?>
                             <div class="swiper-wrapper">
                                 <?php
