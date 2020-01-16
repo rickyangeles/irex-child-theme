@@ -89,6 +89,8 @@ $secondaryContent = get_field('secondary_content');
                     $map = array(
                         'post_type' => 'location',
                         'posts_per_page' => -1,
+                        'orderby'   => 'title',
+                        'order' => 'ASC',
                         'meta_query' => array(
                             array(
                                 'key'   => 'show_on_subsidiary_contact_page',

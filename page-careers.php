@@ -77,19 +77,14 @@ $musser = get_field('musser_park', 'options');
 				<?php while ( have_posts() ) : the_post(); ?>
 
 					<?php get_template_part( 'loop-templates/content', 'page' ); ?>
-                    <?php if ( !$sub ) : ?>
-                        <script type="text/javascript">
-                            var headingText = "Current Openings";
-                            //var categoryTitlePrefix = " Active ";
-                            var categoryTitleSuffix = " Jobs ";
-                            var returnURL = "http://www.irexcontracting.com/working-for-irex/";
-                        </script>
-                        <script language="javascript" type="text/javascript" src="//IrexContractingGroup.ourcareerpages.com/Resources/js/ccp_widget.aspx?GroupBy=label&ccpLoc=bottom" ></script>
-                    <?php elseif ( !$musser ) : ?>
-                        <a href="http://www.irexcontracting.com/" class="career-btn btn btn-primary">View Job Openings</a>
+                        <?php if ( get_field('career_link', 'options') ) :?>
+                            <?php
+                                $careerLink = get_field('career_link', 'options');
+                                $careerURL = $careerLink['url'];
+                                $careerText = $careerLink['title'];
+                            ?>
+                        <a href="<?php echo $careerURL; ?>" class="career-btn btn btn-primary"><?php echo $careerText; ?></a>
                     <?php endif; ?>
-
-
 				<?php endwhile; // end of the loop. ?>
 
 			</main><!-- #main -->

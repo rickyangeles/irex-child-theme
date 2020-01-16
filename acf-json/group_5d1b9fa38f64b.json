@@ -677,7 +677,7 @@
             },
             "open": 0,
             "multi_expand": 0,
-            "endpoint": 0
+            "endpoint": 1
         },
         {
             "key": "field_5d9cd767d5ffb",
@@ -724,7 +724,7 @@
         },
         {
             "key": "field_5db04d24eaad6",
-            "label": "Partners",
+            "label": "Career Options",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -737,6 +737,21 @@
             },
             "placement": "top",
             "endpoint": 0
+        },
+        {
+            "key": "field_5e20dde57c255",
+            "label": "Career Link",
+            "name": "career_link",
+            "type": "link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array"
         }
     ],
     "location": [
@@ -756,5 +771,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1578689576
+    "modified": 1579212496
 }
