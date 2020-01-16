@@ -17,6 +17,14 @@
                 }
             }
         }
+
+        .top-menu-wrap {
+            ul {
+                li {
+                    margin-right: 14px;
+                }
+            }
+        }
     }
 
     .home-banner {
@@ -123,7 +131,7 @@
 
             .sfp-left {
                 border-radius: 0 0 10px 10px;
-                padding: 30px 20px;
+                padding: 0;
             }
         }
 
@@ -156,6 +164,7 @@
     .post-type-archive-location {
         .map-content {
             .location-list {
+                padding-left: 0;
                 .marker {
                     margin-bottom: 40px;
                     max-width: 100%; width: 100%;
@@ -177,16 +186,56 @@
     .page-header, .tall-header {
         img {
             width: 100%;
-            max-height: 120px;
-            height: 120px;
+            max-height: 90px;
+            height: 90px;
             object-fit: cover;
         }
         .page-title {
-            font-size: 40px;
+            font-size: 28px;
             bottom: 10px;
+        }
+
+        &:after {
+            background: #004a97;
+            background: -moz-linear-gradient(0deg, #004a97 0%, rgba(255, 255, 255, 0) 105%);
+            background: -webkit-linear-gradient(0deg, #004a97 0%, rgba(255, 255, 255, 0) 105%);
+            background: -webkit-gradient(linear, left bottom, left top, from(#004a97), color-stop(105%, rgba(255, 255, 255, 0)));
+            background: -webkit-linear-gradient(bottom, #004a97 0%, rgba(255, 255, 255, 0) 105%);
+            background: -o-linear-gradient(bottom, #004a97 0%, rgba(255, 255, 255, 0) 105%);
+            background: linear-gradient(0deg, #004a97 0%, rgba(255, 255, 255, 0) 105%);
         }
     }
 
+    //Breadcrumb Styles
+    .breadcrumb {
+        padding: 20px 15px;
+        margin-bottom: 0;
+    }
+
+    // Default Page Styles
+    .page-template-left-sidebarpage {
+        #left-sidebar {
+            order: 2;
+            .mobile-menu-toggle {
+                display: none;
+            }
+        }
+    }
+
+    // Archive Service styles
+    .post-type-archive-service {
+        .right-content {
+            .service-search {
+                margin: 0 auto;
+                float: none;
+                width: 53%;
+            }
+            .expand-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
 
     /* Single Service mobile Styles */
     .service-cta-wrap, .service-cta {
@@ -218,6 +267,12 @@
         }
     }
 
+    .single-industry, .single-service {
+        .slideshow {
+            margin-bottom: 40px;
+        }
+    }
+
     /* Project Gallery */
     .project-list {
         .single-project {
@@ -244,8 +299,12 @@
     /* Blog archive Styles */
     .blog-archive {
         article {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 25px;
+            margin: 25px 0;
             img {
                 margin-bottom: 20px;
+                width: 100%;
             }
         }
     }
