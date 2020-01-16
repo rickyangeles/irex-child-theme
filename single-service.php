@@ -41,7 +41,6 @@ get_header(); ?>
     //print_r($old_id);
 
     foreach( $old_id as $mediaID ) {
-        echo $mediaID;
         $args = array(
             'posts_per_page' => '1',
             'post_status' => 'any',
