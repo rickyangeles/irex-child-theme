@@ -2,7 +2,12 @@
 @include media-breakpoint-down(md) {
     .header {
         .header-logo {
+            max-width: 60%;
             min-height: 75px;
+            img {
+                max-width: 90%;
+                width: auto;
+            }
         }
 
         .navbar-nav .dropdown-menu {
@@ -27,10 +32,17 @@
         }
     }
 
-    .home-banner {
+    .home-banner, .home-slider {
+        height: 50vh;
+
+        .swiper-container {
+            .swiper-slide {
+                background-position: 33%;
+            }
+        }
         .banner-content {
             h1 {
-                font-size: 30px;
+                font-size: 28px;
             }
             ul {
                 li {
@@ -41,6 +53,7 @@
             }
         }
     }
+
 
     .home-intro {
         .row {
@@ -62,12 +75,19 @@
     }
 
     .home-major-points {
+        padding-bottom: 40px;
         .point {
             margin-bottom: 0;
             text-align: center;
+
             .livicon-evo {
-                margin-top: 12%;
-                margin-bottom: 12%;
+                margin: 12% auto;
+                float: none;
+                width: 30%;
+            }
+
+            .point-content {
+                width: 100%;
             }
         }
     }
@@ -159,7 +179,28 @@
         }
     }
 
+    //Sub Home Page Styles
+    .page-template-sub-front-page  {
+        .home-service-location {
+            padding: 50px 0;
 
+            .full-location-list {
+                .home-location {
+                    width: 100%;
+                    margin-right: 0;
+
+                }
+            }
+        }
+
+        .home-cta {
+            text-align:center;
+
+            .p {
+                margin-bottom: 20px;
+            }
+        }
+    }
     //Location Page Styles
     .post-type-archive-location {
         .map-content {
@@ -183,7 +224,7 @@
     }
 
     //Page header styles
-    .page-header, .tall-header {
+    .page-header, .tall-header, .short-header {
         img {
             width: 100%;
             max-height: 90px;
