@@ -56,7 +56,9 @@
                 		?>
                          <div class="swiper-slide">
                     		<img src="<?php echo $image; ?>" />
-                            <div class="slide-caption"><?php echo $content; ?></div>
+                            <?php if ( $content ) :  ?>
+                                <div class="slide-caption"><?php echo $content; ?></div>
+                            <?php endif; ?>
                         </div>
                 	<?php endwhile; ?>
                 </div>

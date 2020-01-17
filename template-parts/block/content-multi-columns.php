@@ -32,9 +32,6 @@
                     <div class="post-content">
                         <h5><?php echo $heading; ?></h5>
                         <p><?php echo $content; ?></p>
-                        <?php if ( $button ) : ?>
-                            <a href="<?php echo $button['url']; ?>"><?php echo $button['title']; ?></a>
-                        <?php endif; ?>
                     </div>
                     </a>
                 </div>
@@ -42,23 +39,7 @@
         	<?php endwhile; ?>
         <?php endif; ?>
 
-        <?php foreach( $columns as $post): // variable must be called $post (IMPORTANT) ?>
-            <?php setup_postdata($post); ?>
-            <?php $pID = get_the_ID(); ?>
-            <div class="col-md-3 recent-post-single">
-                <a href="<?php echo get_the_permalink(); ?>">
-                <?php if ( has_post_thumbnail()): ?>
-                    <?php the_post_thumbnail('page-banner'); ?>
-                <?php else : ?>
-                    <img src="https://via.placeholder.com/370x206">
-                <?php endif; ?>
-                <div class="post-content">
-                    <h5><?php echo get_the_title($pID); ?></h5>
-                    <p><?php echo excerpt(20, $pID); ?></p>
-                </div>
-                </a>
-            </div>
-        <?php endforeach; ?>
+
         <div class="button-wrap">
             <?php if ( $primaryBtn ) : ?>
                 <a href="<?php echo $primaryBtn['url'] ?>" class="btn primary-btn"><?php echo $primaryBtn['title']; ?></a>

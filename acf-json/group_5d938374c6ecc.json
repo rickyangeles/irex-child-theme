@@ -53,67 +53,6 @@
             "min": "",
             "max": "",
             "return_format": "object"
-        },
-        {
-            "key": "field_5d9b82af50e76",
-            "label": "Featured Projects",
-            "name": "featured_projects",
-            "type": "relationship",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "post_type": [
-                "project_gallery"
-            ],
-            "taxonomy": "",
-            "filters": [
-                "search"
-            ],
-            "elements": [
-                "featured_image"
-            ],
-            "min": "",
-            "max": "",
-            "return_format": "object"
-        },
-        {
-            "key": "field_5d9b8308e1846",
-            "label": "CTA Text",
-            "name": "industry_cta_text",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5d9b831ae1847",
-            "label": "CTA Button",
-            "name": "industry_cta_button",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
         }
     ],
     "location": [
@@ -133,5 +72,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1571242215
+    "modified": 1579260247
 }

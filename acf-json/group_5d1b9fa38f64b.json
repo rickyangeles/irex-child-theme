@@ -43,21 +43,6 @@
             "mime_types": ""
         },
         {
-            "key": "field_5d1ba0852609b",
-            "label": "Menu CTA",
-            "name": "menu_cta",
-            "type": "link",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "return_format": "array"
-        },
-        {
             "key": "field_5e18b54f45232",
             "label": "Site Description",
             "name": "site_description_rest",
@@ -290,7 +275,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "acf_input_small",
                 "id": ""
             },
@@ -309,7 +294,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "50",
                 "class": "acf_input_small",
                 "id": ""
             },
@@ -318,24 +303,6 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
-        },
-        {
-            "key": "field_5d1ba03b49748",
-            "label": "Email",
-            "name": "email",
-            "type": "email",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33",
-                "class": "acf_input_small",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
         },
         {
             "key": "field_5d6678e6823c0",
@@ -771,5 +738,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1579212496
+    "modified": 1579262848
 }
