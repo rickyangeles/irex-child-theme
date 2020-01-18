@@ -57,7 +57,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "testimonial", "with_front" => false ),
 		"query_var" => true,
-		"menu_position" => 5,
+		"menu_position" => 7,
 		"menu_icon" => "dashicons-star-filled",
 		"supports" => array( "title", "editor", "thumbnail", "revisions", "page-attributes" ),
 	);
@@ -118,7 +118,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "industries", "with_front" => false ),
 		"query_var" => true,
-		"menu_position" => 5,
+		"menu_position" => 4,
 		"menu_icon" => "dashicons-building",
 		"supports" => array( "title", "editor", "thumbnail", "revisions", "page-attributes" ),
 	);
@@ -179,7 +179,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "services", "with_front" => false ),
 		"query_var" => true,
-		"menu_position" => 5,
+		"menu_position" => 1,
 		"menu_icon" => "dashicons-admin-generic",
 		"supports" => array( "title", "editor", "thumbnail", "revisions", "page-attributes" ),
 	);
@@ -240,7 +240,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "locations", "with_front" => true ),
 		"query_var" => true,
-		"menu_position" => 7,
+		"menu_position" => 2,
 		"menu_icon" => "dashicons-location-alt",
 		"supports" => array( "title", "editor", "thumbnail", "revisions" ),
 	);
@@ -301,7 +301,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "resource", "with_front" => true ),
 		"query_var" => true,
-		"menu_position" => 7,
+		"menu_position" => 5,
 		"menu_icon" => "dashicons-book",
 		"supports" => array( "title", "editor", "thumbnail", "revisions" ),
 	);
@@ -313,33 +313,33 @@ function cptui_register_my_cpts() {
 	 */
 
 	$labels = array(
-		"name" => __( "Project Gallery", "understrap" ),
-		"singular_name" => __( "Project Gallery", "understrap" ),
-		"menu_name" => __( "Project Gallery", "understrap" ),
-		"all_items" => __( "All Project Galleries", "understrap" ),
-		"add_new" => __( "Add Project Gallery", "understrap" ),
-		"add_new_item" => __( "Add New Project Gallery", "understrap" ),
-		"edit_item" => __( "Edit Project Gallery", "understrap" ),
-		"new_item" => __( "New Project Gallery", "understrap" ),
-		"view_item" => __( "View Project Gallery", "understrap" ),
-		"view_items" => __( "View Project Galleries", "understrap" ),
-		"search_items" => __( "Search Project Gallery", "understrap" ),
+		"name" => __( "Projects", "understrap" ),
+		"singular_name" => __( "Project", "understrap" ),
+		"menu_name" => __( "Project", "understrap" ),
+		"all_items" => __( "All Projects", "understrap" ),
+		"add_new" => __( "Add Project", "understrap" ),
+		"add_new_item" => __( "Add New Projec", "understrap" ),
+		"edit_item" => __( "Edit Project", "understrap" ),
+		"new_item" => __( "New Project", "understrap" ),
+		"view_item" => __( "View Project", "understrap" ),
+		"view_items" => __( "View Projects", "understrap" ),
+		"search_items" => __( "Search Project", "understrap" ),
 		"not_found" => __( "No galleries found", "understrap" ),
-		"not_found_in_trash" => __( "No Project Galleries in trash", "understrap" ),
-		"parent_item_colon" => __( "Parent Project Gallery", "understrap" ),
-		"featured_image" => __( "Featured image for this Project Gallery", "understrap" ),
-		"set_featured_image" => __( "Set featured image for this Project Gallery", "understrap" ),
-		"remove_featured_image" => __( "Remove featured image from this Project Gallery", "understrap" ),
-		"use_featured_image" => __( "Use as featured image for this Project Gallery", "understrap" ),
-		"archives" => __( "Project Gallery Archives", "understrap" ),
-		"insert_into_item" => __( "Insert into Project Gallery", "understrap" ),
-		"uploaded_to_this_item" => __( "Uploaded to this Project Gallery", "understrap" ),
-		"filter_items_list" => __( "Filter Project Gallery list", "understrap" ),
-		"items_list_navigation" => __( "Project Gallery list navigation", "understrap" ),
-		"items_list" => __( "Project Galleries List", "understrap" ),
-		"attributes" => __( "Project Galleries Attributes", "understrap" ),
-		"name_admin_bar" => __( "Project Gallery", "understrap" ),
-		"parent_item_colon" => __( "Parent Project Gallery", "understrap" ),
+		"not_found_in_trash" => __( "No Projects in trash", "understrap" ),
+		"parent_item_colon" => __( "Parent Project", "understrap" ),
+		"featured_image" => __( "Featured image for this Project", "understrap" ),
+		"set_featured_image" => __( "Set featured image for this Project", "understrap" ),
+		"remove_featured_image" => __( "Remove featured image from this Project", "understrap" ),
+		"use_featured_image" => __( "Use as featured image for this Project", "understrap" ),
+		"archives" => __( "Project Archives", "understrap" ),
+		"insert_into_item" => __( "Insert into Project", "understrap" ),
+		"uploaded_to_this_item" => __( "Uploaded to this Project", "understrap" ),
+		"filter_items_list" => __( "Filter Project list", "understrap" ),
+		"items_list_navigation" => __( "Project list navigation", "understrap" ),
+		"items_list" => __( "Projects List", "understrap" ),
+		"attributes" => __( "Projects Attributes", "understrap" ),
+		"name_admin_bar" => __( "Project", "understrap" ),
+		"parent_item_colon" => __( "Parent Project", "understrap" ),
 	);
 
 	$args = array(
@@ -362,73 +362,73 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "project-gallery", "with_front" => true ),
 		"query_var" => true,
-		"menu_position" => 7,
+		"menu_position" => 3,
 		"menu_icon" => "dashicons-images-alt2",
 		"supports" => array( "title", "editor", "thumbnail", "revisions" ),
 	);
 
 	register_post_type( "project_gallery", $args );
-
-		/**
-		 * Post Type: Gallery.
-		 */
-
-		$labels = array(
-			"name" => __( "Gallery", "understrap" ),
-			"singular_name" => __( "Gallery", "understrap" ),
-			"menu_name" => __( "Gallery", "understrap" ),
-			"all_items" => __( "All Galleries", "understrap" ),
-			"add_new" => __( "Add Gallery", "understrap" ),
-			"add_new_item" => __( "Add New Gallery", "understrap" ),
-			"edit_item" => __( "Edit Gallery", "understrap" ),
-			"new_item" => __( "New Gallery", "understrap" ),
-			"view_item" => __( "View Gallery", "understrap" ),
-			"view_items" => __( "View Galleries", "understrap" ),
-			"search_items" => __( "Search Gallery", "understrap" ),
-			"not_found" => __( "No galleries found", "understrap" ),
-			"not_found_in_trash" => __( "No Galleries in trash", "understrap" ),
-			"parent_item_colon" => __( "Parent Gallery", "understrap" ),
-			"featured_image" => __( "Featured image for this Gallery", "understrap" ),
-			"set_featured_image" => __( "Set featured image for this Gallery", "understrap" ),
-			"remove_featured_image" => __( "Remove featured image from this Gallery", "understrap" ),
-			"use_featured_image" => __( "Use as featured image for this Gallery", "understrap" ),
-			"archives" => __( "Gallery Archives", "understrap" ),
-			"insert_into_item" => __( "Insert into Gallery", "understrap" ),
-			"uploaded_to_this_item" => __( "Uploaded to this Gallery", "understrap" ),
-			"filter_items_list" => __( "Filter Gallery list", "understrap" ),
-			"items_list_navigation" => __( "Gallery list navigation", "understrap" ),
-			"items_list" => __( "Galleries List", "understrap" ),
-			"attributes" => __( "Galleries Attributes", "understrap" ),
-			"name_admin_bar" => __( "Gallery", "understrap" ),
-			"parent_item_colon" => __( "Parent Gallery", "understrap" ),
-		);
-
-		$args = array(
-			"label" => __( "Gallery", "understrap" ),
-			"labels" => $labels,
-			"description" => "",
-			"public" => true,
-			"publicly_queryable" => true,
-			"show_ui" => true,
-			"delete_with_user" => false,
-			"show_in_rest" => true,
-			"rest_base" => "gallery",
-			"rest_controller_class" => "WP_REST_Posts_Controller",
-			"has_archive" => false,
-			"show_in_menu" => true,
-			"show_in_nav_menus" => true,
-			"exclude_from_search" => false,
-			"capability_type" => "post",
-			"map_meta_cap" => true,
-			"hierarchical" => false,
-			"rewrite" => array( "slug" => "gallery", "with_front" => true ),
-			"query_var" => true,
-			"menu_position" => 7,
-			"menu_icon" => "dashicons-slides",
-			"supports" => array( "title", "editor", "thumbnail", "revisions" ),
-		);
-
-	register_post_type( "gallery", $args );
+	//
+	// 	/**
+	// 	 * Post Type: Gallery.
+	// 	 */
+	//
+	// 	$labels = array(
+	// 		"name" => __( "Gallery", "understrap" ),
+	// 		"singular_name" => __( "Gallery", "understrap" ),
+	// 		"menu_name" => __( "Gallery", "understrap" ),
+	// 		"all_items" => __( "All Galleries", "understrap" ),
+	// 		"add_new" => __( "Add Gallery", "understrap" ),
+	// 		"add_new_item" => __( "Add New Gallery", "understrap" ),
+	// 		"edit_item" => __( "Edit Gallery", "understrap" ),
+	// 		"new_item" => __( "New Gallery", "understrap" ),
+	// 		"view_item" => __( "View Gallery", "understrap" ),
+	// 		"view_items" => __( "View Galleries", "understrap" ),
+	// 		"search_items" => __( "Search Gallery", "understrap" ),
+	// 		"not_found" => __( "No galleries found", "understrap" ),
+	// 		"not_found_in_trash" => __( "No Galleries in trash", "understrap" ),
+	// 		"parent_item_colon" => __( "Parent Gallery", "understrap" ),
+	// 		"featured_image" => __( "Featured image for this Gallery", "understrap" ),
+	// 		"set_featured_image" => __( "Set featured image for this Gallery", "understrap" ),
+	// 		"remove_featured_image" => __( "Remove featured image from this Gallery", "understrap" ),
+	// 		"use_featured_image" => __( "Use as featured image for this Gallery", "understrap" ),
+	// 		"archives" => __( "Gallery Archives", "understrap" ),
+	// 		"insert_into_item" => __( "Insert into Gallery", "understrap" ),
+	// 		"uploaded_to_this_item" => __( "Uploaded to this Gallery", "understrap" ),
+	// 		"filter_items_list" => __( "Filter Gallery list", "understrap" ),
+	// 		"items_list_navigation" => __( "Gallery list navigation", "understrap" ),
+	// 		"items_list" => __( "Galleries List", "understrap" ),
+	// 		"attributes" => __( "Galleries Attributes", "understrap" ),
+	// 		"name_admin_bar" => __( "Gallery", "understrap" ),
+	// 		"parent_item_colon" => __( "Parent Gallery", "understrap" ),
+	// 	);
+	//
+	// 	$args = array(
+	// 		"label" => __( "Gallery", "understrap" ),
+	// 		"labels" => $labels,
+	// 		"description" => "",
+	// 		"public" => true,
+	// 		"publicly_queryable" => true,
+	// 		"show_ui" => true,
+	// 		"delete_with_user" => false,
+	// 		"show_in_rest" => true,
+	// 		"rest_base" => "gallery",
+	// 		"rest_controller_class" => "WP_REST_Posts_Controller",
+	// 		"has_archive" => false,
+	// 		"show_in_menu" => true,
+	// 		"show_in_nav_menus" => true,
+	// 		"exclude_from_search" => false,
+	// 		"capability_type" => "post",
+	// 		"map_meta_cap" => true,
+	// 		"hierarchical" => false,
+	// 		"rewrite" => array( "slug" => "gallery", "with_front" => true ),
+	// 		"query_var" => true,
+	// 		"menu_position" => 7,
+	// 		"menu_icon" => "dashicons-slides",
+	// 		"supports" => array( "title", "editor", "thumbnail", "revisions" ),
+	// 	);
+	//
+	// register_post_type( "gallery", $args );
 
 		/**
 		 * Post Type: Partners.
@@ -484,7 +484,7 @@ function cptui_register_my_cpts() {
 			"hierarchical" => true,
 			"rewrite" => array( "slug" => "partners", "with_front" => true ),
 			"query_var" => true,
-			"menu_position" => 7,
+			"menu_position" => 6,
 			"menu_icon" => "dashicons-admin-users",
 			"supports" => array( "title", "editor", "thumbnail", "revisions" ),
 		);
@@ -538,7 +538,7 @@ function industry_tax() {
 		'show_in_rest'               => true,
 		'rest_base'                  => 'industry_tax',
 	);
-	register_taxonomy( 'industry_tax', array( 'post', 'page', 'service', 'project_gallery', 'location', 'testimonial' ), $args );
+	register_taxonomy( 'industry_tax', array( 'service', 'project_gallery', 'testimonial' ), $args );
 
 }
 add_action( 'init', 'industry_tax', 0 );

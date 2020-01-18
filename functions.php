@@ -238,6 +238,34 @@ function service_tax_location() {
 
 
 
+function my_page_columns($columns)
+{
+    $columns = array(
+        'cb'         => '<input type="checkbox" />',
+        'title'     => 'Last Name',
+        'first'     => 'First Name',
+        'date'        =>    'Date',
+    );
+    return $columns;
+}
+
+function my_custom_columns($column)
+{
+    global $post;
+
+    if ($column == 'first') {
+        echo get_field( "first_name", $post->ID );
+    }
+    else {
+         echo '';
+    }
+}
+
+add_action("manage_post_location_posts_custom_column", "my_custom_columns");
+add_filter("manage_post_location_posts_columns", "my_page_columns");
+
+
+//DONT DELETE
 // function set_location_service() {
 //
 // 	if ( is_singular('location') {
@@ -277,16 +305,3 @@ function service_tax_location() {
 //
 // 	}
 // }
-
-
-// function remove_seo_meta_data_services() {
-// 	$allservices = get_posts( 'numberposts=-1&post_type=service' );
-//
-// 	foreach ( $allservices as $services ) {
-// 		delete_post_meta( $services->ID, '_yoast_wpseo_metadesc' );
-// 		delete_post_meta( $services->ID, '_yoast_wpseo_title' );
-//
-// 		wp_update_post( array( 'ID' => $services->ID ) );
-// 	}
-// }
-// add_action('init', 'remove_seo_meta_data_services');

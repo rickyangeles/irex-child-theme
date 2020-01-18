@@ -65,9 +65,7 @@
                 "post"
             ],
             "taxonomy": "",
-            "filters": [
-                "search"
-            ],
+            "filters": "",
             "elements": "",
             "min": 2,
             "max": 4,
@@ -121,5 +119,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1572624371
+    "modified": 1579367075
 }

@@ -62,8 +62,8 @@ $musser = get_field('musser_park', 'options');
             <div class="col-md-6">
                 <h3><?php bloginfo('name'); ?> is a company of</h3>
                 <div class="col-md-12 single-partner">
-                        <a href="https://irexcontracting.kinsta.cloud">
-                            <img src="https://irexcontracting.kinsta.cloud/wp-content/uploads/2019/08/irex_logo.png" alt="">
+                        <a href="https://irexcontracting.com">
+                            <img src="https://irexcontracting.com/wp-content/uploads/2019/08/irex_logo.png" alt="">
                         </a>
                 </div>
             </div>

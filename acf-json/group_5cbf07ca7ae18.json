@@ -19,8 +19,12 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "formatting": "html",
-            "maxlength": ""
+            "maxlength": "",
+            "show_column": 1,
+            "show_column_sortable": 0,
+            "show_column_weight": 101,
+            "allow_quickedit": 0,
+            "allow_bulkedit": 0
         },
         {
             "key": "field_5260665c3267c",
@@ -39,8 +43,12 @@
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "formatting": "html",
-            "maxlength": ""
+            "maxlength": "",
+            "show_column": 1,
+            "show_column_sortable": 0,
+            "show_column_weight": 102,
+            "allow_quickedit": 0,
+            "allow_bulkedit": 0
         },
         {
             "key": "field_526066683267d",
@@ -202,24 +210,6 @@
             "maxlength": ""
         },
         {
-            "key": "field_5d976dd733564",
-            "label": "Map Location",
-            "name": "map_location",
-            "type": "google_map",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "center_lat": "",
-            "center_lng": "",
-            "zoom": "",
-            "height": ""
-        },
-        {
             "key": "field_534eadff531b4",
             "label": "Latitude",
             "name": "latitude",
@@ -257,68 +247,6 @@
             "prepend": "",
             "append": "",
             "formatting": "none",
-            "maxlength": ""
-        },
-        {
-            "key": "field_52613d8ce30ce",
-            "label": "coordsX",
-            "name": "coordsx",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "%",
-            "min": "",
-            "max": "",
-            "step": ""
-        },
-        {
-            "key": "field_52613da7e30cf",
-            "label": "coordsY",
-            "name": "coordsy",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "%",
-            "min": "",
-            "max": "",
-            "step": ""
-        },
-        {
-            "key": "field_52613db6e30d0",
-            "label": "Offset",
-            "name": "offset",
-            "type": "text",
-            "instructions": "in pixels",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "1px 1px 1px 1px",
-            "prepend": "",
-            "append": "",
-            "formatting": "html",
             "maxlength": ""
         },
         {
@@ -387,47 +315,6 @@
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
-        },
-        {
-            "key": "field_5da9ce7f6e4aa",
-            "label": "Services",
-            "name": "services",
-            "type": "taxonomy",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "taxonomy": "service_tax",
-            "field_type": "checkbox",
-            "add_term": 1,
-            "save_terms": 0,
-            "load_terms": 0,
-            "return_format": "id",
-            "multiple": 0,
-            "allow_null": 0
-        },
-        {
-            "key": "field_5e149c282cf07",
-            "label": "Subsidiary Name",
-            "name": "subsidiary_name",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
         }
     ],
     "location": [
@@ -450,5 +337,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1578850365
+    "modified": 1579367729
 }

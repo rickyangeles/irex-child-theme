@@ -12,8 +12,8 @@ get_header(); ?>
 
 <?php
     $slideshow = get_field('industry_gallery');
-    $industryCTAcontent = get_field('service_cta_content', 'options');
-    $industryCTAbtn     = get_field('service_cta_button', 'options');
+    $industryCTAcontent = get_field('industry_cta_content', 'options');
+    $industryCTAbtn     = get_field('industry_cta_button', 'options');
     $pID                = get_the_ID();
 	$post_slug = $post->post_name;
     $sub = get_field('subsidiary_site', 'options');

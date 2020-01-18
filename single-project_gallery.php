@@ -12,8 +12,8 @@ get_header(); ?>
 
 <?php
     $projectSlideshow   = get_field('project_gallery');
-    $projectCTAcontent  = get_field('service_cta_content', 'options');
-    $projectCTAbtn      = get_field('service_cta_button', 'options');
+    $projectCTAcontent  = get_field('project_cta_content', 'options');
+    $projectCTAbtn      = get_field('project_cta_button', 'options');
     $relatedProjects    = get_field('related_projects');
     $projectDetails     = get_field('project_details');
     $pID                = get_the_ID();
