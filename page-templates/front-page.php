@@ -49,10 +49,12 @@ $container = get_theme_mod( 'understrap_container_type' );
     $careerButton = get_field('career_button');
 
     if ( $sliderCount > 1 ) {
-        $slideLoop = 'true';
+        $slideLoop = true;
+        $autoplay = 'autoplay: { delay: 5000, disableOnInteraction: false, },';
     } else {
-        $slideLoop = 'false';
+        $slideLoop = false;
     }
+
 
     if ( $introBG ) {
         $introBG = 'style="background-image:url(' . get_field('intro_bg') . ')";';
