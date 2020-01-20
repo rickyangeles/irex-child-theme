@@ -265,6 +265,17 @@ add_action("manage_post_location_posts_custom_column", "my_custom_columns");
 add_filter("manage_post_location_posts_columns", "my_page_columns");
 
 
+add_action( 'admin_menu', 'admin_menu_add_external_link_top_level' );
+function admin_menu_add_external_link_top_level() {
+    global $menu;
+    $menu_slug = "/doc/index.php"; // just a placeholder for when we call add_menu_page
+    $menu_pos = 1; // whatever position you want your menu to appear
+    // create the top level menu, using $menu_slug as a placeholder for the link
+    add_menu_page( 'admin_menu_add_external_link_top_level', 'Documentation', 'read', $menu_slug, '', 'dashicons-format-aside', $menu_pos );
+    // replace the slug with your external url
+    $menu[$menu_pos][2] = "/doc/index.php";
+}
+
 //DONT DELETE
 // function set_location_service() {
 //

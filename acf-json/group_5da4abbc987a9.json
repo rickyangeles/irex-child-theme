@@ -1,11 +1,11 @@
 {
     "key": "group_5da4abbc987a9",
-    "title": "Project Gallery",
+    "title": "Project Fields",
     "fields": [
         {
             "key": "field_5e25d3663231d",
-            "label": "Project Gallery",
-            "name": "project_gallery",
+            "label": "Project Details",
+            "name": "project_details",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -66,5 +66,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1579537277
+    "modified": 1579553247
 }

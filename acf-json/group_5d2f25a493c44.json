@@ -30,25 +30,6 @@
             "mime_types": ""
         },
         {
-            "key": "field_5d2f25af777c7",
-            "label": "Hide in Corporate",
-            "name": "hide_in_corporate",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_5dcb09f554593",
             "label": "Testimonials",
             "name": "testimonials",
@@ -72,6 +53,25 @@
             "min": 1,
             "max": "",
             "return_format": "object"
+        },
+        {
+            "key": "field_5d2f25af777c7",
+            "label": "Hide in Corporate",
+            "name": "hide_in_corporate",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -91,5 +91,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1579260139
+    "modified": 1579552908
 }
