@@ -356,25 +356,46 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <?php endif; ?>
                     </div>
                     <script type="text/javascript">
-                    var mySwiper = new Swiper ('.swiper-container', {
-                      // Optional parameters
-                      direction: 'horizontal',
+                        var mySwiper = new Swiper ('.swiper-container.career-slider', {
+                          // Optional parameters
+                          //autoplay: { delay: 5000, disableOnInteraction: false, },
+                          watchOverflow: true,
+                          direction: 'horizontal',
+                          loop: false,
+                          //autoplay: $('.swiper-slide').length > 1 ? true : false,
+                          // If we need pagination
+                          pagination: {
+                            el: '.swiper-pagination',
+                          },
+
+                          // Navigation arrows
+                          navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                          },
+
+                      });
+
+                      var mySwiper = new Swiper ('.swiper-container.home-slider', {
+                        // Optional parameters
+                        //autoplay: { delay: 5000, disableOnInteraction: false, },
+                        watchOverflow: true,
+                        direction: 'horizontal',
                         loop: <?php echo $slideLoop; ?>,
-                      //autoplay: $('.swiper-slide').length > 1 ? true : false,
+                        <?php echo $autoplay; ?>
+                        //autoplay: $('.swiper-slide').length > 1 ? true : false,
+                        // If we need pagination
+                        pagination: {
+                          el: '.swiper-pagination',
+                        },
 
-                      watchOverflow: true,
+                        // Navigation arrows
+                        navigation: {
+                          nextEl: '.swiper-button-next',
+                          prevEl: '.swiper-button-prev',
+                        },
 
-                      // If we need pagination
-                      pagination: {
-                        el: '.swiper-pagination',
-                      },
-
-                      // Navigation arrows
-                      navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                      },
-                    })
+                    });
                     </script>
                 <?php endif; ?>
             </div>
