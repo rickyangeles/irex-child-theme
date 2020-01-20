@@ -49,7 +49,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     $careerButton = get_field('career_button');
 
     if ( $sliderCount > 1 ) {
-        $slideLoop = true;
+        $slideLoop = 'true';
         $autoplay = 'autoplay: { delay: 5000, disableOnInteraction: false, },';
     } else {
         $slideLoop = false;
@@ -84,7 +84,7 @@ $container = get_theme_mod( 'understrap_container_type' );
         </div>
     </div> -->
     <div class="container-fluid banner home-slider px-0">
-        <div class="swiper-container slider-container">
+        <div class="swiper-container slider-container h-slider">
             <div class="swiper-wrapper">
             <?php while( have_rows('slider') ): the_row();
                 // vars
@@ -94,7 +94,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 $url = $image['url'];
             ?>
 
-                <div class="swiper-slide" style="background-image:url('<?php echo $url; ?>'); background-position-y:<?php echo $bannerImgPos; ?>">
+                <div class="swiper-slide" style="background-size: cover; background-image:url('<?php echo $url; ?>'); background-position-y:<?php echo $bannerImgPos; ?>">
                     <div class="slide-content">
                         <div class="banner-content">
                             <p><?php echo $content; ?></p>
@@ -363,7 +363,6 @@ $container = get_theme_mod( 'understrap_container_type' );
                           //autoplay: { delay: 5000, disableOnInteraction: false, },
                           watchOverflow: true,
                           direction: 'horizontal',
-                          loop: false,
                           //autoplay: $('.swiper-slide').length > 1 ? true : false,
                           // If we need pagination
                           pagination: {
