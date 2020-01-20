@@ -38,7 +38,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     //$industry = get_field('select_industries');
     $contractorTitle = get_field('contractor_title', 'options');
     $contractorContent = get_field('contractor_content', 'options');
-    $contractorBtn = get_field('contractor_button');
+    $contractorBtn = get_field('contractor_button', 'options');
     $projectTitle = get_field('project_title');
     $featuredProjects = get_field('select_projects_to_feature');
     $projectButton = get_field('project_button');
@@ -326,7 +326,12 @@ $container = get_theme_mod( 'understrap_container_type' );
             <h2 class="title"><?php echo $careerTitle; ?></h2>
             <div class="col-md-6 hc-left">
                 <?php echo $careerContent; ?>
-                <a href="<?php echo $careerButton['url']; ?>" class="btn btn-primary"><?php echo $careerButton['title']; ?></a>
+                <?php
+                $careerLink = get_field('career_link', 'options');
+                $careerURL = $careerLink['url'];
+                $careerText = $careerLink['title'];
+                ?>
+                <a href="<?php echo $careerURL; ?>" class="btn btn-primary"><?php echo $careerText; ?></a>
             </div>
             <div class="col-md-6 hc-right">
                 <?php $count = count($careerSlideshow); ?>
@@ -377,7 +382,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
                       });
 
-                      var mySwiper = new Swiper ('.swiper-container.home-slider', {
+                      var mySwiper = new Swiper ('.swiper-container.h-slider', {
                         // Optional parameters
                         //autoplay: { delay: 5000, disableOnInteraction: false, },
                         watchOverflow: true,

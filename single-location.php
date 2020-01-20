@@ -12,8 +12,8 @@ get_header(); ?>
 
 <?php
     $serviceSlideshow = get_field('service_gallery');
-    $serviceCTAcontent = get_field('service_cta_content', 'options');
-    $serviceCTAbtn     = get_field('service_cta_button', 'options');
+    $serviceCTAcontent = get_field('industry_cta_content', 'options');
+    $serviceCTAbtn     = get_field('industry_cta_button', 'options');
     $pID                = get_the_ID();
 ?>
 <!-- Page Header -->
