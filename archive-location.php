@@ -51,7 +51,7 @@ get_header(); ?>
                     //         }
                     //     }
                     // }
-                    $url = get_post_meta($t, 'dt_external_connection_url', true);
+                    $url = get_post_meta($dist_post_id, 'dt_external_connection_url', true);
                     $urlclean = str_replace('/wp-json', '', $url);
                     //$logo = $url . "/acf/v3/options/options/header_logo";
                 ?>
@@ -87,7 +87,7 @@ get_header(); ?>
                             <?php if ( $fax ) : ?>
                                 <li>F: <?php echo $fax; ?></li>
                             <?php endif; ?>
-                            <?php if ( $url ) : ?>
+                            <?php if ( $urlclean ) : ?>
                                 <li><a href="<?php echo $urlclean; ?>">visit website</a></li>
                             <?php endif; ?>
                         </ul>
@@ -135,7 +135,7 @@ get_header(); ?>
                         $dist_post_id = key($meta_t);
                         $logo = get_field('sub_logo', $dist_post_id);
 
-                        $url = get_post_meta($post->ID, 'dt_external_connection_url', true);
+                        $url = get_post_meta($dist_post_id, 'dt_external_connection_url', true);
                         $urlclean = str_replace('/wp-json', '', $url);
                         //$services = $url . "/wp/v2/service?per_page=100";
                         //$logo = $url . "/acf/v3/options/options/header_logo";
@@ -173,7 +173,7 @@ get_header(); ?>
                         <?php if ( $fax ) : ?>
                             <li>F: <?php echo $fax; ?></li>
                         <?php endif; ?>
-                        <?php if ( $url ) : ?>
+                        <?php if ( $urlclean ) : ?>
                             <li><a href="<?php echo $urlclean; ?>">visit website</a></li>
                         <?php endif; ?>
                     </ul>
