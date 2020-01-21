@@ -53,8 +53,11 @@ function display_custom_post_type(){
         while( $query->have_posts() ){
             $query->the_post();
 			$id = get_the_ID();
-			$pdfLink = get_field('file', $id);
-            $string .= '<li><a href="'. $pdfLink['url'] . '">' . get_the_title() . '</a></li>';
+            $meta = get_post_meta(get_the_ID(), 'dt_original_post_id', true);
+            $json = 'https://www.irexcontracting.com/wp-json/acf/v3/resource/' . $meta . '/file/';
+            $obj = json_decode(file_get_contents($json), true);
+            $pdfLink = $obj['file']['url'];
+            $string .= '<li><a href="'. $pdfLink . '">' . get_the_title() . '</a></li>';
         }
         $string .= '</ul>';
     }

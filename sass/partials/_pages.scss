@@ -853,7 +853,13 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
         transition: all .2s ease;
         position: relative;
         background-color: $primary;
+        max-height: 300px;
 
+        img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+        }
         span {
             width: 100%;
             position: absolute;
