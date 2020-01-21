@@ -57,7 +57,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "testimonial", "with_front" => false ),
 		"query_var" => true,
-		"menu_position" => 7,
+		"menu_position" => 11,
 		"menu_icon" => "dashicons-star-filled",
 		"supports" => array( "title", "editor", "thumbnail", "revisions", "page-attributes" ),
 	);
@@ -118,7 +118,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "industries", "with_front" => false ),
 		"query_var" => true,
-		"menu_position" => 4,
+		"menu_position" => 8,
 		"menu_icon" => "dashicons-building",
 		"supports" => array( "title", "editor", "thumbnail", "revisions", "page-attributes" ),
 	);
@@ -179,7 +179,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "services", "with_front" => false ),
 		"query_var" => true,
-		"menu_position" => 1,
+		"menu_position" => 5,
 		"menu_icon" => "dashicons-admin-generic",
 		"supports" => array( "title", "editor", "thumbnail", "revisions", "page-attributes" ),
 	);
@@ -240,7 +240,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "locations", "with_front" => true ),
 		"query_var" => true,
-		"menu_position" => 2,
+		"menu_position" => 6,
 		"menu_icon" => "dashicons-location-alt",
 		"supports" => array( "title", "editor", "thumbnail", "revisions" ),
 	);
@@ -301,7 +301,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "resource", "with_front" => true ),
 		"query_var" => true,
-		"menu_position" => 5,
+		"menu_position" => 9,
 		"menu_icon" => "dashicons-book",
 		"supports" => array( "title", "editor", "thumbnail", "revisions" ),
 	);
@@ -362,7 +362,7 @@ function cptui_register_my_cpts() {
 		"hierarchical" => true,
 		"rewrite" => array( "slug" => "project-gallery", "with_front" => true ),
 		"query_var" => true,
-		"menu_position" => 3,
+		"menu_position" => 7,
 		"menu_icon" => "dashicons-images-alt2",
 		"supports" => array( "title", "editor", "thumbnail", "revisions" ),
 	);
@@ -484,7 +484,7 @@ function cptui_register_my_cpts() {
 			"hierarchical" => true,
 			"rewrite" => array( "slug" => "partners", "with_front" => true ),
 			"query_var" => true,
-			"menu_position" => 6,
+			"menu_position" => 10,
 			"menu_icon" => "dashicons-admin-users",
 			"supports" => array( "title", "editor", "thumbnail", "revisions" ),
 		);
