@@ -127,26 +127,26 @@ function get_service_industry() {
 		$description .= 'for various industries.';
 	} elseif ( $len == 1 ) {
 		foreach ( $industries as $industry) {
-			$description .= 'for various industries, including ' . $industry->name . '.';
+			$description .= 'for various industries (including ' . $industry->name . ').';
 		}
 	} elseif ( $len == 2 ) {
 		foreach ( $industries as $industry) {
 			$i++;
 			if ( $i == 1 ) {
-				$description .= 'for various industries, including ' . $industry->name;
+				$description .= 'for various industries (including ' . $industry->name;
 			} else {
-				$description .= ' and ' . $industry->name . '.';
+				$description .= ' and ' . $industry->name . ').';
 			}
 		}
 	} elseif ( $len > 2 ) {
 		foreach ( $industries as $industry ) {
 			$i++;
 			if ( $i == 1 ) {
-				$description .= 'for various industries, including ' . $industry->name . ', ';
+				$description .= 'for various industries (including ' . $industry->name . ', ';
 			} elseif ( $i == 2 ) {
 				$description .= $industry->name;
 			} elseif ( $i == 3 ) {
-				$description .= ', and ' . $industry->name . '.';
+				$description .= ', and ' . $industry->name . ').';
 			}
 		}
 	}
