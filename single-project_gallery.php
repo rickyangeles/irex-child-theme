@@ -42,7 +42,7 @@ get_header(); ?>
         <?php endif; ?>
             <?php echo $projectDetails; ?>
         </div>
-        <?php if ( $sub && !$musser ) : ?>
+        <?php if ( have_rows('project_gallery') ) : ?>
             <div class="col-md-6 slideshow">
                 <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
                     <?php get_project_gallery($pID); ?>
