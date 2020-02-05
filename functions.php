@@ -281,6 +281,8 @@ if($query->is_main_query() && is_post_type_archive('partner' )){
 
 	   // order post_type and remove pagination
 	   $query->set('posts_per_page', -1);
+	   $query->set('orderby', 'title');
+	   $query->set('order', 'ASC');
    }
 }
 add_action( 'pre_get_posts', 'wpc_order_post_type_archive' );
