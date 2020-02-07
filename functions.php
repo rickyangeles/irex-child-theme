@@ -286,6 +286,18 @@ if($query->is_main_query() && is_post_type_archive('partner' )){
    }
 }
 add_action( 'pre_get_posts', 'wpc_order_post_type_archive' );
+
+
+//Order of News Page
+function only_one_cat_blogpage($query) {
+    if( !is_admin() && $query->is_home() && $query->is_main_query() ){
+        $query->set('orderby', 'date');
+	   $query->set('order', 'DESC');
+    }
+}
+add_action( 'pre_get_posts', 'only_one_cat_blogpage' );
+
+
 //DONT DELETE
 // function set_location_service() {
 //
