@@ -55,7 +55,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 		.main-content .left-content, .card .card-body, .page-contractor a {
 			color: <?php echo $primary_color; ?>!important;
 		}
-		.home-featured-projects .single-featured-project:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link,
+		.project-list .single-project:hover .sfp-left h5,.home-featured-projects .single-featured-project:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link,
 		.home-banner .banner-content h1, .page-template-sub-front-page .home-cta .row h5, .footer h1, .footer h2, .footer h3, .footer h4, .footer h5,
 		.footer h6 {
 			color: white!important;
