@@ -792,7 +792,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
 
 .project-list {
     .single-project {
-        margin-bottom: 30px;
+        &:nth-child(-n+2) {
+            margin-bottom: 40px;
+        }
 
         &:hover {
             .sfp-left {
@@ -803,12 +805,11 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
                 box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.18);
 
                 p {
-                    color: inherit;
+                    color: $white;
                 }
 
                 h5 {
                     color: $white;
-                    line-height: 1.5;
                 }
             }
 
@@ -817,8 +818,8 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
                 img {
                     opacity: .4;
                 }
-
-                a {
+ 
+                span {
                     opacity: 1;
                 }
             }
@@ -831,16 +832,23 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
 
     .sfp-left {
         transition: all .2s ease;
-        padding: 40px 30px;
         border: 2px solid #E8EEF4;
         box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
         border-radius: 10px 0 0 10px;
         border-right: none;
         color: $light;
 
+        a {
+            display: block;
+            padding: 40px 30px;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
         h5 {
             color: $light;
-            line-height: 1.5;
         }
 
         p {
@@ -853,19 +861,18 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
         transition: all .2s ease;
         position: relative;
         background-color: $primary;
-        max-height: 300px;
 
         img {
             width: 100%;
-            max-height: 300px;
-            object-fit: cover;
         }
-        span {
-            width: 100%;
+
+        div {
+            width: 100%; height: 100%;
             position: absolute;
+            top: 0;
             text-align: center;
 
-            a {
+            span {
                 color: $primary;
                 background-color: $white;
                 border-radius: 20px;
@@ -874,6 +881,89 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
             }
         }
     }
+    // .single-project {
+    //     margin-bottom: 30px;
+    //
+    //     &:hover {
+    //         .sfp-left {
+    //             transition: all .2s ease;
+    //             background-color: $primary;
+    //             color: $white;
+    //             border-color: $primary;
+    //             box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.18);
+    //
+    //             p {
+    //                 color: $white;
+    //             }
+    //
+    //             h5 {
+    //                 color: $white;
+    //                 line-height: 1.5;
+    //             }
+    //         }
+    //
+    //         .sfp-right {
+    //             transition: all .2s ease;
+    //             img {
+    //                 opacity: .4;
+    //             }
+    //
+    //             a {
+    //                 opacity: 1;
+    //             }
+    //         }
+    //     }
+    // }
+    // .sfp-left, .sfp-right {
+    //     width: 50%;
+    //     float:left;
+    // }
+    //
+    // .sfp-left {
+    //     transition: all .2s ease;
+    //     padding: 40px 30px;
+    //     border: 2px solid #E8EEF4;
+    //     box-shadow: 0px 2px 4px rgba(0,0,0,0.18);
+    //     border-radius: 10px 0 0 10px;
+    //     border-right: none;
+    //     color: $light;
+    //
+    //     h5 {
+    //         color: $light;
+    //         line-height: 1.5;
+    //     }
+    //
+    //     p {
+    //         margin-bottom: 0;
+    //         line-height: 1.6;
+    //     }
+    // }
+    //
+    // .sfp-right {
+    //     transition: all .2s ease;
+    //     position: relative;
+    //     background-color: $primary;
+    //     max-height: 300px;
+    //
+    //     img {
+    //         width: 100%;
+    //         max-height: 300px;
+    //         object-fit: cover;
+    //     }
+    //     span {
+    //         width: 100%;
+    //         position: absolute;
+    //         text-align: center;
+    //
+    //         a {
+    //             color: $primary;
+    //             background-color: $white;
+    //             border-radius: 20px;
+    //             padding: 5px 25px;
+    //             opacity: 0;
+    //         }
+    //     }
+    // }
 }
 
 .single-project_gallery {
