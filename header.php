@@ -52,7 +52,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 		.full-width.light-theme, .industry-card ul li, .location-list .single-location, .location-list .single-location a,
 		.location-filter .searchandfilter select, .blog-archive article, .page-link, input[type=text], .header .navbar-toggler .navbar-toggler-icon,
 		.home-career .hc-right .swiper-container .swiper-button-prev:after, .home-career .hc-right .swiper-container .swiper-button-next:after,
-		.main-content .left-content, .card .card-body, .page-contractor a {
+		.main-content .left-content, .card .card-body, .page-contractor a, .project-list .single-project:hover .sfp-left, .project-list .sfp-right {
 			color: <?php echo $primary_color; ?>!important;
 		}
 		.project-list .single-project:hover .sfp-left h5,.home-featured-projects .single-featured-project:hover .sfp-left h5, .related-projects:hover .sfp-left h5, .cta.dark-theme h3, .page-item.active .page-link,
