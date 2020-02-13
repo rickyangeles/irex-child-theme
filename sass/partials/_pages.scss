@@ -796,6 +796,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
 
 /* Project Archive Styles */
 
+.project-content {
+    margin-bottom: 30px;
+}
 .project-list {
     .single-project {
         &:nth-child(-n+2) {

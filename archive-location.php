@@ -98,10 +98,13 @@ get_header(); ?>
     <?php endif; ?>
 </div>
 
-<div class="container breadcrumb">
+<div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3 breadcrumb">
             <?php bcn_display(); ?>
+        </div>
+        <div class="col-md-9">
+            <h1 style="text-align:center; padding: 35px 0 0;">Locations</h1>
         </div>
     </div>
 </div>
