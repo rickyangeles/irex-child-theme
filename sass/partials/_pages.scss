@@ -133,7 +133,13 @@
         color: $primary;
         line-height: 1.6;
     }
+    .service-cta, .project-cta {
+        margin-top: 30px!important;
 
+        .service-cta-content, .project-cta-content {
+            color: $primary;
+        }
+    }
     .slideshow {
         .swiper-container {
             max-width: 757px; width: 100%;
@@ -818,7 +824,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
                 img {
                     opacity: .4;
                 }
- 
+
                 span {
                     opacity: 1;
                 }

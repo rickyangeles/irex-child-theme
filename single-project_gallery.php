@@ -6,12 +6,10 @@
  *
  * @package understrap
  */
-
-
 get_header(); ?>
-
 <?php
     $projectSlideshow   = get_field('project_gallery');
+    $count = count($projectSlideshow);
     $projectCTAcontent  = get_field('project_cta_content', 'options');
     $projectCTAbtn      = get_field('project_cta_button', 'options');
     $relatedProjects    = get_field('related_projects');
@@ -20,8 +18,8 @@ get_header(); ?>
     $sub = get_field('subsidiary_site', 'options');
     $musser = get_field('musser_park', 'options');
     $industries = get_terms();
+    $contentSize = have_rows('project_gallery') ? 'col-md-6' : 'col-md-12';
 ?>
-<!-- Page Header -->
 <div class="no-banner"></div>
 <div class="container breadcrumb">
     <div class="row">
@@ -35,18 +33,39 @@ get_header(); ?>
         <?php the_title(); ?>
     </h1>
     <div class="row">
-        <?php if ( have_rows('project_gallery') ) : ?>
-        <div class="col-md-6 project-content">
-        <?php else :  ?>
-            <div class="col-md-12 project-content">
-        <?php endif; ?>
+        <div class="<?php echo $contentSize; ?> project-content">
             <?php echo $projectDetails; ?>
         </div>
+
         <?php if ( have_rows('project_gallery') ) : ?>
             <div class="col-md-6 slideshow">
+            <?php if ( $musser || $sub ) : ?>
                 <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
                     <?php get_project_gallery($pID); ?>
                 </div>
+            <?php else : ?>
+                <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
+                    <div class="swiper-wrapper">
+                        <?php foreach( $projectSlideshow as $image ): ?>
+                            <?php $caption = $image['caption']; ?>
+                            <div class="swiper-slide">
+                                <?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
+                                <?php if ( $image['caption'] ): ?>
+                                    <div class="slide-caption"><?php echo $image['caption']; ?></div>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php if ( $count > 1) : ?>
+                        <div class="nav-wrap">
+                            <div class="swiper-pagination"></div>
+                            <!-- If we need navigation buttons -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php endif; ?>
                 <div class="row project-cta d-flex align-items-center">
                     <div class="col-md-8 project-cta-content">
                         <?php echo $projectCTAcontent; ?>
@@ -57,56 +76,18 @@ get_header(); ?>
                 </div>
             </div>
         <?php else : ?>
-            <?php if ( $projectSlideshow ) : ?>
-                <?php $count = count($projectSlideshow); ?>
-                <div class="col-md-6 slideshow">
-                    <div class="swiper-container service-slide slide-<?php echo get_the_ID(); ?>" id="<?php echo get_the_ID(); ?>">
-                    <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <?php foreach( $projectSlideshow as $image ): ?>
-                                <?php $caption = $image['caption']; ?>
-                                <div class="swiper-slide">
-                                    <?php echo wp_get_attachment_image( $image['ID'], $size ); ?>
-                                    <?php if ( $image['caption'] ): ?>
-                                        <div class="slide-caption"><?php echo $image['caption']; ?></div>
-                                    <?php endif; ?>
-                                </div>
-
-                            <?php endforeach; ?>
-                        </div>
-                        <?php if ( $count > 1) : ?>
-                            <div class="nav-wrap">
-                                <div class="swiper-pagination"></div>
-                                <!-- If we need navigation buttons -->
-                                <div class="swiper-button-prev"></div>
-                                <div class="swiper-button-next"></div>
-                            </div>
-                        <?php endif; ?>
+            <div class="col-md-8 offset-md-2">
+                <div class="row project-cta d-flex align-items-center">
+                    <div class="col-md-8 project-cta-content">
+                        <?php echo $projectCTAcontent; ?>
                     </div>
-    				<div class="row project-cta d-flex align-items-center">
-                        <div class="col-md-8 project-cta-content">
-                            <?php echo $projectCTAcontent; ?>
-                        </div>
-                        <div class="col-md-4 project-cta-btn">
-                            <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
-                        </div>
+                    <div class="col-md-4 project-cta-btn">
+                        <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
                     </div>
                 </div>
-            <?php else:  ?>
-                <div class="col-md-8 project-cta-wrap offset-md-2">
-                    <div class="row project-cta d-flex align-items-center">
-                        <div class="col-md-8 project-cta-content">
-                            <?php echo $projectCTAcontent; ?>
-                        </div>
-                        <div class="col-md-4 project-cta-btn">
-                            <a href="<?php echo $projectCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $projectCTAbtn['title']; ?></a>
-                        </div>
-                    </div>
-                </div>
-            <?php endif; ?>
-
+            </div>
         <?php endif; ?>
-
+        </div>
     </div>
 </div>
 <div class="container secondary-content">
@@ -115,30 +96,23 @@ get_header(); ?>
     </div>
 </div>
 <?php
-
-    //Get array of terms
     $terms = get_the_terms( $post->ID , 'industry_tax', 'string');
-    //Pluck out the IDs to get an array of IDS
     $term_ids = wp_list_pluck($terms,'term_id');
-
-    //Query posts with tax_query. Choose in 'IN' if want to query posts with any of the terms
-    //Chose 'AND' if you want to query for posts with all terms
-      $project_query = new WP_Query( array(
-          'post_type' => 'project_gallery',
-          'tax_query' => array(
-                        array(
-                            'taxonomy' => 'industry_tax',
-                            'field' => 'id',
-                            'terms' => $term_ids,
-                            'operator'=> 'IN' //Or 'AND' or 'NOT IN'
-                         )),
-          'posts_per_page' => 3,
-          'ignore_sticky_posts' => 1,
-          'orderby' => 'rand',
-          'post__not_in'=>array($post->ID)
-       ) );
-       $p_count = $project_query->found_posts;
-
+    $project_query = new WP_Query( array(
+        'post_type' => 'project_gallery',
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'industry_tax',
+                'field' => 'id',
+                'terms' => $term_ids,
+                'operator'=> 'IN' //Or 'AND' or 'NOT IN'
+        )),
+        'posts_per_page' => 3,
+        'ignore_sticky_posts' => 1,
+        'orderby' => 'rand',
+        'post__not_in'=>array($post->ID)
+    ));
+    $p_count = $project_query->found_posts;
 ?>
 
 <?php if ( $project_query->have_posts() ) : ?>
@@ -179,6 +153,4 @@ get_header(); ?>
         </div>
     </div>
 <?php endif; ?>
-
-
 <?php get_footer(); ?>
