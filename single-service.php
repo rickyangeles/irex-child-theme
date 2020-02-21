@@ -151,8 +151,10 @@ get_header(); ?>
                         <?php endif; ?>
                     </div>
                 </div>
+
             <?php endif; ?>
             <!-- If we need pagination -->
+
         </div>
 
     <div class="row">
@@ -173,8 +175,31 @@ get_header(); ?>
                     <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                 <?php endwhile; ?>
             </div>
+            <div class="col-md-6 service-cta-wrap">
+                <div class="row service-cta d-flex align-items-center">
+                    <div class="col-md-8 service-cta-content">
+                        <?php echo $serviceCTAcontent; ?>
+                    </div>
+                    <div class="col-md-4 service-cta-btn">
+                        <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
+                    </div>
+                </div>
+            </div>
             <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+        <?php else : ?>
+            <div class="col-md-6 service-cta-wrap offset-md-6">
+                <div class="row service-cta d-flex align-items-center">
+                    <div class="col-md-8 service-cta-content">
+                        <?php echo $serviceCTAcontent; ?>
+                    </div>
+                    <div class="col-md-4 service-cta-btn">
+                        <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
+                    </div>
+                </div>
+            </div>
         <?php endif; ?>
+        <?php if( have_rows('service_gallery') || have_rows('new_gallery') ): ?>
+        <?php else : ?>
         <div class="col-md-6 service-cta-wrap offset-md-6">
             <div class="row service-cta d-flex align-items-center">
                 <div class="col-md-8 service-cta-content">
@@ -185,6 +210,7 @@ get_header(); ?>
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 </div>
 
