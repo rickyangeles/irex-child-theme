@@ -175,11 +175,7 @@ get_header(); ?>
             </div>
             <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
         <?php endif; ?>
-        <?php if( $subpages->have_posts() ) : ?>
-            <div class="col-md-6 service-cta-wrap">
-        <?php else : ?>
-            <div class="col-md-8 service-cta-wrap offset-md-2">
-        <?php endif; ?>
+        <div class="col-md-6 service-cta-wrap offset-md-6">
             <div class="row service-cta d-flex align-items-center">
                 <div class="col-md-8 service-cta-content">
                     <?php echo $serviceCTAcontent; ?>
@@ -254,7 +250,7 @@ get_header(); ?>
                          )),
           'posts_per_page' => 3,
           'ignore_sticky_posts' => 1,
-          'orderby' => 'rand',
+          //'orderby' => 'rand',
           'post_not_in'=>array($post->ID)
        ) );
        $p_count = $project_query->found_posts;

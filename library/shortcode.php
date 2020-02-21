@@ -138,7 +138,8 @@ function display_custom_post_type(){
 
             if ($attachments) {
                 foreach ( $attachments as $attachment ) {
-                    echo '<li>' . the_attachment_link( $attachment->ID , false ) . '</li>';
+                    //echo '<li>' . the_attachment_link( $attachment->ID , false ) . '</li>';
+					echo '<li>' . wp_get_attachment_link( $attachment->ID , false ) . '</li>';
                 }
             } else {
                 $meta = get_post_meta(get_the_ID(), 'dt_original_post_id', true);

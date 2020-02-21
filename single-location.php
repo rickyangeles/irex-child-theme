@@ -38,7 +38,7 @@ get_header(); ?>
 </div>
 <div class="container main-content">
     <div class="row">
-=
+
     </div>
 
 </div>

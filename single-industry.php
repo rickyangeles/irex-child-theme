@@ -132,8 +132,8 @@ get_header(); ?>
     $project_query = new WP_Query( array(
         'post_type' => 'project_gallery',          // name of post type.
         'posts_per_page' => 4,
-        'orderby' => 'title',
-        'order' => 'ASC',
+        //'orderby' => 'title',
+        //'order' => 'ASC',
         'public'   => true,
         'post_parent' => 0,
 		'tax_query' => array(

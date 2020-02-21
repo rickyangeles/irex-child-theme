@@ -298,6 +298,19 @@ function only_one_cat_blogpage($query) {
 add_action( 'pre_get_posts', 'only_one_cat_blogpage' );
 
 
+//Changing order by menu_order for industries
+function set_menu_order_industry( $query ) {
+	if ( is_post_type_archive( 'industry' ) ) {
+		$query->set( 'orderby', array(
+			'menu_order' => 'ASC',
+			'title'=> 'ASC'
+		));
+        //$query->set( 'order', 'ASC' );
+        return;
+    }
+}
+add_action( 'pre_get_posts', 'set_menu_order_industry', 1);
+
 //DONT DELETE
 // function set_location_service() {
 //
