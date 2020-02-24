@@ -158,14 +158,16 @@ get_header(); ?>
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
-                    <div class="row service-cta d-flex align-items-center">
-                        <div class="col-md-8 service-cta-content">
-                            <?php echo $serviceCTAcontent; ?>
+                    <?php if ( !$subpages->have_posts() ) : ?>
+						<div class="row service-cta d-flex align-items-center">
+                            <div class="col-md-8 service-cta-content">
+                                <?php echo $serviceCTAcontent; ?>
+                            </div>
+                            <div class="col-md-4 service-cta-btn">
+                                <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
+                            </div>
                         </div>
-                        <div class="col-md-4 service-cta-btn">
-                            <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
-                        </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
 
             <?php endif; ?>
@@ -181,17 +183,11 @@ get_header(); ?>
                 <?php while( $subpages->have_posts() ) : $subpages->the_post(); ?>
                     <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                 <?php endwhile; ?>
+				</ul>
                 <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
             </div>
-        <?php endif; ?>
-        <?php if( have_rows('service_gallery') || have_rows('new_gallery') ): ?>
-        <?php else : ?>
-            <?php if( $subpages->have_posts() ) : ?>
-                <div class="col-md-6 service-cta-wrap">
-            <?php else: ?>
-                <div class="col-md-8 service-cta-wrap offset-md-2">
-            <?php endif; ?>
-                <div class="row service-cta d-flex align-items-center">
+			<div class="col-md-6 service-cta-wrap">
+                <div class="service-cta d-flex align-items-center">
                     <div class="col-md-8 service-cta-content">
                         <?php echo $serviceCTAcontent; ?>
                     </div>
@@ -199,7 +195,7 @@ get_header(); ?>
                         <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
                     </div>
                 </div>
-            </div>
+			</div>
         <?php endif; ?>
     </div>
 </div>
