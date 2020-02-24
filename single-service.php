@@ -40,6 +40,14 @@ get_header(); ?>
     $new_id = array();
     //print_r($old_id);
 
+    $subpages = new WP_Query( array(
+        'post_type' => 'service',
+        'post_parent' => $pID,
+        'posts_per_page' => -1,
+        'orderby' => 'title',
+        'order'     => 'ASC'
+    ));
+
     foreach( $old_id as $mediaID ) {
         $args = array(
             'posts_per_page' => '1',
@@ -150,6 +158,14 @@ get_header(); ?>
                             <?php endif; ?>
                         <?php endif; ?>
                     </div>
+                    <div class="row service-cta d-flex align-items-center">
+                        <div class="col-md-8 service-cta-content">
+                            <?php echo $serviceCTAcontent; ?>
+                        </div>
+                        <div class="col-md-4 service-cta-btn">
+                            <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
+                        </div>
+                    </div>
                 </div>
 
             <?php endif; ?>
@@ -158,15 +174,6 @@ get_header(); ?>
         </div>
 
     <div class="row">
-        <?php
-            $subpages = new WP_Query( array(
-                'post_type' => 'service',
-                'post_parent' => $pID,
-                'posts_per_page' => -1,
-                'orderby' => 'title',
-                'order'     => 'ASC'
-            ));
-         ?>
         <?php if( $subpages->have_posts() ) : ?>
             <div class="col-md-6 service-sub-pages">
                 <h4>Services:</h4>
@@ -174,42 +181,25 @@ get_header(); ?>
                 <?php while( $subpages->have_posts() ) : $subpages->the_post(); ?>
                     <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
                 <?php endwhile; ?>
-            </div>
-            <div class="col-md-6 service-cta-wrap">
-                <div class="row service-cta d-flex align-items-center">
-                    <div class="col-md-8 service-cta-content">
-                        <?php echo $serviceCTAcontent; ?>
-                    </div>
-                    <div class="col-md-4 service-cta-btn">
-                        <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
-                    </div>
-                </div>
-            </div>
-            <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
-        <?php else : ?>
-            <div class="col-md-6 service-cta-wrap offset-md-6">
-                <div class="row service-cta d-flex align-items-center">
-                    <div class="col-md-8 service-cta-content">
-                        <?php echo $serviceCTAcontent; ?>
-                    </div>
-                    <div class="col-md-4 service-cta-btn">
-                        <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
-                    </div>
-                </div>
+                <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
             </div>
         <?php endif; ?>
         <?php if( have_rows('service_gallery') || have_rows('new_gallery') ): ?>
         <?php else : ?>
-        <div class="col-md-6 service-cta-wrap offset-md-6">
-            <div class="row service-cta d-flex align-items-center">
-                <div class="col-md-8 service-cta-content">
-                    <?php echo $serviceCTAcontent; ?>
-                </div>
-                <div class="col-md-4 service-cta-btn">
-                    <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
+            <?php if( $subpages->have_posts() ) : ?>
+                <div class="col-md-6 service-cta-wrap">
+            <?php else: ?>
+                <div class="col-md-8 service-cta-wrap offset-md-2">
+            <?php endif; ?>
+                <div class="row service-cta d-flex align-items-center">
+                    <div class="col-md-8 service-cta-content">
+                        <?php echo $serviceCTAcontent; ?>
+                    </div>
+                    <div class="col-md-4 service-cta-btn">
+                        <a href="<?php echo $serviceCTAbtn['url']; ?>" class="btn btn-secondary"><?php echo $serviceCTAbtn['title']; ?></a>
+                    </div>
                 </div>
             </div>
-        </div>
         <?php endif; ?>
     </div>
 </div>
