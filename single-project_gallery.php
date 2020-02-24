@@ -26,7 +26,6 @@ get_header(); ?>
     <div class="row">
         <div class="col-md-12">
             <?php bcn_display(); ?>
-			<?php echo $dist; ?>
         </div>
     </div>
 </div>

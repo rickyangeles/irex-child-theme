@@ -800,10 +800,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
 }
 .project-list {
     .single-project {
-        &:nth-child(-n+2) {
-            margin-bottom: 40px;
-        }
-
+        margin-bottom: 40px;
         &:hover {
             .sfp-left {
                 transition: all .2s ease;
@@ -870,6 +867,9 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#444444",endCo
         position: relative;
         background-color: $primary;
 
+        a {
+            width: 100%;
+        }
         img {
             width: 100%;
         }
