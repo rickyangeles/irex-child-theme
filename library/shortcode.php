@@ -26,10 +26,10 @@ add_filter('acf/format_value/type=text', 'do_shortcode');
 add_filter( 'the_excerpt', 'shortcode_unautop');
 add_filter( 'the_excerpt', 'do_shortcode');
 
-
+ 
 //Literatre download shortcode
 add_shortcode( 'literature-download', 'display_custom_post_type' );
-
+ 
 function display_custom_post_type(){
     $sub = get_field('subsidiary_site', 'options');
 
